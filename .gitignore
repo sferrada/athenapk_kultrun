@@ -8,8 +8,8 @@
 Thumbs.db
 
 # Others
-.trash/
-outputs/*
-athenapk/
-__pycache__/
+.trash
+outputs/
+athenapk
+__pycache__
 
