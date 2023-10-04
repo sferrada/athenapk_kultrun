@@ -8,6 +8,5 @@
 
 module load openmpi/4.1.5 gcc/12.2.0 hdf5/1.14.1-2_openmpi-4.1.5_parallel cuda/12.2
 
-
-cd /home/sferrada/athena_project/
-mpirun ./athenapk/build-host/bin/athenaPK -i ./turbulence_philipp.in > ./turbulence_philipp.out
+cd /home/sferrada/athenapk_kultrun/
+mpirun ./athenapk/build-host/bin/athenaPK -i ./inputs/turbulence_philipp_64.in > ./outputs/turbulence_philipp.out
