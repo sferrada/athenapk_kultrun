@@ -8,7 +8,7 @@ def read_athenapk_config_file(filename: str) -> dict:
     Returns:
         dict: A dictionary representing the parsed configuration.
     """
-    config = {}
+    config_dict = {}
     current_section = None
 
     with open(filename, 'r') as file:
@@ -18,7 +18,7 @@ def read_athenapk_config_file(filename: str) -> dict:
                 continue
             elif line.startswith("<") and line.endswith(">"):
                 current_section = line[1:-1]
-                config[current_section] = []
+                config_dict[current_section] = []
             elif current_section is not None:
                 parts = line.split('#', 1)  # Split at the first '#' to separate key and comment
                 if len(parts) == 2:
@@ -26,29 +26,30 @@ def read_athenapk_config_file(filename: str) -> dict:
                 else:
                     key_value_part, comment = line, None
                 key, value = map(str.strip, key_value_part.split('='))
-                config[current_section].append((key, value, comment))
+                config_dict[current_section].append((key, value, comment))
 
-    return config
+    return config_dict
 
 
 def write_athenapk_config_file(filename: str,
-                               config: dict,
+                               config_dict: dict,
                                min_column_width: int = 10) -> None:
     """
     Write an AthenaPK configuration to a file with optional column padding.
 
     Parameters:
         filename (str): The name of the output configuration file.
-        config (dict): The configuration dictionary to write.
+        config_dict (dict): The configuration dictionary to write.
         min_column_width (int, optional): Minimum width for each column. Default is 10.
 
     Returns:
         None
     """
     with open(filename, 'w') as file:
-        for section, options in config.items():
+        for section, options in config_dict.items():
             file.write(f"<{section}>\n")
             for key, value, comment in options:
+                value = str(value)
                 key_padding = max(0, min_column_width - len(key))
                 value_padding = max(0, min_column_width - len(value) if comment else 0)
                 comment_padding = max(0, min_column_width - len(comment) if comment else 0)
@@ -62,18 +63,19 @@ def write_athenapk_config_file(filename: str,
             file.write("\n")
 
 
-def format_athenapk_config_file(config: dict) -> str:
+def format_athenapk_config_file(config_dict: dict,
+                                print_formatted: bool = False) -> str:
     """
     Format an AthenaPK configuration dictionary as a string.
 
     Parameters:
-        config (dict): The configuration dictionary to format.
+        config_dict (dict): The configuration dictionary to format.
 
     Returns:
         str: The formatted configuration as a string.
     """
     formatted_config = ""
-    for section, options in config.items():
+    for section, options in config_dict.items():
         formatted_config += f"<{section}>\n"
         for key, value, comment in options:
             if comment:
@@ -81,4 +83,8 @@ def format_athenapk_config_file(config: dict) -> str:
             else:
                 formatted_config += f"{key} = {value}\n"
         formatted_config += "\n"
-    return formatted_config
+
+    if print_formatted:
+        print(formatted_config)
+    else:
+        return formatted_config

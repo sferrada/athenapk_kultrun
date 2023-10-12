@@ -13,20 +13,30 @@ if __name__ == "__main__":
 
     # Read the configuration file
     config = read_athenapk_config_file(input_file)
+    print(config['parthenon/mesh'])
 
-    # Format the config dictionary to be printed
-    config_formatted = format_athenapk_config_file(config)
-    print(config_formatted)
+    # # Format the config dictionary to be printed
+    # format_athenapk_config_file(config, print_formatted=True)
 
     # Modify the configuration if needed
+    number_of_cells = 128
+    config['parthenon/mesh'][1]  = ('nx1', number_of_cells, 'Number of zones in X1-direction')
+    config['parthenon/mesh'][6]  = ('nx2', number_of_cells, 'Number of zones in X2-direction')
+    config['parthenon/mesh'][11] = ('nx3', number_of_cells, 'Number of zones in X3-direction')
     config_mod = {
-        'parthenon/output2': [
-            ('file_type', 'h5', None),
-            ('variables', 'acc', None),
-            ('dt', '666', None),
-            ('id', '420', None),
-            ('single_precision_output', 'false', 'lalalala'),
-        ],
+        # Todo : If I do what's below, it replaces all the non-modified fields of the section
+        # Todo cont'd: thus, I need to do something about it, it should only replace the wanted
+        # Todo cont'd: fields and leave the rest untouched... for the moment I settled with the above
+        # 'parthenon/mesh': [
+        #     ('nx1', number_of_cells, 'Number of zones in X1-direction'),
+        #     ('nx2', number_of_cells, 'Number of zones in X2-direction'),
+        #     ('nx3', number_of_cells, 'Number of zones in X3-direction')
+        # ],
+        'parthenon/meshblock': [
+            ('nx1', number_of_cells // 4, None),
+            ('nx2', number_of_cells // 4, None),
+            ('nx3', number_of_cells // 2, None)
+        ]
     }
 
     # Write the modified configuration back to the file
