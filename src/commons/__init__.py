@@ -1,6 +1,5 @@
 def read_athenapk_config_file(filename: str) -> dict:
-    """
-    Read and parse an AthenaPK configuration file.
+    """Read and parse an AthenaPK configuration file.
 
     Parameters:
         filename (str): The name of the configuration file to read.
@@ -34,8 +33,7 @@ def read_athenapk_config_file(filename: str) -> dict:
 def write_athenapk_config_file(filename: str,
                                config_dict: dict,
                                min_column_width: int = 10) -> None:
-    """
-    Write an AthenaPK configuration to a file with optional column padding.
+    """Write an AthenaPK configuration to a file with optional column padding.
 
     Parameters:
         filename (str): The name of the output configuration file.
@@ -65,8 +63,7 @@ def write_athenapk_config_file(filename: str,
 
 def format_athenapk_config_file(config_dict: dict,
                                 print_formatted: bool = False) -> str:
-    """
-    Format an AthenaPK configuration dictionary as a string.
+    """Format an AthenaPK configuration dictionary as a string.
 
     Parameters:
         config_dict (dict): The configuration dictionary to format.
