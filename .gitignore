@@ -1,7 +1,8 @@
 # Simulation files
 *.hst
-*.phdf
-*.hdmf
+*.phdf*
+*.rhdf*
+
 
 # JetBrains IDE
 .idea/
