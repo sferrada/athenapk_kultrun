@@ -102,6 +102,22 @@ class LoadAthenaPKRun:
             raise FileNotFoundError('Snapshot not found in the current simulation directory.')
 
 
+    def get_snapshot_current_time(
+            self,
+            n_snap: int | str
+        ) -> float:
+        """
+        """
+        snapshot_number_str = str(n_snap).zfill(5)
+
+        try:
+            ds = yt.load(os.path.join(self.folder_path, f'parthenon.prim.{snapshot_number_str}.phdf'))
+            return float(ds.current_time)
+
+        except FileNotFoundError:
+            raise FileNotFoundError('Snapshot not found in the current simulation directory.')
+
+
     def get_field_average(
             self,
             n_snap: int | str,
