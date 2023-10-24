@@ -42,10 +42,4 @@ cd $PROJECTDIR
 mpirun ./athenapk/build-host/bin/athenaPK -i ./outputs/${RUNDIR}/turbulence_philipp.in > "./outputs/${RUNDIR}/turbulence_philipp.out"
 
 # After its done, move all output files to the correspondant folder
-mv parthenon.* ./outputs/${RUNDIR}/
-
-# mpirun ./athenapk/build-host/bin/athenaPK -i ./outputs/turb_nGPU1_nc64_M##_B0.05/turbulence_philipp_nc64.in > ./outputs/turbulence_philipp_nc64.out
-# for M in 16 32 64 128; do
-#   export N=$M;
-#   ./bin/athenaPK -i ../inputs/linear_wave3d.in parthenon/meshblock/nx1=$((2*N)) parthenon/meshblock/nx2=$N parthenon/meshblock/nx3=$N parthenon/mesh/nx1=$((2*M)) parthenon/mesh/nx2=$M parthenon/mesh/nx3=$M
-# done
+mv parthenon.* slurm-*.out ./outputs/${RUNDIR}/
