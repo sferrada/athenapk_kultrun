@@ -3,8 +3,8 @@ import numpy as np
 from src.load_model import LoadAthenaPKRun
 
 # Usage example
-run = 'turb_nGPU1_nc256_M##_B0.05'
-sim = LoadAthenaPKRun(os.path.join('outputs', run))
+run = os.path.join('outputs', 'turb_nGPU1_nc256_M##_B0.05')
+sim = LoadAthenaPKRun(run)
 
 # -----------------------------------------------
 # Non-parallelized version
@@ -25,7 +25,7 @@ for i in sim.snapshot_list:
 
 # Save the lists to a single file
 data = np.column_stack((times, results))
-np.savetxt('output_data.txt', data, header='Time(s) Average_Mach_Number', comments='')
+np.savetxt(os.path.join(run, 'output_data.txt'), data, header='Time(s) Average_Mach_Number', comments='')
 
 # # -----------------------------------------------
 # # Parallelized verion
