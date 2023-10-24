@@ -33,7 +33,6 @@ function parse_yaml {
       }
    }'
 }
-
 eval $(parse_yaml config.yaml)
 RUNDIR=Turb_nGPUs1_ncells${number_of_cells}_accelrms${acceleration_field_rms}_B${initial_magnetic_field}_Adiab
 
