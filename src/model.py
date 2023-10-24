@@ -7,18 +7,6 @@ from collections import deque
 from src.commons import read_athenapk_config_file
 yt.funcs.mylog.setLevel("ERROR")
 
-def output_dir(run_name: str) -> str:
-    """
-    Get the output directory path for a specific run.
-
-    Args:
-        run_name (str): The name of the run or simulation.
-
-    Returns:
-        str: The output directory path for the specified run.
-    """
-    return os.path.join('outputs', run_name)
-
 class LoadAthenaPKRun:
     def __init__(self, folder_path):
         """
@@ -85,29 +73,33 @@ class LoadAthenaPKRun:
     def get_all_average_field(self,
                               field: str,
                               in_time: bool = True) -> None:
-        fields = []
-        if in_time:
-            times = []
+        """
+        Calculate and save the density-weighted averages values for a specified field.
 
-        # Get average Mach number for each snapshot
+        Args:
+            field (str): The name of the field for which to calculate averages.
+            in_time (bool, optional): If True, get also the snapshot's current time and save. Default is True.
+
+        Returns:
+            None: The function saves the calculated values to a file and does not return a value.
+        """
+        fields = []
+        times = []
+
         for sim in self.snapshot_list:
             i_snapshot = sim.split('.')[2]
-
-            # Get and save snapshot's density-weighted average field
             average_field = self.get_snapshot_field_average(i_snapshot, ('gas', field))
             fields.append(float(average_field))
 
             if in_time:
-                # Get and save snapshot's current time [s]
                 current_time = self.get_snapshot_current_time(i_snapshot)
                 times.append(current_time)
 
-        # Save the lists to a single file
-        if in_time:
-            data = np.column_stack((times, fields))
-        else:
-            data = fields
-        np.savetxt(os.path.join(self.folder_path, 'output_data.txt'), data, header=f'current_time {field}')
+        data = np.column_stack((times, fields)) if in_time else fields
+        header = f'current_time {field}' if in_time else field
+        out_name = f'average_{field}_in_time.txt' if in_time else f'average_{field}.txt'
+
+        np.savetxt(os.path.join(self.folder_path, out_name), data, header=header)
 
     def get_snapshot_field_info(
             self,

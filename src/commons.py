@@ -1,5 +1,19 @@
+import os
 import yaml
 from typing import (Union)
+
+def output_dir(run_name: str) -> str:
+    """
+    Get the output directory path for a specific run.
+
+    Args:
+        run_name (str): The name of the run or simulation.
+
+    Returns:
+        str: The output directory path for the specified run.
+    """
+    return os.path.join('outputs', run_name)
+
 
 def validate_parameter(param_to_validate,
                        default):
@@ -15,16 +29,6 @@ def validate_parameter(param_to_validate,
     """
     return param_to_validate if param_to_validate is not None else default
 
-
-def output_directory_name(config_dict):
-    base_name = "Turb"
-
-    base_name += "_nGPUs" + str(config_dict["number_of_gpus"])
-    base_name += "_ncells" + str(config_dict["number_of_cells"])
-    base_name += "_accelrms" + str(config_dict["acceleration_field_rms"])
-    base_name += "_B" + str(config_dict["initial_magnetic_field"])
-    base_name += "_" + config_dict["equation_of_state"][:5].capitalize()
-    return base_name
 
 def load_config_file(config_file_path: str,
                      override_config: Union[dict, None] = None) -> dict:
@@ -66,6 +70,26 @@ def load_config_file(config_file_path: str,
     except KeyError:
         pass
     return config
+
+
+def output_directory_name(config_dict: dict) -> str:
+    """
+    Generate a unique output directory name based on the configuration settings.
+
+    Args:
+        config_dict (dict): A dictionary containing configuration settings.
+
+    Returns:
+        str: A unique directory name based on the configuration.
+    """
+    base_name = "Turb"
+
+    base_name += "_nGPUs" + str(config_dict["number_of_gpus"])
+    base_name += "_ncells" + str(config_dict["number_of_cells"])
+    base_name += "_accelrms" + str(config_dict["acceleration_field_rms"])
+    base_name += "_B" + str(config_dict["initial_magnetic_field"])
+    base_name += "_" + config_dict["equation_of_state"][:5].capitalize()
+    return base_name
 
 
 def read_athenapk_config_file(filename: str, 

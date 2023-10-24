@@ -10,7 +10,7 @@ from src.commons import (
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python script.py <input_config_file>")
+        print("Usage: python generate_input_file.py <input_config_file>")
         sys.exit(1)
 
     input_file = sys.argv[1]
@@ -58,5 +58,5 @@ if __name__ == "__main__":
         number_of_cells=int(config_file["number_of_cells"])
     )
 
-    print(f"Modified configuration saved to {os.path.join(output_file)}")
+    print(f"Modified configuration saved to {output_file}")
 
