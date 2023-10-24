@@ -7,6 +7,18 @@ from collections import deque
 from src.commons import read_athenapk_config_file
 yt.funcs.mylog.setLevel("ERROR")
 
+def output_dir(run_name: str) -> str:
+    """
+    Get the output directory path for a specific run.
+
+    Args:
+        run_name (str): The name of the run or simulation.
+
+    Returns:
+        str: The output directory path for the specified run.
+    """
+    return os.path.join('outputs', run_name)
+
 class LoadAthenaPKRun:
     def __init__(self, folder_path):
         """
@@ -31,7 +43,6 @@ class LoadAthenaPKRun:
         self.cycle_limit = None
         self.cycles_per_wallsecond = None
         self.extract_log_file_info()
-
 
     def extract_log_file_info(self):
         """
@@ -63,7 +74,6 @@ class LoadAthenaPKRun:
                     if 'zone-cycles/wallsecond =' in line:
                         self.cycles_per_wallsecond = float(re.search(zone_cycles_pattern, line).group(1))
 
-
     def get_snapshot_list(self) -> None:
         """
         Get a list of snapshot files in the simulation folder.
@@ -72,6 +82,32 @@ class LoadAthenaPKRun:
         self.snapshot_list = [f for f in os.listdir(self.folder_path) if f.endswith('.phdf')]
         self.snapshot_list.sort()
 
+    def get_all_average_field(self,
+                              field: str,
+                              in_time: bool = True) -> None:
+        fields = []
+        if in_time:
+            times = []
+
+        # Get average Mach number for each snapshot
+        for sim in self.snapshot_list:
+            i_snapshot = sim.split('.')[2]
+
+            # Get and save snapshot's density-weighted average field
+            average_field = self.get_snapshot_field_average(i_snapshot, ('gas', field))
+            fields.append(float(average_field))
+
+            if in_time:
+                # Get and save snapshot's current time [s]
+                current_time = self.get_snapshot_current_time(i_snapshot)
+                times.append(current_time)
+
+        # Save the lists to a single file
+        if in_time:
+            data = np.column_stack((times, fields))
+        else:
+            data = fields
+        np.savetxt(os.path.join(self.folder_path, 'output_data.txt'), data, header=f'current_time {field}')
 
     def get_snapshot_field_info(
             self,
@@ -101,12 +137,18 @@ class LoadAthenaPKRun:
         except FileNotFoundError:
             raise FileNotFoundError('Snapshot not found in the current simulation directory.')
 
-
     def get_snapshot_current_time(
             self,
             n_snap: int | str
         ) -> float:
         """
+        Get the current time of a snapshot in the simulation.
+
+        Args:
+            n_snap (int or str): The snapshot number or identifier.
+
+        Returns:
+            float: The current time of the specified snapshot.
         """
         snapshot_number_str = str(n_snap).zfill(5)
 
@@ -117,8 +159,7 @@ class LoadAthenaPKRun:
         except FileNotFoundError:
             raise FileNotFoundError('Snapshot not found in the current simulation directory.')
 
-
-    def get_field_average(
+    def get_snapshot_field_average(
             self,
             n_snap: int | str,
             field: tuple[str, str]
@@ -143,7 +184,6 @@ class LoadAthenaPKRun:
 
         except FileNotFoundError:
             raise FileNotFoundError('Snapshot not found in the current simulation directory.')
-
 
     def plot_snapshot_field_slice(self,
                                   n_snap: int | str,
@@ -171,7 +211,6 @@ class LoadAthenaPKRun:
         except FileNotFoundError:
             raise FileNotFoundError('Snapshot not found in the current simulation directory.')
 
-
     def get_integral_time(self,
                           n_snap: int | str):
         """
@@ -181,3 +220,4 @@ class LoadAthenaPKRun:
             n_snap (int or str): The snapshot number to analyze.
         """
         pass  # Placeholder for future implementation
+
