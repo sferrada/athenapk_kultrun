@@ -5,11 +5,11 @@ number_of_gpus: 1
 number_of_cells: 256
 
 # Hydro
-equation_of_state: 'adiabatic'
+equation_of_state: 'adiabatic'  # 'isothermal'
 
 # Initial conditions
 initial_density: 1.0
-initial_magnetic_field: 0.01  # default = 0.05; x-direction
-acceleration_field_rms: 1.0
+initial_magnetic_field: 0.05  # default = 0.05; x-direction
+acceleration_field_rms: 2.0
 correlation_time: 1.0
 solenoidal_weight: 1.0  # 1 = fully solenoidal; 0 = fully compressive

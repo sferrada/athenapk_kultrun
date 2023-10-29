@@ -1,0 +1,4 @@
+### PARTHENON ERROR
+  Message:     AthenaPK hydro: Unknown EOS
+  File:        /home/sferrada/athena_project/athenapk/src/hydro/hydro.cpp
+  Line number: 499

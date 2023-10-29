@@ -34,7 +34,12 @@ function parse_yaml {
    }'
 }
 eval $(parse_yaml config.yaml)
-RUNDIR=Turb_nGPUs1_ncells${number_of_cells}_accelrms${acceleration_field_rms}_B${initial_magnetic_field}_Adiab
+
+# Build the equation of state abbreviation
+EOS="${equation_of_state:0:5}"
+EOS="${EOS^}"
+
+RUNDIR=Turb_nGPUs1_ncells${number_of_cells}_accelrms${acceleration_field_rms}_B${initial_magnetic_field}_${EOS}
 
 # Run the sim
 cd $PROJECTDIR
