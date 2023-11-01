@@ -1,15 +1,21 @@
-import sys
+import argparse
 from src.model import LoadAthenaPKRun
 
-# Non-parallelized version
-if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python get_average_value.py <run> <field>")
-        sys.exit(1)
+def main():
+    parser = argparse.ArgumentParser(description="Get average value of a field.")
+    parser.add_argument("run", help="AthenaPK run directory")
+    parser.add_argument("field", help="Field to calculate average for")
+    parser.add_argument("--weight", help="Weight for the average (default: None)", default=None)
+    args = parser.parse_args()
 
-    run = sys.argv[1]
+    weight = None
+    if args.weight is not None:
+        weight = ("gas", args.weight)
+
+    # Get average value, non-parallelised version
+    run = args.run
     sim = LoadAthenaPKRun(run)
+    sim.get_run_average_fields(args.field, weight=weight, in_time=True)
 
-    # Get average value
-    sim.get_all_average_field(sys.argv[2])
-
+if __name__ == "__main__":
+    main()
