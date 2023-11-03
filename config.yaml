@@ -1,15 +1,17 @@
-# Numeric
-number_of_gpus: 1
-
-# Mesh
+# Numeric settings
+job_name: "turb_athenapk"
+number_of_gpus: 1  # max. 4 in Kultrun
+number_of_nodes: 1  # nodes per GPU
+number_of_tasks: 1  # tasks per node
 number_of_cells: 256
 
-# Hydro
-equation_of_state: 'adiabatic'  # 'isothermal'
-
 # Initial conditions
+equation_of_state: 'adiabatic'  # default: 'isothermal'
 initial_density: 1.0
-initial_magnetic_field: 0.05  # default = 0.05; x-direction
-acceleration_field_rms: 2.0
+initial_magnetic_field: 0.05  # default: 0.05 (x-direction)
+acceleration_field_rms: 3.0
 correlation_time: 1.0
-solenoidal_weight: 1.0  # 1 = fully solenoidal; 0 = fully compressive
+solenoidal_weight: 1.0  # 0: fully compressive; 1: fully solenoidal
+
+# Post-run analysis
+run_analysis: False  # the list of fields is inside the bash script
