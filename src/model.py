@@ -183,47 +183,53 @@ class LoadAthenaPKRun:
 
         return ad.quantities.weighted_average_quantity(field, weight)
 
-    # def get_snapshot_field_average(self,
-    #                                n_snap: int | str,
-    #                                field: tuple[str, str],
-    #                                weight: tuple[str, str] | None = None) -> float:
-    #     """
-    #     Get the average value of a field in a snapshot.
-    # 
-    #     Args:
-    #         n_snap (int or str): The snapshot number to analyze.
-    #         field (tuple of str): A tuple specifying the field to analyze (e.g., ('gas', 'density')).
-    #     
-    #     Returns:
-    #         averaged_quantity (float): The average value of the field.
-    #     """
-    #     ds = self._load_snapshot_data(n_snap)
-    #     ad = ds.all_data()
-    # 
-    #     if weight is None:
-    #         average_quantity = ad[field].mean()
-    #     else:
-    #         average_quantity = ad.quantities.weighted_average_quantity(field, weight)
-    # 
-    #     return average_quantity
-
-    def plot_snapshot_field_slice(self,
-                                  n_snap: int | str,
-                                  field: tuple[str, str],
-                                  axis: str = 'z',
-                                  cmap: str = 'viridis') -> None:
+    def plot_snapshot_field(self,
+                            n_snap: int | str,
+                            field: tuple[str, str],
+                            normal: str = "z",
+                            method: str = "slice",
+                            color_map: str = "viridis",
+                            overplot_velocity: bool = False,
+                            **kwargs: dict) -> None:
         """
-        Plot a slice of a snapshot field.
+        This function is a convenient wrapper for creating and customizing slice or projection plots of simulation data using yt.
+        Depending on the specified method, it creates either a slice plot or a projection plot of the given field along the chosen axis.
+        The resulting plot object is returned.
 
         Args:
             n_snap (int or str): The snapshot number to plot.
             field (tuple of str): A tuple specifying the field to plot (e.g., ('gas', 'density')).
-            axis (str, optional): The axis for slicing (e.g., 'z'). Defaults to 'z'.
-            cmap (str, optional): The colormap to use for visualization. Defaults to 'viridis'.
+            normal (str, optional): The axis for slicing or project (e.g., 'z'). Defaults to 'z'.
+            method (str, optional): The plotting method ('slice' or 'projection'). Defaults to 'slice'.
+            color_map (str, optional): The colormap to use for visualization. Defaults to 'viridis'.
+            overplot_velocity (bool, optional): If True, overplot the velocity field. Defaults to False.
+            **kwargs (dict, optional): Additional keyword arguments to pass to the yt plot.
+
+        Returns:
+            yt.SlicePlot or yt.ProjectionPlot: The yt plot object representing the field slice or projection.
         """
         ds = self._load_snapshot_data(n_snap)
-        _plot = yt.SlicePlot(ds, axis, field)
-        _plot.set_cmap(field=field, cmap=cmap)
+
+        if method.lower() == "slice":
+            _plot = yt.SlicePlot(ds, normal, field, **kwargs)
+        elif method.lower() == "projection":
+            _plot = yt.ProjectionPlot(ds, normal, field, **kwargs)
+        else:
+            raise ValueError("Invalid method. Supported methods are 'slice' and 'projection'.")
+
+        _plot.set_cmap(field=field, cmap=color_map)
+
+        if overplot_velocity:
+            coords = "xyz"
+            indices = coords.index(normal)
+            velocity_coords = coords[:indices] + coords[indices + 1:]
+            _plot.annotate_quiver(
+                ("gas", "velocity_%s" % velocity_coords[0]),
+                ("gas", "velocity_%s" % velocity_coords[1]),
+                color='green',
+                factor=16
+            )
+
         return _plot
 
     def get_snapshot_correlation_time(self,

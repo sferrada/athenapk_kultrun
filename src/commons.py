@@ -92,8 +92,8 @@ def output_directory_name(config_dict: dict) -> str:
     return base_name
 
 
-def read_athenapk_config_file(filename: str, 
-                              skip_header: bool = True) -> dict:
+def read_athenapk_input_file(filename: str, 
+                             skip_header: bool = True) -> dict:
     """
     Read and parse an AthenaPK configuration file.
 
@@ -134,8 +134,8 @@ def read_athenapk_config_file(filename: str,
     return config_dict
 
 
-def modify_athenapf_config_file(config: dict,
-                                modifications: list) -> dict:
+def modify_athenapk_input_file(config: dict,
+                               modifications: list) -> dict:
     """
     Modify a configuration dictionary based on a list of specified modifications.
 
@@ -156,10 +156,10 @@ def modify_athenapf_config_file(config: dict,
     return modified_config
                 
 
-def write_athenapk_config_file(filename: str,
-                               config_dict: dict,
-                               number_of_cells: int = 512,
-                               column_widths: dict = None) -> None:
+def write_athenapk_input_file(filename: str,
+                              config_dict: dict,
+                              number_of_cells: int = 512,
+                              column_widths: dict = None) -> None:
     """
     Write an AthenaPK configuration to a file with custom column padding widths and substitute `number_of_cells`.
 
@@ -213,8 +213,8 @@ def write_athenapk_config_file(filename: str,
             file.write("\n")
 
 
-def format_athenapk_config_file(config_dict: dict,
-                                print_formatted: bool = False) -> str:
+def format_athenapk_input_file(config_dict: dict,
+                               print_formatted: bool = False) -> str:
     """
     Format an AthenaPK configuration dictionary as a string.
 
