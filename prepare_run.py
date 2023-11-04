@@ -14,8 +14,7 @@ def mkdir_p(_dir):
     if not os.path.exists(_dir):
         os.makedirs(_dir)
     else:
-        print(f"ERROR: directory '{_dir}' already exists.")
-        sys.exit(1)
+        print(f"WARNING: directory '{_dir}' already exists.")
 
 def main():
     parser = argparse.ArgumentParser(description="Prepares the run directory, input file and submission script.")
@@ -64,7 +63,7 @@ def main():
         number_of_cells=int(config_file["number_of_cells"])
     )
 
-    # Write SLURM submitting script
+    # Write SLURM script
     with open(args.script_file, "w") as fh:
         fh.writelines("#!/bin/bash\n")
         fh.writelines("#SBATCH --job-name=%s\n" % config_file["slurm_job_name"])
@@ -80,24 +79,24 @@ def main():
         fh.writelines("# Set directory names\n")
         fh.writelines("PRJDIR=%s/athenapk_kultrun\n" % os.environ['HOME'])
         fh.writelines("RUNDIR=%s\n" % output_directory)
+        fh.writelines("OUTDIR=outputs/${RUNDIR}\n")
         fh.writelines("\n")
         fh.writelines("# Run the sim\n")
         fh.writelines("cd $PRJDIR\n")
-        fh.writelines('mpirun ./athenapk/build-host/bin/athenaPK -i ./outputs/${RUNDIR}/turbulence_philipp.in -d ./outputs/${RUNDIR}/ > "./outputs/${RUNDIR}/turbulence_philipp.out"\n')
+        fh.writelines('mpirun ./athenapk/build-host/bin/athenaPK -i ./${OUTDIR}/turbulence_philipp.in -d ./${OUTDIR}/ > "./${OUTDIR}/turbulence_philipp.out"\n')
         fh.writelines("\n")
         fh.writelines("# Run post-analysis if specified in the config file for a list of fields\n")
-
-        # Fields for post-analysis
+        fh.writelines(f'run_analysis={config_file["run_analysis"]}\n')
         field_values = " ".join(config_file["fields_for_analysis"])
-        fh.writelines(f'fields_for_analysis=("{field_values}")\n')        
-
+        fh.writelines(f'fields_for_analysis=("{field_values}")\n')
+        fh.writelines("\n")
         fh.writelines('if [[ $run_analysis = "True" ]]; then\n')
         fh.writelines("    if [[ ${#fields_for_analysis[@]} -eq 0 ]]; then\n")
         fh.writelines('        echo "No fields specified for analysis."\n')
         fh.writelines("    else\n")
         fh.writelines('        for field in "${fields_for_analysis[@]}"; do\n')
         fh.writelines('            echo "Running analysis for field: $field"\n')
-        fh.writelines('            python3 scripts/get_average_value.py outputs/${RUNDIR} "$field"\n')
+        fh.writelines('            python3 scripts/get_average_value.py ${OUTDIR} "$field"\n')
         fh.writelines("        done\n")
         fh.writelines("    fi\n")
         fh.writelines("else\n")

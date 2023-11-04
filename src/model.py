@@ -4,7 +4,7 @@ import yt
 import numpy as np
 import scipy as scipy
 from collections import deque
-from src.commons import read_athenapk_config_file
+from src.commons import read_athenapk_input_file
 yt.funcs.mylog.setLevel("ERROR")
 
 class LoadAthenaPKRun:
@@ -47,7 +47,7 @@ class LoadAthenaPKRun:
         input_file_name = next((f for f in os.listdir(self.folder_path) if f.endswith('.in')), None)
         if input_file_name:
             input_file_path = os.path.join(self.folder_path, input_file_name)
-            input_file_dict = read_athenapk_config_file(input_file_path)
+            input_file_dict = read_athenapk_input_file(input_file_path)
 
             for key, val in input_file_dict.items():
                 if key == "parthenon/mesh":
