@@ -88,6 +88,7 @@ def output_directory_name(config_dict: dict) -> str:
     base_name += "_ncells" + str(config_dict["number_of_cells"])
     base_name += "_accelrms" + str(config_dict["acceleration_field_rms"])
     base_name += "_B" + str(config_dict["initial_magnetic_field"])
+    base_name += "_T" + str(config_dict["correlation_time"])
     base_name += "_" + config_dict["equation_of_state"][:5].capitalize()
     return base_name
 

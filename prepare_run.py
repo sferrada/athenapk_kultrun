@@ -46,7 +46,10 @@ def main():
     # List of modifications to apply
     modifications = [
         ("hydro", "eos", config_file["equation_of_state"]),
+        ("problem/turbulence", "rho0", config_file["initial_density"]),
         ("problem/turbulence", "b0", config_file["initial_magnetic_field"]),
+        ("problem/turbulence", "corr_time", config_file["correlation_time"]),
+        ("problem/turbulence", "solenoidal_weight", config_file["solenoidal_weight"]),
         ("problem/turbulence", "accel_rms", config_file["acceleration_field_rms"])
     ]
 
