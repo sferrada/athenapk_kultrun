@@ -250,9 +250,9 @@ class LoadAthenaPKRun:
         ds = self._load_snapshot_data(n_snap)
         cg = ds.covering_grid(0, ds.domain_left_edge, ds.domain_dimensions)
 
-        acceleration_x = cg[('gas', 'acceleration_x')]
-        acceleration_y = cg[('gas', 'acceleration_y')]
-        acceleration_z = cg[('gas', 'acceleration_z')]
+        acceleration_x = cg[("parthenon", "acc_0")]  # [('gas', 'acceleration_x')]
+        acceleration_y = cg[("parthenon", "acc_1")]  # [('gas', 'acceleration_y')]
+        acceleration_z = cg[("parthenon", "acc_2")]  # [('gas', 'acceleration_z')]
 
         correlation_time = np.zeros((4, 1, 1))
 

@@ -1,5 +1,4 @@
 import os
-import sys
 import argparse
 from src.commons import (
     load_config_file,
@@ -85,23 +84,11 @@ def main():
         fh.writelines("cd $PRJDIR\n")
         fh.writelines('mpirun ./athenapk/build-host/bin/athenaPK -i ./${OUTDIR}/turbulence_philipp.in -d ./${OUTDIR}/ > "./${OUTDIR}/turbulence_philipp.out"\n')
         fh.writelines("\n")
-        fh.writelines("# Run post-analysis if specified in the config file for a list of fields\n")
-        fh.writelines(f'run_analysis={config_file["run_analysis"]}\n')
-        field_values = " ".join(config_file["fields_for_analysis"])
-        fh.writelines(f'fields_for_analysis=("{field_values}")\n')
-        fh.writelines("\n")
-        fh.writelines('if [[ $run_analysis = "True" ]]; then\n')
-        fh.writelines("    if [[ ${#fields_for_analysis[@]} -eq 0 ]]; then\n")
-        fh.writelines('        echo "No fields specified for analysis."\n')
-        fh.writelines("    else\n")
-        fh.writelines('        for field in "${fields_for_analysis[@]}"; do\n')
-        fh.writelines('            echo "Running analysis for field: $field"\n')
-        fh.writelines('            python3 scripts/get_average_value.py ${OUTDIR} "$field"\n')
-        fh.writelines("        done\n")
-        fh.writelines("    fi\n")
-        fh.writelines("else\n")
-        fh.writelines('    echo "Post-run analysis is not enabled in the config."\n')
-        fh.writelines("fi\n")
+
+        # Conditionally write post-analysis lines based on run_analysis in config
+        if config_file["run_analysis"] is True:
+            fh.writelines("# Run post-analysis if specified in the config file\n")
+            fh.writelines('python3 scripts/run_analysis.py ${OUTDIR}\n')
 
     print(f"Run input configuration saved to {output_file}")
     print(f"To execute the simulation, just run `sbatch {args.script_file}`")

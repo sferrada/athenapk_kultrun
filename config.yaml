@@ -15,6 +15,7 @@ correlation_time: 1.0
 solenoidal_weight: 1.0  # 0: fully compressive; 1: fully solenoidal
 
 # Post-run analysis
-run_analysis: True
+run_analysis: False
 fields_for_analysis:
+  - "density"
   - "mach_number"
