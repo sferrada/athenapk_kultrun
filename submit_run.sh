@@ -10,13 +10,11 @@
 module load openmpi/4.1.5 gcc/12.2.0 hdf5/1.14.1-2_openmpi-4.1.5_parallel cuda/12.2
 
 # Set directory names
-PRJDIR=/home/simonfch/athenapk_kultrun
-RUNDIR=Turb_nGPUs1_ncells128_accelrms0.1_B0.05_Adiab
+PRJDIR=/home/sferrada/athenapk_kultrun
+RUNDIR=Turb_nGPUs1_ncells128_accelrms1.0_B0.05_T0.5_Adiab
 OUTDIR=outputs/${RUNDIR}
 
 # Run the sim
 cd $PRJDIR
 mpirun ./athenapk/build-host/bin/athenaPK -i ./${OUTDIR}/turbulence_philipp.in -d ./${OUTDIR}/ > "./${OUTDIR}/turbulence_philipp.out"
 
-# Run post-analysis if specified in the config file
-python3 scripts/run_analysis.py ${OUTDIR}
