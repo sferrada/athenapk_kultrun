@@ -51,18 +51,16 @@ class LoadAthenaPKRun:
             input_file_path = os.path.join(self.folder_path, input_file_name)
             input_file_dict = read_athenapk_input_file(input_file_path)
 
-            for key, val in input_file_dict.items():
-                if key == "parthenon/output2":
-                    self.code_time_between_dumps = float(val[2][1])
-                if key == "parthenon/mesh":
-                    self.number_of_cells = int(val[1][1])
-                if key == "hydro":
-                    self.equation_of_state = str(val[1][1]).capitalize()
-                if key == "problem/turbulence":
-                    self.solenoidal_weight = float(val[8][1])
-                    self.acceleration_field_rms = float(val[9][1])
-                    self.initial_magnetic_field = float(val[2][1])
-                    self.correlation_time = float(val[6][1])
+            if "parthenon/mesh" in input_file_dict:
+                self.number_of_cells = int(input_file_dict["parthenon/mesh"][1][1])
+            if "hydro" in input_file_dict:
+                self.equation_of_state = str(input_file_dict["hydro"][1][1]).capitalize()
+            if "problem/turbulence" in input_file_dict:
+                turbulence_params = input_file_dict["problem/turbulence"]
+                self.solenoidal_weight = float(turbulence_params[8][1])
+                self.acceleration_field_rms = float(turbulence_params[9][1])
+                self.initial_magnetic_field = float(turbulence_params[2][1])
+                self.correlation_time = float(turbulence_params[6][1])
 
             return input_file_dict
         return None
@@ -268,7 +266,7 @@ class LoadAthenaPKRun:
 
         return correlation_time
 
-    def get_run_integral_time(self) -> np.ndarray:
+    def get_run_integral_times(self) -> np.ndarray:
         """
         Calculate and return the correlation time between the acceleration fields for a series of simulation snapshots.
 
@@ -356,35 +354,40 @@ class LoadAthenaPKRun:
         - RMS acceleration: Both target and actual values are printed, along with the standard deviation.
         - Relative power of solenoidal modes: Both target and actual values are printed, along with the standard deviation.
         """
-        t_corr = self.correlation_time
-        t_corr_actuals = []
-        this_data = self.get_run_integral_time()[0]  # Use all components of the acc vector
-        num_points = this_data.shape[1]
+        corr_time = self.correlation_time
+        corr_time_actuals = []
+        code_time_between_dumps = self.input_attrs["parthenon/output2"][2][1]
 
-        for i in range(num_points):
-            this_slice = this_data[i, :]
-            idx_0 = np.argwhere(np.array(this_slice) < 0)
+        # Note : `this_data` should be the vector for a single snapshot, not for the whole run
+        all_data = self.get_run_integral_times()
+        for data in all_data:
+            this_data = data  # [0]  # Use all components of the acc vector
+            num_points = this_data.shape[1]
+            print(this_data, this_data.shape, num_points)
+            for i in range(num_points):
+                this_slice = this_data[i, :]
+                idx_0 = np.argwhere(np.array(this_slice) < 0)
+                if len(idx_0) == 0:
+                    continue
+                corr_time_actuals.append(np.trapz(this_slice[:idx_0[0][0]], dx=code_time_between_dumps))
 
-            if len(idx_0) == 0:
-                continue
+        print(corr_time_actuals)
 
-            t_corr_actuals.append(np.trapz(this_slice[:idx_0[0][0]], dx=self.code_time_between_dumps))
+        # corr_time_actual = (np.mean(corr_time_actuals), np.std(corr_time_actuals))
 
-        t_corr_actual = (np.mean(t_corr_actuals), np.std(t_corr_actuals))
+        # # a_rms = float(id_split[1].split('_')[1])
+        # # a_rms_actual = get_mean('a' + '/moments/' + 'rms')
 
-        # a_rms = float(id_split[1].split('_')[1])
-        # a_rms_actual = get_mean('a' + '/moments/' + 'rms')
+        # # ζ = float(id_split[2].split('_')[1])
+        # # sol_weight_actual = get_mean_squared_ratio('a_s_mag' + '/moments/' + 'rms', 'a' + '/moments/' + 'rms')
+        # # sol_weight = 1.0 - ((1 - ζ) ** 2 / (1 - 2 * ζ + 3 * ζ ** 2))
 
-        # ζ = float(id_split[2].split('_')[1])
-        # sol_weight_actual = get_mean_squared_ratio('a_s_mag' + '/moments/' + 'rms', 'a' + '/moments/' + 'rms')
-        # sol_weight = 1.0 - ((1 - ζ) ** 2 / (1 - 2 * ζ + 3 * ζ ** 2))
+        # msg = (
+        #     f"{'Forcing correlation time':30} target: {corr_time:.2f} actual: {corr_time_actual[0]:.2f}+/-{corr_time_actual[1]:.3f}\n"
+        #     # f"{'RMS acceleration':30} target: {a_rms:.2f} actual: {a_rms_actual[0]:.2f}+/-{a_rms_actual[1]:.3f}\n"
+        #     # f"{'Rel power of sol. modes':30} target: {sol_weight:.2f}"
+        #     # f" actual: {sol_weight_actual[0]:.2f}+/-{sol_weight_actual[1]:.3f}"
+        # )
 
-        msg = (
-            f"{'Forcing correlation time':30} target: {t_corr:.2f} actual: {t_corr_actual[0]:.2f}+/-{t_corr_actual[1]:.3f}\n"
-            # f"{'RMS acceleration':30} target: {a_rms:.2f} actual: {a_rms_actual[0]:.2f}+/-{a_rms_actual[1]:.3f}\n"
-            # f"{'Rel power of sol. modes':30} target: {sol_weight:.2f}"
-            # f" actual: {sol_weight_actual[0]:.2f}+/-{sol_weight_actual[1]:.3f}"
-        )
-
-        print(msg)
+        # print(msg)
 
