@@ -11,8 +11,10 @@ def main():
     run = args.run
     sim = LoadAthenaPKRun(run)
 
-    corr_time = sim.get_snapshot_correlation_time("final")
-    print(corr_time)
+    # corr_time = sim.get_run_integral_time()
+    # print(corr_time)
+
+    sim.get_run_statistics()
 
     # Get average value of desired fields
     # config_file = load_config_file("config.yaml")

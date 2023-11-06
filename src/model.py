@@ -25,6 +25,8 @@ class LoadAthenaPKRun:
         self.solenoidal_weight = None
         self.acceleration_field_rms = None
         self.initial_magnetic_field = None
+        self.correlation_time = None
+        self.code_time_between_dumps = None
 
         # Instantiation of the class
         self.folder_path = folder_path
@@ -50,6 +52,8 @@ class LoadAthenaPKRun:
             input_file_dict = read_athenapk_input_file(input_file_path)
 
             for key, val in input_file_dict.items():
+                if key == "parthenon/output2":
+                    self.code_time_between_dumps = float(val[2][1])
                 if key == "parthenon/mesh":
                     self.number_of_cells = int(val[1][1])
                 if key == "hydro":
@@ -58,6 +62,7 @@ class LoadAthenaPKRun:
                     self.solenoidal_weight = float(val[8][1])
                     self.acceleration_field_rms = float(val[9][1])
                     self.initial_magnetic_field = float(val[2][1])
+                    self.correlation_time = float(val[6][1])
 
             return input_file_dict
         return None
@@ -263,6 +268,47 @@ class LoadAthenaPKRun:
 
         return correlation_time
 
+    def get_run_integral_time(self) -> np.ndarray:
+        """
+        Calculate and return the correlation time between the acceleration fields for a series of simulation snapshots.
+
+        Returns:
+            np.ndarray: A 4D NumPy array containing the correlation time values.
+
+        This function loads a sequence of simulation snapshots from the specified folder path and calculates the correlation time between the acceleration fields
+        for all pairs of snapshots. The correlation time is computed for the full 3D acceleration field and its individual components (x, y, z).
+        The results are returned as a 4D NumPy array, where the dimensions represent:
+        - The acceleration component (0 for full field, 1 for x, 2 for y, 3 for z).
+        - The first snapshot's index.
+        - The second snapshot's index (offset by the first snapshot).
+        """
+        ds_arr = yt.load(self.folder_path + '/parthenon.prim.*.phdf')
+
+        acc_arr = []
+        times = []
+        for ds in ds_arr:    
+            cg = ds.covering_grid(0, ds.domain_left_edge, ds.domain_dimensions)
+            acc_arr.append(np.array([
+                cg[("parthenon", "acc_0")],
+                cg[("parthenon", "acc_1")],
+                cg[("parthenon", "acc_2")],
+            ]))
+            times.append(ds.current_time)
+
+        acc_arr = np.array(acc_arr)
+        num_snaps = acc_arr.shape[0]
+        correlation_time = np.zeros((4, num_snaps, num_snaps))
+        for i in range(num_snaps):
+            for j in range(num_snaps):
+                if j < i:
+                    continue
+                correlation_time[0, i, j-i] = scipy.stats.pearsonr(acc_arr[i, :, :, :, :].reshape(-1), acc_arr[j, :, :, :, :].reshape(-1))[0]
+                correlation_time[1, i, j-i] = scipy.stats.pearsonr(acc_arr[i, 0, :, :, :].reshape(-1), acc_arr[j, 0, :, :, :].reshape(-1))[0]
+                correlation_time[2, i, j-i] = scipy.stats.pearsonr(acc_arr[i, 1, :, :, :].reshape(-1), acc_arr[j, 1, :, :, :].reshape(-1))[0]
+                correlation_time[3, i, j-i] = scipy.stats.pearsonr(acc_arr[i, 2, :, :, :].reshape(-1), acc_arr[j, 2, :, :, :].reshape(-1))[0]
+
+        return correlation_time
+
     def get_run_average_fields(self,
                                field: str,
                                weight: tuple[str, str] | None = None,
@@ -310,11 +356,9 @@ class LoadAthenaPKRun:
         - RMS acceleration: Both target and actual values are printed, along with the standard deviation.
         - Relative power of solenoidal modes: Both target and actual values are printed, along with the standard deviation.
         """
-        pass  # Placeholder for when the function is finished
-        """
-        t_corr = float(id_split[0].split('_')[1])
+        t_corr = self.correlation_time
         t_corr_actuals = []
-        this_data = autocorr[Id][0]  # Use all components of the acc vector
+        this_data = self.get_run_integral_time()[0]  # Use all components of the acc vector
         num_points = this_data.shape[1]
 
         for i in range(num_points):
@@ -324,24 +368,23 @@ class LoadAthenaPKRun:
             if len(idx_0) == 0:
                 continue
 
-            t_corr_actuals.append(np.trapz(this_slice[:idx_0[0][0]], dx=sim_dict[Id]['code_time_between_dumps']))
+            t_corr_actuals.append(np.trapz(this_slice[:idx_0[0][0]], dx=self.code_time_between_dumps))
 
         t_corr_actual = (np.mean(t_corr_actuals), np.std(t_corr_actuals))
 
-        a_rms = float(id_split[1].split('_')[1])
-        a_rms_actual = get_mean('a' + '/moments/' + 'rms')
+        # a_rms = float(id_split[1].split('_')[1])
+        # a_rms_actual = get_mean('a' + '/moments/' + 'rms')
 
-        zeta = float(id_split[2].split('_')[1])
-        sol_weight_actual = get_mean_squared_ratio('a_s_mag' + '/moments/' + 'rms', 'a' + '/moments/' + 'rms')
-        sol_weight = 1.0 - ((1 - zeta) ** 2 / (1 - 2 * zeta + 3 * zeta ** 2))
+        # ζ = float(id_split[2].split('_')[1])
+        # sol_weight_actual = get_mean_squared_ratio('a_s_mag' + '/moments/' + 'rms', 'a' + '/moments/' + 'rms')
+        # sol_weight = 1.0 - ((1 - ζ) ** 2 / (1 - 2 * ζ + 3 * ζ ** 2))
 
         msg = (
-            f"\n{Id}\n"
             f"{'Forcing correlation time':30} target: {t_corr:.2f} actual: {t_corr_actual[0]:.2f}+/-{t_corr_actual[1]:.3f}\n"
-            f"{'RMS acceleration':30} target: {a_rms:.2f} actual: {a_rms_actual[0]:.2f}+/-{a_rms_actual[1]:.3f}\n"
-            f"{'Rel power of sol. modes':30} target: {sol_weight:.2f}"
-            f" actual: {sol_weight_actual[0]:.2f}+/-{sol_weight_actual[1]:.3f}"
+            # f"{'RMS acceleration':30} target: {a_rms:.2f} actual: {a_rms_actual[0]:.2f}+/-{a_rms_actual[1]:.3f}\n"
+            # f"{'Rel power of sol. modes':30} target: {sol_weight:.2f}"
+            # f" actual: {sol_weight_actual[0]:.2f}+/-{sol_weight_actual[1]:.3f}"
         )
 
         print(msg)
-        """
+
