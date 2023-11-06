@@ -1,7 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=athenapk_analysis
 #SBATCH --partition=kurruf_gpu
-#SBATCH --nodes=1
 
 # Load modules
 module load openmpi/4.1.5 hdf5/1.14.1-2_openmpi-4.1.5_parallel Python/3.11.4
