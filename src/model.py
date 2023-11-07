@@ -235,37 +235,6 @@ class LoadAthenaPKRun:
 
         return _plot
 
-    def get_snapshot_correlation_time(self,
-                                      n_snap: int | str) -> np.ndarray:
-        """
-        Calculate the correlation time for acceleration components in a snapshot.
-
-        Args:
-            n_snap (int or str): The snapshot number or its string representation.
-
-        Returns:
-            np.ndarray: An array containing the correlation time for each acceleration component.
-                        The shape of the array is (4, 1, 1), where the components are:
-                        0: Correlation time for acceleration_x,
-                        1: Correlation time for acceleration_y,
-                        2: Correlation time for acceleration_z.
-        """
-        ds = self._load_snapshot_data(n_snap)
-        cg = ds.covering_grid(0, ds.domain_left_edge, ds.domain_dimensions)
-
-        acceleration_x = cg[("parthenon", "acc_0")]  # [('gas', 'acceleration_x')]
-        acceleration_y = cg[("parthenon", "acc_1")]  # [('gas', 'acceleration_y')]
-        acceleration_z = cg[("parthenon", "acc_2")]  # [('gas', 'acceleration_z')]
-
-        correlation_time = np.zeros((4, 1, 1))
-
-        # Calculate correlations for each component of acceleration
-        correlation_time[0, 0, 0] = scipy.stats.pearsonr(acceleration_x.reshape(-1), acceleration_x.reshape(-1))[0]
-        correlation_time[1, 0, 0] = scipy.stats.pearsonr(acceleration_y.reshape(-1), acceleration_y.reshape(-1))[0]
-        correlation_time[2, 0, 0] = scipy.stats.pearsonr(acceleration_z.reshape(-1), acceleration_z.reshape(-1))[0]
-
-        return correlation_time
-
     def get_run_integral_times(self) -> np.ndarray:
         """
         Calculate and return the correlation time between the acceleration fields for a series of simulation snapshots.
@@ -283,7 +252,6 @@ class LoadAthenaPKRun:
         ds_arr = yt.load(self.folder_path + '/parthenon.prim.*.phdf')
 
         acc_arr = []
-        times = []
         for ds in ds_arr:    
             cg = ds.covering_grid(0, ds.domain_left_edge, ds.domain_dimensions)
             acc_arr.append(np.array([
@@ -291,7 +259,6 @@ class LoadAthenaPKRun:
                 cg[("parthenon", "acc_1")],
                 cg[("parthenon", "acc_2")],
             ]))
-            times.append(ds.current_time)
 
         acc_arr = np.array(acc_arr)
         num_snaps = acc_arr.shape[0]
@@ -354,16 +321,15 @@ class LoadAthenaPKRun:
         - RMS acceleration: Both target and actual values are printed, along with the standard deviation.
         - Relative power of solenoidal modes: Both target and actual values are printed, along with the standard deviation.
         """
-        corr_time = self.correlation_time
+        corr_time_target = self.correlation_time
         corr_time_actuals = []
         code_time_between_dumps = self.input_attrs["parthenon/output2"][2][1]
+        print(code_time_between_dumps)
 
         # Note : `this_data` should be the vector for a single snapshot, not for the whole run
         all_data = self.get_run_integral_times()
-        for data in all_data:
-            this_data = data  # [0]  # Use all components of the acc vector
+        for this_data in all_data:
             num_points = this_data.shape[1]
-            print(this_data, this_data.shape, num_points)
             for i in range(num_points):
                 this_slice = this_data[i, :]
                 idx_0 = np.argwhere(np.array(this_slice) < 0)
@@ -383,7 +349,7 @@ class LoadAthenaPKRun:
         # # sol_weight = 1.0 - ((1 - ζ) ** 2 / (1 - 2 * ζ + 3 * ζ ** 2))
 
         # msg = (
-        #     f"{'Forcing correlation time':30} target: {corr_time:.2f} actual: {corr_time_actual[0]:.2f}+/-{corr_time_actual[1]:.3f}\n"
+        #     f"{'Forcing correlation time':30} target: {corr_time_target:.2f} actual: {corr_time_actual[0]:.2f}+/-{corr_time_actual[1]:.3f}\n"
         #     # f"{'RMS acceleration':30} target: {a_rms:.2f} actual: {a_rms_actual[0]:.2f}+/-{a_rms_actual[1]:.3f}\n"
         #     # f"{'Rel power of sol. modes':30} target: {sol_weight:.2f}"
         #     # f" actual: {sol_weight_actual[0]:.2f}+/-{sol_weight_actual[1]:.3f}"
