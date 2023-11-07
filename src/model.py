@@ -337,7 +337,10 @@ class LoadAthenaPKRun:
                     continue
                 corr_time_actuals.append(np.trapz(this_slice[:idx_0[0][0]], dx=code_time_between_dumps))
 
-        print(corr_time_actuals)
+        # Write corr_time_actuals to a text file
+        with open(os.path.join(self.folder_path, "corr_time_actuals.txt"), "w") as file:
+            for value in corr_time_actuals:
+                file.write(f"{value}\n")
 
         # corr_time_actual = (np.mean(corr_time_actuals), np.std(corr_time_actuals))
 
