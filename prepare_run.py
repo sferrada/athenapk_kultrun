@@ -72,7 +72,7 @@ def main():
         fh.writelines("#SBATCH --partition=kurruf_gpu\n")
         fh.writelines("#SBATCH --nodes=%i\n" % config_file["number_of_nodes"])
         fh.writelines("#SBATCH --ntasks-per-node=%i\n" % config_file["number_of_tasks"])
-        fh.writelines("#SBATCH --mem=%s\n" % config_file["max_memory"])
+        # fh.writelines("#SBATCH --mem=%s\n" % config_file["max_memory"])
         fh.writelines("#SBATCH --gres=gpu:A100:%i\n" % config_file["number_of_gpus"])
         fh.writelines("\n")
         fh.writelines("# Load modules\n")
