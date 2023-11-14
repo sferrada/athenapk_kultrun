@@ -2,6 +2,17 @@ import os
 import yaml
 from typing import (Union)
 
+def custom_column_widths():
+    """ Custom widths for specific input file sections """
+    return {
+        "modes": (7, 2, 10),  # Custom widths for the `<modes>` section
+        "hydro": (1, 14, 14),  # Custom widths for the `<hydro>` section
+        "global": (10, 10, 10),  # General column widths
+        "comment": (9, 10, 10),  # Custom widths for the `<comment>` section
+        "problem/turbulence": (12, 8, 10),  # Custom widths for the `<problem/turbulence>` section
+    }
+
+
 def output_dir(run_name: str) -> str:
     """
     Get the output directory path for a specific run.
@@ -72,24 +83,34 @@ def load_config_file(config_file_path: str,
     return config
 
 
-def output_directory_name(config_dict: dict) -> str:
+def output_directory_name(config_dict: dict,
+                          prefix: str = "",
+                          suffix: list = []) -> str:
     """
     Generate a unique output directory name based on the configuration settings.
 
     Args:
         config_dict (dict): A dictionary containing configuration settings.
+        prefix (str, optional): A prefix to be added to the directory name. Defaults to an empty string.
+        suffix (list, optional): A list of suffixes to be added to the directory name. Defaults to an empty list.
 
     Returns:
         str: A unique directory name based on the configuration.
     """
-    base_name = "Turb"
+    base_name = prefix
 
-    base_name += "_nGPUs" + str(config_dict["number_of_gpus"])
-    base_name += "_ncells" + str(config_dict["number_of_cells"])
-    base_name += "_accelrms" + str(config_dict["acceleration_field_rms"])
-    base_name += "_B" + str(config_dict["initial_magnetic_field"])
-    base_name += "_T" + str(config_dict["correlation_time"])
-    base_name += "_" + config_dict["equation_of_state"][:5].capitalize()
+    base_name += f"NG_{config_dict['numeric_settings']['number_of_gpus']}-"
+    base_name += f"NC_{config_dict['numeric_settings']['number_of_cells']:03d}-"
+    base_name += f"TCOR_{config_dict['initial_conditions']['correlation_time']:1.2f}-"
+    base_name += f"SOLW_{config_dict['initial_conditions']['solenoidal_weight']:1.2f}-"
+    base_name += f"ARMS_{config_dict['initial_conditions']['acceleration_field_rms']:1.2f}-"
+    base_name += f"BINI_{config_dict['initial_conditions']['initial_magnetic_field']:1.2f}-"
+    base_name += f"EOSG_{config_dict['initial_conditions']['equation_of_state_gamma']:1.2f}"
+
+    if suffix:
+        for s in suffix:
+            base_name += f"-{s.capitalize()}"
+
     return base_name
 
 
