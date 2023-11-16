@@ -1,12 +1,10 @@
 # AthenaPK compilation and usage in KULTRUN
-
 More details on **AthenaPK** and its installation can be found on [its official GitHub page](https://github.com/parthenon-hpc-lab/athenapk/tree/main).
 
 ## Configuring the compiler
-
 > Before configuring the compiler, make sure you have the following modules loaded through `module load`:
-> - openmpi/4.1.5
 > - gcc/12.2.0
+> - openmpi/4.1.5
 > - hdf5/1.14.1-2_openmpi-4.1.5_parallel
 > - cuda/12.2
 
@@ -23,8 +21,8 @@ here, the flag `-DKokkos_ARCH_ZEN2=ON` is probably not even needed as `cmake` sh
 
 ## Compile the code
 > Again, make sure you have the following modules loaded with `module load` before compiling:
-> - openmpi/4.1.5
 > - gcc/12.2.0
+> - openmpi/4.1.5
 > - hdf5/1.14.1-2_openmpi-4.1.5_parallel
 > - cuda/12.2
 
@@ -32,6 +30,10 @@ After the compiler has been configured, to compile the code simply execute
 ```
 cd build-host && make
 ```
+
+## Analysing a run
+
+## To-do
 
 ## Known errors and warnings
 1. Compilation error by 2 Python libraries installed, avoided by using the `-DPARTHENON_ENABLE_PYTHON_MODULE_CHECK=OFF` flag at configuration time.

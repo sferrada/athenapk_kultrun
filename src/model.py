@@ -227,8 +227,8 @@ class LoadAthenaPKRun:
             indices = coords.index(normal)
             velocity_coords = coords[:indices] + coords[indices + 1:]
             _plot.annotate_quiver(
-                ("gas", "velocity_%s" % velocity_coords[0]),
-                ("gas", "velocity_%s" % velocity_coords[1]),
+                ("gas", f"velocity_{velocity_coords[0]}"),
+                ("gas", f"velocity_{velocity_coords[1]}"),
                 color='green',
                 factor=16
             )
