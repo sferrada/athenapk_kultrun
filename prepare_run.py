@@ -29,7 +29,7 @@ def main():
     config_dict = load_config_file(args.config_file)
 
     # Specify the directory path and create it
-    out_dir = output_directory_name(config_dict)
+    out_dir = output_directory_name(config_dict)  # , suffix=["MFM_0"])
     make_output_dir(out_dir)
 
     # Read the template configuration file

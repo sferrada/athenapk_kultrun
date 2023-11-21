@@ -275,37 +275,59 @@ class LoadAthenaPKRun:
         return correlation_time
 
     def get_run_average_fields(self,
-                               field: str,
+                               fields: list[str],
                                weight: tuple[str, str] | None = None,
-                               in_time: bool = True) -> None:
+                               verbose: bool = False,
+                               in_time: bool = False,
+                               save_data: bool = False) -> None:
         """
-        Calculate and save the density-weighted averages values for a specified field.
+        Calculate and save the density-weighted average values for specified fields.
 
         Args:
-            field (str): The name of the field for which to calculate averages.
+            fields (list[str]): The names of the fields for which to calculate averages.
             weight (tuple[str, str] | None, optional): The weight field to use for averaging. Default is None.
+            verbose (bool, optional): If True, print information about the field being processed.
             in_time (bool, optional): If True, get the snapshot's current time and save it along with the averages.
+            save_data (bool, optional): If True, save the calculated values to a file.
+                                        If False, return the calculated values.
+                                        Default is True.
 
         Returns:
-            None: The function saves the calculated values to a file and does not return a value.
+            None or ndarray: If save_data is True, the function saves the calculated values to a file and does not return a value.
+                             If save_data is False, the function returns the calculated values as a NumPy array.
         """
         times = []
-        fields = []
+        all_fields_data = []
 
         for sim in self.snapshot_list:
             i_snapshot = sim.split('.')[2]
-            average_field = self.get_snapshot_field_average(i_snapshot, ('gas', field), weight)
-            fields.append(float(average_field))
+
+            field_data = []
+            for field in fields:
+                if verbose:
+                    print(f"Running analysis for field: {field}")
+                average_field = self.get_snapshot_field_average(i_snapshot, ('gas', field), weight)
+                field_data.append(float(average_field))
+
+            all_fields_data.append(field_data)
 
             if in_time:
                 current_time = self.get_snapshot_current_time(i_snapshot)
                 times.append(current_time)
 
-        data = np.column_stack((times, fields)) if in_time else fields
-        header = f'current_time {field}' if in_time else field
-        out_name = f'average_{field}_in_time.txt' if in_time else f'average_{field}.txt'
+        if in_time:
+            data = np.column_stack((times, *all_fields_data))
+            header = f'current_time {" ".join(fields)}'
+            out_name = f'average_{"_".join(fields)}_in_time.txt'
+        else:
+            data = np.array(all_fields_data).T
+            header = " ".join(fields)
+            out_name = f'average_{"_".join(fields)}.txt'
 
-        np.savetxt(os.path.join(self.folder_path, out_name), data, header=header)
+        if save_data:
+            np.savetxt(os.path.join(self.folder_path, out_name), data, header=header)
+        else:
+            return data
 
     def get_run_statistics(self) -> None:
         """

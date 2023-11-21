@@ -3,8 +3,8 @@ from src.model import LoadAthenaPKRun
 from src.commons import load_config_file
 
 def main():
-    parser = argparse.ArgumentParser(description="Get average value of a field.")
-    parser.add_argument("run", help="AthenaPK run directory")
+    parser = argparse.ArgumentParser(description="Perform a simple analysis routine on a run.")
+    parser.add_argument("run", help="Simulation run directory")
     parser.add_argument("--weight", help="Weight for the average", default=None)
     args = parser.parse_args()
 
@@ -19,11 +19,15 @@ def main():
     # sim.get_run_statistics()
 
     # Get average value of desired fields
-    # # Todo : add `field_weight = ("gas", config_file["post_analysis"]["weight"])`
-    config_file = load_config_file("config.yaml")
-    for field in config_file["post_analysis"]["fields_for_analysis"]:
-        print(f"Running analysis for field: {field}")
-        sim.get_run_average_fields(args.field, in_time=True)  # Todo : add `weight=field_weight`
+    config_dict = load_config_file("config.yaml")
+    # Todo : add `weight=field_weight`
+    # Todo : add `field_weight = ("gas", config_dict["post_analysis"]["weight"])`
+    sim.get_run_average_fields(
+        config_dict["post_analysis"]["fields_for_analysis"],
+        verbose=True,
+        in_time=True,
+        save_data=True
+    )
 
 if __name__ == "__main__":
     main()

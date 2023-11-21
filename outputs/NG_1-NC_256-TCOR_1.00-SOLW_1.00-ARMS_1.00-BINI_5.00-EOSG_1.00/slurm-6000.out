@@ -1,0 +1,49 @@
+cudaStreamSynchronize(stream) error( cudaErrorAssert): device-side assert triggered /home/sferrada/athena_project/athenapk/external/Kokkos/core/src/Cuda/Kokkos_Cuda_Instance.cpp:144
+Backtrace:
+                        [0xb8f8b3]
+                        [0xb85db8]
+                        [0xb85deb]
+                        [0xb985b9]
+                        [0xb998d3]
+                        [0x50865e]
+                        [0x508d5f]
+                        [0x50c5fa]
+                        [0x50cc3f]
+                        [0x491a97]
+                        [0x468304]
+                        [0x4686e9]
+                        [0x6fc1d8]
+                        [0x44bcd9]
+                  [0x7fc912a3feb0]
+__libc_start_main [0x7fc912a3ff60]
+                        [0x463a65]
+[g001:117099] *** Process received signal ***
+[g001:117099] Signal: Aborted (6)
+[g001:117099] Signal code:  (-6)
+[g001:117099] [ 0] /lib64/libc.so.6(+0x54df0)[0x7fc912a54df0]
+[g001:117099] [ 1] /lib64/libc.so.6(+0xa154c)[0x7fc912aa154c]
+[g001:117099] [ 2] /lib64/libc.so.6(raise+0x16)[0x7fc912a54d46]
+[g001:117099] [ 3] /lib64/libc.so.6(abort+0xd3)[0x7fc912a287f3]
+[g001:117099] [ 4] ./athenapk/build-host/bin/athenaPK[0xb85df0]
+[g001:117099] [ 5] ./athenapk/build-host/bin/athenaPK[0xb985b9]
+[g001:117099] [ 6] ./athenapk/build-host/bin/athenaPK[0xb998d3]
+[g001:117099] [ 7] ./athenapk/build-host/bin/athenaPK[0x50865e]
+[g001:117099] [ 8] ./athenapk/build-host/bin/athenaPK[0x508d5f]
+[g001:117099] [ 9] ./athenapk/build-host/bin/athenaPK[0x50c5fa]
+[g001:117099] [10] ./athenapk/build-host/bin/athenaPK[0x50cc3f]
+[g001:117099] [11] ./athenapk/build-host/bin/athenaPK[0x491a97]
+[g001:117099] [12] ./athenapk/build-host/bin/athenaPK[0x468304]
+[g001:117099] [13] ./athenapk/build-host/bin/athenaPK[0x4686e9]
+[g001:117099] [14] ./athenapk/build-host/bin/athenaPK[0x6fc1d8]
+[g001:117099] [15] ./athenapk/build-host/bin/athenaPK[0x44bcd9]
+[g001:117099] [16] /lib64/libc.so.6(+0x3feb0)[0x7fc912a3feb0]
+[g001:117099] [17] /lib64/libc.so.6(__libc_start_main+0x80)[0x7fc912a3ff60]
+[g001:117099] [18] ./athenapk/build-host/bin/athenaPK[0x463a65]
+[g001:117099] *** End of error message ***
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun noticed that process rank 0 with PID 117099 on node g001 exited on signal 6 (Aborted).
+--------------------------------------------------------------------------

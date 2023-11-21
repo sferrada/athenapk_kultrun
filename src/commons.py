@@ -109,7 +109,7 @@ def output_directory_name(config_dict: dict,
 
     if suffix:
         for s in suffix:
-            base_name += f"-{s.capitalize()}"
+            base_name += f"-{s.upper()}"
 
     return base_name
 
