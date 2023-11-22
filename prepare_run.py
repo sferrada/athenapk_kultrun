@@ -15,7 +15,7 @@ def make_output_dir(run_dir):
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
     else:
-        print(f"\033[93mWARNING:\033[0m\nDirectory '{run_dir}' already exists.")
+        print(f"\033[93mWARNING:\033[0m\nDirectory '{run_dir}' already exists.\n")
 
 def main():
     parser = argparse.ArgumentParser(description="Prepares the run directory, input file and submission script.")
@@ -82,31 +82,48 @@ def main():
         fh.writelines('mpirun ./athenapk/build-host/bin/athenaPK -i ./${OUTDIR}/turbulence_philipp.in -d ./${OUTDIR}/ > "./${OUTDIR}/turbulence_philipp.out"\n')
         fh.writelines("\n")
 
-        # Conditionally write post-analysis lines based on `run_analysis` in config file
-        analysis_val = config_dict["post_analysis"]["run_analysis"]
-        if analysis_val == 0:
-            print("\033[93mWARNING:\033[0m\nPost-analysis is turned off in the config file!")
-        elif analysis_val == 1:
-            print("\033[93mWORK-IN-PROGRESS!\033[0m\nNo actual analysis will be run...")
-            fh.writelines("# Run simple post-analysis\n")
-            # fh.writelines('srun -N 1 -n 1 python3 scripts/run_analysis.py ${OUTDIR} --weight=config_dict["post_analysis"]["weight"]\n')
-        elif analysis_val == 2:
-            print("\033[93mWORK-IN-PROGRESS!\033[0m\nNo actual analysis will be run...")
-            fh.writelines("# Run P.G.'s flow analysis (requires the repository!)\n")
-            # fh.writelines('for X in `seq -w 00001 00049`; do srun -n 2 python3 ~/energy-transfer-analysis/run_analysis.py --res 256 --data_path ${OUTDIR}/$X.phdf --data_type AthenaPK --type flow --eos adiabatic --gamma 1.0001 --outfile ${OUTDIR}/flow-$X.hdf5 -forced; done\n')
-        elif analysis_val == 3:
-            print("\033[93mWORK-IN-PROGRESS!\033[0m\nNo actual analysis will be run...")
-            fh.writelines("# Run P.G.'s energy transfer analysis (requires the repository!)\n")
-            # fh.writelines('for X in `seq -w 00001 00049`; do srun -n 2 python3 ~/energy-transfer-analysis/run_analysis.py --res 256 --data_path ${OUTDIR}/$X.phdf --data_type AthenaPK --type flow --eos adiabatic --gamma 1.0001 --outfile ${OUTDIR}/flow-$X.hdf5 -forced; done\n')
-        else:
-            raise ValueError(f"Non-valid post-analysis method ({analysis_val}), please refer to the config file.")
-
-    msg = f"""
-\033[92mInput configuration saved to:\033[0m
+    msg = f"""\033[92mInput configuration saved to:\033[0m
 {final_input_file}
 
 \033[92mTo execute the simulation, just run:\033[0m
-sbatch {args.script_file}"""
+sbatch {args.script_file}
+"""
+
+    # Conditionally write post-analysis batch file based on `run_analysis` in config file
+    analysis_val = config_dict["post_analysis"]["run_analysis"]
+    if analysis_val == 0:
+        msg += """
+\033[93mWARNING:\033[0m\nPost-analysis is turned off in the config file!"""
+    else:
+        msg += """
+\033[93mWORK-IN-PROGRESS!\033[0m\nNo actual analysis will be run..."""
+        with open("submit_analysis.sh", "w") as fa:
+            fa.writelines("#!/bin/bash\n")
+            fa.writelines(f"#SBATCH --job-name=athenapk_analysis\n")
+            fa.writelines(f"#SBATCH --partition=mapu\n")  # Always to be executed on a CPU node
+            fa.writelines(f"\n")
+            fa.writelines(f"# Load modules\n")
+            fa.writelines(f"module load openmpi/4.1.5 fftw/3.3.10_openmpi-4.1.5 hdf5/1.14.1-2_openmpi-4.1.5_parallel Python/3.11.4\n")
+            fa.writelines(f"\n")
+            fa.writelines(f"# Set directory names\n")
+            fa.writelines(f"PRJDIR={os.environ['HOME']}/athenapk_kultrun\n")
+            fa.writelines(f"RUNDIR={out_dir}\n")
+            fa.writelines("OUTDIR=outputs/${RUNDIR}\n")
+            fa.writelines("cd $PRJDIR\n")
+            fa.writelines("\n")
+            if analysis_val == 1:
+                fa.writelines("# Run simple post-analysis\n")
+                fa.writelines("python3 scripts/run_analysis.py ${OUTDIR}\n")
+                # fa.writelines('srun -N 1 -n 1 python3 scripts/run_analysis.py ${OUTDIR} --weight=config_dict["post_analysis"]["weight"]\n')
+            elif analysis_val == 2:
+                fa.writelines("# Run P.G.'s flow analysis (requires the repository!)\n")
+                # fa.writelines('for X in `seq -w 00001 00049`; do srun -n 2 python3 ~/energy-transfer-analysis/run_analysis.py --res 256 --data_path ${OUTDIR}/$X.phdf --data_type AthenaPK --type flow --eos adiabatic --gamma 1.0001 --outfile ${OUTDIR}/flow-$X.hdf5 -forced; done\n')
+            elif analysis_val == 3:
+                fa.writelines("# Run P.G.'s energy transfer analysis (requires the repository!)\n")
+                # fa.writelines('for X in `seq -w 00001 00049`; do srun -n 2 python3 ~/energy-transfer-analysis/run_analysis.py --res 256 --data_path ${OUTDIR}/$X.phdf --data_type AthenaPK --type flow --eos adiabatic --gamma 1.0001 --outfile ${OUTDIR}/flow-$X.hdf5 -forced; done\n')
+            else:
+                raise ValueError(f"Non-valid post-analysis method ({analysis_val}), please refer to the config file.")
+
     print(msg)
 
 if __name__ == "__main__":
