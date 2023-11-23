@@ -296,38 +296,31 @@ class LoadAthenaPKRun:
             None or ndarray: If save_data is True, the function saves the calculated values to a file and does not return a value.
                              If save_data is False, the function returns the calculated values as a NumPy array.
         """
-        times = []
-        all_fields_data = []
+        snapshots_data = []
 
         for sim in self.snapshot_list:
             i_snapshot = sim.split('.')[2]
+            snapshot_data = []
 
-            field_data = []
+            if in_time:
+                current_time = self.get_snapshot_current_time(i_snapshot)
+                snapshot_data.append(current_time)
+
             for field in fields:
                 if verbose:
                     print(f"Running analysis for field: {field}")
                 average_field = self.get_snapshot_field_average(i_snapshot, ('gas', field), weight)
-                field_data.append(float(average_field))
+                snapshot_data.append(float(average_field))
 
-            all_fields_data.append(field_data)
+            snapshots_data.append(snapshot_data)
 
-            if in_time:
-                current_time = self.get_snapshot_current_time(i_snapshot)
-                times.append(current_time)
-
-        if in_time:
-            data = np.column_stack((times, *all_fields_data))
-            header = f'current_time {" ".join(fields)}'
-            out_name = f'average_{"_".join(fields)}_in_time.txt'
-        else:
-            data = np.array(all_fields_data).T
-            header = " ".join(fields)
-            out_name = f'average_{"_".join(fields)}.txt'
+        fout = "average_values.txt"
+        header = "time " + " ".join(fields) if in_time else " ".join(fields)
 
         if save_data:
-            np.savetxt(os.path.join(self.folder_path, out_name), data, header=header)
+            np.savetxt(os.path.join(self.folder_path, fout), snapshots_data, header=header)
         else:
-            return data
+            return snapshots_data
 
     def get_run_statistics(self) -> None:
         """

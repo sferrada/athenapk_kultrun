@@ -24,7 +24,7 @@ def main():
     # Todo : add `field_weight = ("gas", config_dict["post_analysis"]["weight"])`
     sim.get_run_average_fields(
         config_dict["post_analysis"]["fields_for_analysis"],
-        verbose=True,
+        # verbose=True,
         in_time=True,
         save_data=True
     )
