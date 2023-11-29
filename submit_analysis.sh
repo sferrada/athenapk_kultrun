@@ -7,9 +7,12 @@ module load openmpi/4.1.5 fftw/3.3.10_openmpi-4.1.5 hdf5/1.14.1-2_openmpi-4.1.5_
 
 # Set directory names
 PRJDIR=/home/sferrada/athenapk_kultrun
-RUNDIR=NG_1-NC_256-TCOR_1.00-SOLW_1.00-ARMS_1.00-BINI_0.05-EOSG_1.00
-OUTDIR=outputs/${RUNDIR}
+OUTDIR=outputs
 cd $PRJDIR
 
-# Run simple post-analysis
-python3 scripts/run_analysis.py ${OUTDIR}
+# Iterate over folders matching the pattern "NG_1-NC*"
+for folder in $(find . -type d -name "NG_1-NC*"); do
+    # Run simple post-analysis for each folder
+    python3 scripts/run_analysis.py "${folder}"
+done
+
