@@ -92,11 +92,11 @@ sbatch {args.script_file}
     # Conditionally write post-analysis batch file based on `run_analysis` in config file
     analysis_val = config_dict["post_analysis"]["run_analysis"]
     if analysis_val == 0:
-        msg += """
-\033[93mWARNING:\033[0m\nPost-analysis is turned off in the config file!"""
+        msg += """\033[93mWARNING:\033[0m
+Post-analysis is turned off in the config file!"""
     else:
-        msg += """
-\033[93mWORK-IN-PROGRESS!\033[0m\nNo actual analysis will be run..."""
+        msg += """\033[93mWORK-IN-PROGRESS!\033[0m
+No actual analysis will be run..."""
         with open("submit_analysis.sh", "w") as fa:
             fa.writelines("#!/bin/bash\n")
             fa.writelines(f"#SBATCH --job-name=athenapk_analysis\n")
