@@ -2,7 +2,8 @@ import os
 import re
 import yt
 import numpy as np
-import scipy as scipy
+import scipy as sp
+import pandas as pd
 from collections import deque
 from src.commons import read_athenapk_input_file
 yt.funcs.mylog.setLevel("ERROR")
@@ -267,10 +268,10 @@ class LoadAthenaPKRun:
             for j in range(num_snaps):
                 if j < i:
                     continue
-                correlation_time[0, i, j-i] = scipy.stats.pearsonr(acc_arr[i, :, :, :, :].reshape(-1), acc_arr[j, :, :, :, :].reshape(-1))[0]
-                correlation_time[1, i, j-i] = scipy.stats.pearsonr(acc_arr[i, 0, :, :, :].reshape(-1), acc_arr[j, 0, :, :, :].reshape(-1))[0]
-                correlation_time[2, i, j-i] = scipy.stats.pearsonr(acc_arr[i, 1, :, :, :].reshape(-1), acc_arr[j, 1, :, :, :].reshape(-1))[0]
-                correlation_time[3, i, j-i] = scipy.stats.pearsonr(acc_arr[i, 2, :, :, :].reshape(-1), acc_arr[j, 2, :, :, :].reshape(-1))[0]
+                correlation_time[0, i, j-i] = sp.stats.pearsonr(acc_arr[i, :, :, :, :].reshape(-1), acc_arr[j, :, :, :, :].reshape(-1))[0]
+                correlation_time[1, i, j-i] = sp.stats.pearsonr(acc_arr[i, 0, :, :, :].reshape(-1), acc_arr[j, 0, :, :, :].reshape(-1))[0]
+                correlation_time[2, i, j-i] = sp.stats.pearsonr(acc_arr[i, 1, :, :, :].reshape(-1), acc_arr[j, 1, :, :, :].reshape(-1))[0]
+                correlation_time[3, i, j-i] = sp.stats.pearsonr(acc_arr[i, 2, :, :, :].reshape(-1), acc_arr[j, 2, :, :, :].reshape(-1))[0]
 
         return correlation_time
 
@@ -314,13 +315,14 @@ class LoadAthenaPKRun:
 
             snapshots_data.append(snapshot_data)
 
-        fout = "average_values.txt"
-        header = "time " + " ".join(fields) if in_time else " ".join(fields)
+        header = ["time"] + fields if in_time else fields
+        df = pd.DataFrame(snapshots_data, columns=header)
 
         if save_data:
-            np.savetxt(os.path.join(self.folder_path, fout), snapshots_data, header=header)
+            fout = "average_values.csv"
+            df.to_csv(os.path.join(self.folder_path, fout), index=False)
         else:
-            return snapshots_data
+            return df
 
     def get_run_statistics(self) -> None:
         """

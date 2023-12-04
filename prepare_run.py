@@ -1,3 +1,33 @@
+#!/usr/bin/env python
+"""
+AthenaPK Simulation Preparation and Execution Script for KULTRUN
+
+This script prepares the run directory, input file, and submission script for
+the AthenaPK astrophysical simulation code. It generates a modified input file,
+customized SLURM script, and optionally a post-analysis batch file.
+
+Authors:
+- Simón Ferrada-Chamorro (simon.fch@protonmail.com), Nowhere.
+- [Co-Author Name]
+
+Disclaimer:
+This script is provided "as is," without any warranty. The authors assume no
+liability for any damages, whether direct or indirect, arising from the correct
+or incorrect usage of this script.
+
+Usage:
+- Execute the script with the required and optional command-line arguments.
+
+Example:
+$ python script_name.py input_template.in --config_file=config.yaml --script_file=submit_run.sh
+
+Dependencies:
+- Python 3.x
+- gcc >= 12.2.0
+- openmpi >= 4.1.5
+- hdf5 >= 1.14.1-2_openmpi-4.1.5_parallel
+- cuda >= 12.2
+"""
 import os
 import argparse
 from src.commons import (
@@ -10,7 +40,12 @@ from src.commons import (
 )
 
 def make_output_dir(run_dir):
-    """ Check if the directory exists, and if not, create it. """
+    """
+    Check if the directory exists, and if not, create it.
+
+    Parameters:
+    - run_dir (str): Name of the run directory.
+    """
     out_dir = os.path.join("outputs", run_dir)
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
@@ -18,6 +53,9 @@ def make_output_dir(run_dir):
         print(f"\033[93mWARNING:\033[0m\nDirectory '{run_dir}' already exists.\n")
 
 def main():
+    """
+    Main function for preparing the run directory, input file, and submission script.
+    """
     parser = argparse.ArgumentParser(description="Prepares the run directory, input file and submission script.")
     parser.add_argument("input_file", help="Template input configuration file")
     parser.add_argument("--config_file", "-C", default="config.yaml", help="YAML configuration file")
