@@ -319,10 +319,19 @@ class LoadAthenaPKRun:
         df = pd.DataFrame(snapshots_data, columns=header)
 
         if save_data:
-            fout = "average_values.csv"
-            df.to_csv(os.path.join(self.folder_path, fout), index=False)
+            fout = "average_values.tsv"
+            df.to_csv(os.path.join(self.folder_path, fout), index=False, sep="\t", float_format="%.10E")
         else:
             return df
+
+    def get_code_time_between_dumps(self) -> float:
+        """
+        Calculate and return the average time between simulation snapshots.
+
+        Returns:
+            float: The average time between simulation snapshots.
+        """
+        return self.input_attrs["parthenon/output2"][2][1]
 
     def get_run_statistics(self) -> None:
         """
@@ -338,42 +347,42 @@ class LoadAthenaPKRun:
         - RMS acceleration: Both target and actual values are printed, along with the standard deviation.
         - Relative power of solenoidal modes: Both target and actual values are printed, along with the standard deviation.
         """
-        corr_time_target = self.correlation_time
-        corr_time_actuals = []
-        code_time_between_dumps = self.input_attrs["parthenon/output2"][2][1]
-        print(code_time_between_dumps)
+        # Extract target values from the input file
+        target_correlation_time = self.correlation_time
+        target_rms_acceleration = self.acceleration_field_rms
+        target_solenoidal_weight = self.solenoidal_weight
 
-        # Note : `this_data` should be the vector for a single snapshot, not for the whole run
-        all_data = self.get_run_integral_times()
-        for this_data in all_data:
-            num_points = this_data.shape[1]
-            for i in range(num_points):
-                this_slice = this_data[i, :]
-                idx_0 = np.argwhere(np.array(this_slice) < 0)
-                if len(idx_0) == 0:
-                    continue
-                corr_time_actuals.append(np.trapz(this_slice[:idx_0[0][0]], dx=code_time_between_dumps))
+        # Calculate the forcing correlation time
+        # find the first zero crossing - we only integrate till that point as it's noise afterwards anyway
+        # this also ensures that the t_corr from later snapshots is not included as too few snapshots would follow
+        # to actually integrate for a full t_corr
+        correlation_time = self.get_run_integral_times()
+        t_corr = np.zeros((4, correlation_time.shape[1]))
+        for i in range(correlation_time.shape[1]):
+            for j in range(correlation_time.shape[2]):
+                if correlation_time[0, i, j] < 0:
+                    t_corr[0, i] = j
+                    break
+                if j == correlation_time.shape[2] - 1:
+                    t_corr[0, i] = correlation_time.shape[2]
 
-        # Write corr_time_actuals to a text file
-        with open(os.path.join(self.folder_path, "corr_time_actuals.txt"), "w") as file:
-            for value in corr_time_actuals:
-                file.write(f"{value}\n")
+        # calculate the integral
+        integral = np.zeros((4, correlation_time.shape[1]))
+        std = np.zeros((4, correlation_time.shape[1]))
+        for i in range(correlation_time.shape[1]):
+            for j in range(int(t_corr[0, i])):
+                integral[0, i] += correlation_time[0, i, j]
+                integral[1, i] += correlation_time[1, i, j]
+                integral[2, i] += correlation_time[2, i, j]
+                integral[3, i] += correlation_time[3, i, j]
+                std[0, i] += (correlation_time[0, i, j] - t_corr[0, i]) ** 2
+                std[1, i] += (correlation_time[1, i, j] - t_corr[1, i]) ** 2
+                std[2, i] += (correlation_time[2, i, j] - t_corr[2, i]) ** 2
+                std[3, i] += (correlation_time[3, i, j] - t_corr[3, i]) ** 2
+        integral *= self.get_code_time_between_dumps()
 
-        # corr_time_actual = (np.mean(corr_time_actuals), np.std(corr_time_actuals))
+        # calculate the correlation time
+        t_corr = integral / correlation_time.shape[2]
 
-        # # a_rms = float(id_split[1].split('_')[1])
-        # # a_rms_actual = get_mean('a' + '/moments/' + 'rms')
-
-        # # ζ = float(id_split[2].split('_')[1])
-        # # sol_weight_actual = get_mean_squared_ratio('a_s_mag' + '/moments/' + 'rms', 'a' + '/moments/' + 'rms')
-        # # sol_weight = 1.0 - ((1 - ζ) ** 2 / (1 - 2 * ζ + 3 * ζ ** 2))
-
-        # msg = (
-        #     f"{'Forcing correlation time':30} target: {corr_time_target:.2f} actual: {corr_time_actual[0]:.2f}+/-{corr_time_actual[1]:.3f}\n"
-        #     # f"{'RMS acceleration':30} target: {a_rms:.2f} actual: {a_rms_actual[0]:.2f}+/-{a_rms_actual[1]:.3f}\n"
-        #     # f"{'Rel power of sol. modes':30} target: {sol_weight:.2f}"
-        #     # f" actual: {sol_weight_actual[0]:.2f}+/-{sol_weight_actual[1]:.3f}"
-        # )
-
-        # print(msg)
-
+        # calculate the standard deviation
+        std = np.sqrt(std / correlation_time.shape[2])
