@@ -15,19 +15,19 @@ def main():
     # # Todo : Is this working as intended??
     # corr_time = sim.get_run_integral_time()
 
-    # # Todo : Finalise this function!
-    # sim.get_run_statistics()
+    # Print run statistics
+    sim.get_run_statistics()
 
-    # Get average value of desired fields
-    config_dict = load_config_file("config.yaml")
-    # Todo : add `weight=field_weight`
-    # Todo : add `field_weight = ("gas", config_dict["post_analysis"]["weight"])`
-    sim.get_run_average_fields(
-        config_dict["post_analysis"]["fields_for_analysis"],
-        verbose=True,
-        in_time=True,
-        save_data=True
-    )
+    # # Get average value of desired fields
+    # config_dict = load_config_file("config.yaml")
+    # field_weight = args.weight if args.weight else config_dict["post_analysis"]["weight"]
+    # sim.get_run_average_fields(
+    #     config_dict["post_analysis"]["fields_for_analysis"],
+    #     weight=field_weight,
+    #     verbose=True,
+    #     in_time=True,
+    #     save_data=True
+    # )
 
 if __name__ == "__main__":
     main()

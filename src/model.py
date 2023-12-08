@@ -386,3 +386,8 @@ class LoadAthenaPKRun:
 
         # calculate the standard deviation
         std = np.sqrt(std / correlation_time.shape[2])
+
+        # print the results
+        print(">> Forcing correlation time:")
+        print(f"   Target: {target_correlation_time:.3f}")
+        print(f"   Actual: {np.mean(t_corr[0, :]):.3f} +/- {np.mean(std[0, :]):.3f}")
