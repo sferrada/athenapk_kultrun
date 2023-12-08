@@ -10,7 +10,7 @@ module load openmpi/4.1.5 gcc/12.2.0 hdf5/1.14.1-2_openmpi-4.1.5_parallel cuda/1
 
 # Set directory names
 PRJDIR=/home/sferrada/athenapk_kultrun
-RUNDIR=NG_1-NC_256-TCOR_1.00-SOLW_1.00-ARMS_1.00-BINI_1.00-EOSG_1.00
+RUNDIR=NG_1-NC_256-TCOR_1.00-SOLW_1.00-ARMS_1.00-BINI_0.30-EOSG_1.00
 OUTDIR=outputs/${RUNDIR}
 
 # Run the sim

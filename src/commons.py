@@ -5,9 +5,9 @@ from typing import (Union)
 def custom_column_widths():
     """ Custom widths for specific input file sections """
     return {
+        "global": (10, 10, 10),  # General column widths
         "modes": (7, 2, 10),  # Custom widths for the `<modes>` section
         "hydro": (1, 14, 14),  # Custom widths for the `<hydro>` section
-        "global": (10, 10, 10),  # General column widths
         "comment": (9, 10, 10),  # Custom widths for the `<comment>` section
         "problem/turbulence": (12, 8, 10),  # Custom widths for the `<problem/turbulence>` section
     }
