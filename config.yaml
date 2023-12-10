@@ -11,7 +11,7 @@ initial_conditions:
   equation_of_state_gamma: 1.0001  # default: 1.0001 (~isothermal)
   initial_mean_density: 1.0  # default: 1.0
   initial_mean_pressure: 1.0  # default: 1.0
-  initial_magnetic_field: 0.3  # default: 0.05 (x-direction)
+  initial_magnetic_field: 0.07  # default: 0.05 (x-direction)
   magnetic_field_mode: 4  # 0: net flux; 1: no net flux uniform B; 2: non net flux sin B; 4: field loop
   acceleration_field_rms: 1.0  # default: 1.0
   solenoidal_weight: 1.0  # 0: fully compressive; 1: fully solenoidal
