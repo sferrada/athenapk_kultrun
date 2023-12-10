@@ -8,7 +8,7 @@ from collections import deque
 from src.commons import read_athenapk_input_file
 yt.funcs.mylog.setLevel("ERROR")
 
-class LoadAthenaPKRun:
+class SimAthenaPK:
     T_LIMIT_PATTERN = r'tlim=(\S+)'
     N_LIMIT_PATTERN = r'nlim=(\S+)'
     WALLTIME_PATTERN = r'walltime used = (\S+)'
@@ -22,14 +22,12 @@ class LoadAthenaPKRun:
             folder_path (str): The path to the folder containing AthenaPK simulation data.
         """
         self.number_of_cells = None
-        self.equation_of_state = None
+        self.correlation_time = None
         self.solenoidal_weight = None
         self.acceleration_field_rms = None
         self.initial_magnetic_field = None
-        self.correlation_time = None
         self.code_time_between_dumps = None
 
-        # Instantiation of the class
         self.folder_path = folder_path
         self.input_attrs = self.read_input_attrs()
         self.snapshot_list = self.get_snapshot_list()
@@ -54,8 +52,8 @@ class LoadAthenaPKRun:
 
             if "parthenon/mesh" in input_file_dict:
                 self.number_of_cells = int(input_file_dict["parthenon/mesh"][1][1])
-            if "hydro" in input_file_dict:
-                self.equation_of_state = str(input_file_dict["hydro"][1][1]).capitalize()
+            if "parthenon/output2" in input_file_dict:
+                self.code_time_between_dumps = float(input_file_dict["parthenon/output2"][2][1])
             if "problem/turbulence" in input_file_dict:
                 turbulence_params = input_file_dict["problem/turbulence"]
                 self.solenoidal_weight = float(turbulence_params[8][1])
@@ -97,8 +95,8 @@ class LoadAthenaPKRun:
         snapshot_list.sort()
         return snapshot_list
 
-    def _get_snapshot_file_path(self,
-                                n_snap: int | str) -> str:
+    def __get_snapshot_file_path__(self,
+                                   n_snap: int | str) -> str:
         """
         Get the file path for a snapshot based on its number or string representation.
 
@@ -109,10 +107,19 @@ class LoadAthenaPKRun:
             str: The file path to the snapshot.
         """
         snapshot_number_str = str(n_snap).zfill(5)
-        return os.path.join(self.folder_path, f'parthenon.prim.{snapshot_number_str}.phdf')
 
-    def _load_snapshot_data(self,
-                            n_snap: int | str) -> yt.data_objects.static_output.Dataset:
+        if isinstance(n_snap, str):
+            if not n_snap.endswith('.phdf'):
+                snapshot_number_str += '.phdf'
+
+        if isinstance(n_snap, int):
+            snapshot_number_str += '.phdf'
+
+        # Return the full path to the snapshot file.
+        return os.path.join(self.folder_path, f'parthenon.prim.{snapshot_number_str}')
+
+    def __load_snapshot_data__(self,
+                               n_snap: int | str) -> yt.data_objects.static_output.Dataset:
         """
         Load and return the data from a snapshot file.
 
@@ -122,7 +129,7 @@ class LoadAthenaPKRun:
         Returns:
             yt.data_objects.static_output.Dataset: A dataset containing the snapshot data.
         """
-        snapshot_file_path = self._get_snapshot_file_path(n_snap)
+        snapshot_file_path = self.__get_snapshot_file_path__(n_snap)
         if not os.path.exists(snapshot_file_path):
             raise FileNotFoundError(f'Snapshot not found in the current simulation directory: {snapshot_file_path}')
 
@@ -132,15 +139,34 @@ class LoadAthenaPKRun:
         except Exception as e:
             raise RuntimeError(f'Error loading snapshot data: {str(e)}')
 
-    def get_snapshot_field_info(self,
-                                n_snap: int | str) -> None:
+    def __load_all_snapshot_data__(self) -> dict[str, yt.data_objects.static_output.Dataset]:
+        """
+        Load and return the data from all snapshot files.
+
+        Returns:
+            dict[str, yt.data_objects.static_output.Dataset]: A dictionary containing all the loaded datasets.
+        """
+        ds_dict = {}
+        for snapshot_index, snapshot_file_name in enumerate(self.snapshot_list):
+            ds_dict[snapshot_index] = self.__load_snapshot_data__(snapshot_file_name)
+        
+        return ds_dict
+
+    def get_snapshot_field_info(self) -> None:
         """
         Get information about available fields in a snapshot.
 
         Args:
             n_snap (int or str): The snapshot number to analyze.
         """
-        ds = self._load_snapshot_data(n_snap)
+        # Search for the first available snapshot file in the simulation folder.
+        snapshot_file_name = next((f for f in os.listdir(self.folder_path) if f.endswith('.phdf')), None)
+        if not snapshot_file_name:
+            raise FileNotFoundError('No snapshot file found in the current simulation directory.')
+
+        # Load the snapshot data and print the available fields.
+        snapshot_number = snapshot_file_name.split('.')[2]
+        ds = self.__load_snapshot_data__(snapshot_number)
         print('>> [Field] Gas:')
         for elem in dir(ds.fields.gas):
             print(elem)
@@ -151,19 +177,24 @@ class LoadAthenaPKRun:
         for elem in dir(ds.fields.parthenon):
             print(elem)
 
-    def get_snapshot_current_time(self,
-                                  n_snap: int | str) -> float:
+    def get_snapshot_field_data(self, n_snap: int | str, field: tuple[str, str]) -> np.ndarray:
         """
-        Get the current time of a snapshot in the simulation.
+        Get the data of a field in a snapshot.
 
         Args:
-            n_snap (int or str): The snapshot number or identifier.
-
+            n_snap (int or str): The snapshot number to analyze.
+            field (tuple of str): A tuple specifying the field to analyze (e.g., ('gas', 'density')).
+        
         Returns:
-            float: The current time of the specified snapshot.
+            np.ndarray: A NumPy array containing the field data.
         """
-        ds = self._load_snapshot_data(n_snap)
-        return float(ds.current_time)
+        ds = self.__load_snapshot_data__(n_snap)
+        ad = ds.all_data()
+
+        try :
+            return ad[field].value
+        except Exception as e:
+            raise RuntimeError(f'Error loading snapshot data: {str(e)}')
 
     def get_snapshot_field_average(self,
                                    n_snap: int | str,
@@ -175,26 +206,63 @@ class LoadAthenaPKRun:
         Args:
             n_snap (int or str): The snapshot number to analyze.
             field (tuple of str): A tuple specifying the field to analyze (e.g., ('gas', 'density')).
+            weight (tuple of str, optional): A tuple specifying the weight field to use for averaging (e.g., ('index', 'volume')).
         
         Returns:
             averaged_quantity (float): The average value of the field.
         """
-        ds = self._load_snapshot_data(n_snap)
+        ds = self.__load_snapshot_data__(n_snap)
         ad = ds.all_data()
 
-        if weight is None:
+        print(f"\n ******* {weight} *******")
+
+        if weight is None or weight == "None":
             weight = ('index', 'ones')
+
+        print(f"\n ******* {weight} *******")
 
         return ad.quantities.weighted_average_quantity(field, weight)
 
-    def plot_snapshot_field(self,
-                            n_snap: int | str,
-                            field: tuple[str, str],
-                            normal: str = "z",
-                            method: str = "slice",
-                            color_map: str = "viridis",
-                            overplot_velocity: bool = False,
-                            **kwargs: dict) -> None:
+    def get_snapshot_timescales(self,
+                                n_snap: int | str) -> dict[str, float]:
+        """
+        Get various time-related information of a snapshot in the simulation.
+
+        Args:
+            n_snap (int or str): The snapshot number or identifier.
+
+        Returns:
+            dict[str, float]: A dictionary containing the current physical time, crossing time, and eddy turnover time of the specified snapshot.
+        """
+        ds = self.__load_snapshot_data__(n_snap)
+
+        # Get current physical time
+        current_time = float(ds.current_time)
+
+        # Calculate crossing time
+        domain_width = ds.domain_width[0]
+        domain_dimensions = ds.domain_dimensions[0]
+        crossing_time = float(domain_width / domain_dimensions / current_time)
+
+        # Calculate eddy turnover time
+        mach_number = self.get_snapshot_field_average(n_snap, ("gas", "mach_number"))
+        sound_speed = self.get_snapshot_field_average(n_snap, ("gas", "sound_speed"))
+        eddy_turnover_time = domain_width / (2 * mach_number * sound_speed)
+
+        return {
+            "current_time": float(current_time),
+            "crossing_time": float(crossing_time),
+            "eddy_turnover_time": float(eddy_turnover_time)
+        }
+
+    def plot_snapshot_field_map(self,
+                                n_snap: int | str,
+                                field: tuple[str, str],
+                                normal: str = "z",
+                                method: str = "slice",
+                                color_map: str = "viridis",
+                                overplot_velocity: bool = False,
+                                **kwargs: dict) -> None:
         """
         This function is a convenient wrapper for creating and customizing slice or projection plots of simulation data using yt.
         Depending on the specified method, it creates either a slice plot or a projection plot of the given field along the chosen axis.
@@ -212,7 +280,7 @@ class LoadAthenaPKRun:
         Returns:
             yt.SlicePlot or yt.ProjectionPlot: The yt plot object representing the field slice or projection.
         """
-        ds = self._load_snapshot_data(n_snap)
+        ds = self.__load_snapshot_data__(n_snap)
 
         if method.lower() == "slice":
             _plot = yt.SlicePlot(ds, normal, field, **kwargs)
@@ -235,6 +303,46 @@ class LoadAthenaPKRun:
             )
 
         return _plot
+
+    # def plot_snapshot_power_spectra(self, n_snap: int | str) -> None:
+    #     """
+    #     Plot the power spectra of the velocity and magnetic fields of a snapshot.
+    # 
+    #     Args:
+    #         n_snap (int or str): The snapshot number to plot.
+    #     """
+    #     ds = self.__load_snapshot_data__(n_snap)
+    #     ad = ds.all_data()
+    # 
+    #     # Calculate the power spectra of the velocity, kinetic and magnetic fields
+    #     # using the yt built-in function.
+    #     kinetic_power_spectrum = yt.create_profile(ad, "kinetic_energy", "cell_volume",
+    #                                                logs={"kinetic_energy": True},
+    #                                                n_bins=64, weight_field=None)
+    #     velocity_power_spectrum = yt.create_profile(ad, "velocity_magnitude", "cell_volume",
+    #                                                 logs={"velocity_magnitude": True},
+    #                                                 n_bins=64, weight_field=None)
+    #     magnetic_power_spectrum = yt.create_profile(ad, "magnetic_field_strength", "cell_volume",
+    #                                                 logs={"magnetic_field_strength": True},
+    #                                                 n_bins=64, weight_field=None)
+    # 
+    #     # Calculate forcing spectrum
+    # 
+    #     # Plot the power spectra.
+    #     fig, ax = plt.subplots(1, 3, figsize=(15, 5))
+    #     ax[0].plot(kinetic_power_spectrum.x, kinetic_power_spectrum["kinetic_energy"])
+    #     ax[0].set_xlabel(r"$k$")
+    #     ax[0].set_ylabel(r"$E(k)$")
+    #     ax[0].set_title("Kinetic Power Spectrum")
+    #     ax[1].plot(velocity_power_spectrum.x, velocity_power_spectrum["velocity_magnitude"])
+    #     ax[1].set_xlabel(r"$k$")
+    #     ax[1].set_ylabel(r"$E(k)$")
+    #     ax[1].set_title("Velocity Power Spectrum")
+    #     ax[2].plot(magnetic_power_spectrum.x, magnetic_power_spectrum["magnetic_field_strength"])
+    #     ax[2].set_xlabel(r"$k$")
+    #     ax[2].set_ylabel(r"$E(k)$")
+    #     ax[2].set_title("Magnetic Power Spectrum")
+    #     plt.show()
 
     def get_run_integral_times(self) -> np.ndarray:
         """
@@ -264,7 +372,9 @@ class LoadAthenaPKRun:
         acc_arr = np.array(acc_arr)
         num_snaps = acc_arr.shape[0]
         correlation_time = np.zeros((4, num_snaps, num_snaps))
-        for i in range(num_snaps):
+
+        # We start i from 1 because the correlation time is zero for the first snapshot.
+        for i in range(1, num_snaps):
             for j in range(num_snaps):
                 if j < i:
                     continue
@@ -272,6 +382,9 @@ class LoadAthenaPKRun:
                 correlation_time[1, i, j-i] = sp.stats.pearsonr(acc_arr[i, 0, :, :, :].reshape(-1), acc_arr[j, 0, :, :, :].reshape(-1))[0]
                 correlation_time[2, i, j-i] = sp.stats.pearsonr(acc_arr[i, 1, :, :, :].reshape(-1), acc_arr[j, 1, :, :, :].reshape(-1))[0]
                 correlation_time[3, i, j-i] = sp.stats.pearsonr(acc_arr[i, 2, :, :, :].reshape(-1), acc_arr[j, 2, :, :, :].reshape(-1))[0]
+
+                # Print current status of the foor loops
+                print(f"i = {i}, j = {j}, correlation_time = {correlation_time[0, i, j-i]}")
 
         return correlation_time
 
@@ -304,8 +417,8 @@ class LoadAthenaPKRun:
             snapshot_data = []
 
             if in_time:
-                current_time = self.get_snapshot_current_time(i_snapshot)
-                snapshot_data.append(current_time)
+                times_dict = self.get_snapshot_timescales(i_snapshot)
+                snapshot_data.append(times_dict["current_time"])
 
             for field in fields:
                 if verbose:
@@ -324,15 +437,6 @@ class LoadAthenaPKRun:
         else:
             return df
 
-    def get_code_time_between_dumps(self) -> float:
-        """
-        Calculate and return the average time between simulation snapshots.
-
-        Returns:
-            float: The average time between simulation snapshots.
-        """
-        return self.input_attrs["parthenon/output2"][2][1]
-
     def get_run_statistics(self) -> None:
         """
         Calculate and print statistics for the simulation.
@@ -349,45 +453,44 @@ class LoadAthenaPKRun:
         """
         # Extract target values from the input file
         target_correlation_time = self.correlation_time
-        target_rms_acceleration = self.acceleration_field_rms
-        target_solenoidal_weight = self.solenoidal_weight
+        # target_rms_acceleration = self.acceleration_field_rms
+        # target_solenoidal_weight = self.solenoidal_weight
 
         # Calculate the forcing correlation time
         # find the first zero crossing - we only integrate till that point as it's noise afterwards anyway
-        # this also ensures that the t_corr from later snapshots is not included as too few snapshots would follow
-        # to actually integrate for a full t_corr
+        # this also ensures that the t_corr from later snapshots is not included as too few snapshots would
+        # follow to actually integrate for a full t_corr
         correlation_time = self.get_run_integral_times()
-        t_corr = np.zeros((4, correlation_time.shape[1]))
+        t_corr_values = np.zeros((4, correlation_time.shape[1]))
         for i in range(correlation_time.shape[1]):
             for j in range(correlation_time.shape[2]):
                 if correlation_time[0, i, j] < 0:
-                    t_corr[0, i] = j
+                    t_corr_values[0, i] = j
                     break
                 if j == correlation_time.shape[2] - 1:
-                    t_corr[0, i] = correlation_time.shape[2]
+                    t_corr_values[0, i] = correlation_time.shape[2]
 
         # calculate the integral
         integral = np.zeros((4, correlation_time.shape[1]))
         std = np.zeros((4, correlation_time.shape[1]))
         for i in range(correlation_time.shape[1]):
-            for j in range(int(t_corr[0, i])):
+            for j in range(int(t_corr_values[0, i])):
                 integral[0, i] += correlation_time[0, i, j]
                 integral[1, i] += correlation_time[1, i, j]
                 integral[2, i] += correlation_time[2, i, j]
                 integral[3, i] += correlation_time[3, i, j]
-                std[0, i] += (correlation_time[0, i, j] - t_corr[0, i]) ** 2
-                std[1, i] += (correlation_time[1, i, j] - t_corr[1, i]) ** 2
-                std[2, i] += (correlation_time[2, i, j] - t_corr[2, i]) ** 2
-                std[3, i] += (correlation_time[3, i, j] - t_corr[3, i]) ** 2
-        integral *= self.get_code_time_between_dumps()
+                std[0, i] += (correlation_time[0, i, j] - t_corr_values[0, i]) ** 2
+                std[1, i] += (correlation_time[1, i, j] - t_corr_values[1, i]) ** 2
+                std[2, i] += (correlation_time[2, i, j] - t_corr_values[2, i]) ** 2
+                std[3, i] += (correlation_time[3, i, j] - t_corr_values[3, i]) ** 2
+        integral *= self.code_time_between_dumps
 
         # calculate the correlation time
-        t_corr = integral / correlation_time.shape[2]
+        t_corr_values = integral / correlation_time.shape[2]
 
         # calculate the standard deviation
         std = np.sqrt(std / correlation_time.shape[2])
 
-        # print the results
-        print(">> Forcing correlation time:")
-        print(f"   Target: {target_correlation_time:.3f}")
-        print(f"   Actual: {np.mean(t_corr[0, :]):.3f} +/- {np.mean(std[0, :]):.3f}")
+        # return the target, actual and standard deviation values
+        return target_correlation_time, np.mean(t_corr_values[0, :]), np.mean(std[0, :])
+

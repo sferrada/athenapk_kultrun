@@ -3,7 +3,7 @@ import yaml
 from typing import (Union)
 
 def custom_column_widths():
-    """ Custom widths for specific input file sections """
+    """ Custom widths for specific input file sections. """
     return {
         "global": (10, 10, 10),  # General column widths
         "modes": (7, 2, 10),  # Custom widths for the `<modes>` section
@@ -11,7 +11,6 @@ def custom_column_widths():
         "comment": (9, 10, 10),  # Custom widths for the `<comment>` section
         "problem/turbulence": (12, 8, 10),  # Custom widths for the `<problem/turbulence>` section
     }
-
 
 def output_dir(run_name: str) -> str:
     """
@@ -24,7 +23,6 @@ def output_dir(run_name: str) -> str:
         str: The output directory path for the specified run.
     """
     return os.path.join('outputs', run_name)
-
 
 def validate_parameter(param_to_validate,
                        default):
@@ -39,7 +37,6 @@ def validate_parameter(param_to_validate,
         The `param_to_validate` if it is not None, otherwise, the `default` value.
     """
     return param_to_validate if param_to_validate is not None else default
-
 
 def load_config_file(config_file_path: str,
                      override_config: Union[dict, None] = None) -> dict:
@@ -67,21 +64,7 @@ def load_config_file(config_file_path: str,
             except KeyError:
                 config[key] = {subkey: _override_config[key][subkey]}
 
-    try:
-        if config['density_powerlaw_idx'] == 0:
-            config['central_density'] = config['density_at_reference']
-            config['density_at_reference'] = None
-    except KeyError:
-        pass
-
-    try:
-        if config['dust_temperature_powerlaw_idx'] == 0:
-            config['dust_temperature'] = config['dust_temperature_at_reference']
-            config['dust_temperature_at_reference'] = None
-    except KeyError:
-        pass
     return config
-
 
 def output_directory_name(config_dict: dict,
                           prefix: str = "",
@@ -112,7 +95,6 @@ def output_directory_name(config_dict: dict,
             base_name += f"-{s.upper()}"
 
     return base_name
-
 
 def read_athenapk_input_file(filename: str, 
                              skip_header: bool = True) -> dict:
@@ -155,7 +137,6 @@ def read_athenapk_input_file(filename: str,
 
     return config_dict
 
-
 def modify_athenapk_input_file(config: dict,
                                modifications: list) -> dict:
     """
@@ -177,19 +158,18 @@ def modify_athenapk_input_file(config: dict,
                     modified_config[section][i] = (key, new_value, comment)
     return modified_config
                 
-
 def write_athenapk_input_file(filename: str,
                               config_dict: dict,
-                              number_of_cells: int = 512,
-                              column_widths: dict = None) -> None:
+                              column_widths: dict = None,
+                              number_of_cells: int = 512) -> None:
     """
     Write an AthenaPK configuration to a file with custom column padding widths and substitute `number_of_cells`.
 
     Parameters:
         filename (str): The name of the output configuration file.
         config_dict (dict): The configuration dictionary to write.
-        number_of_cells (int, optional): The number of cells to substitute in the configuration.
         column_widths (dict, optional): Dictionary specifying custom column widths for sections.
+        number_of_cells (int, optional): The number of cells to substitute in the configuration.
 
     Returns:
         None
@@ -233,7 +213,6 @@ def write_athenapk_input_file(filename: str,
                 file.write(formatted_line)
 
             file.write("\n")
-
 
 def format_athenapk_input_file(config_dict: dict,
                                print_formatted: bool = False) -> str:

@@ -1,0 +1,1686 @@
+yt : [ERROR    ] 2023-12-10 11:19:49,576 Missing cosmological_simulation in parameter file definition!
+/home/sferrada/.local/lib/python3.11/site-packages/unyt/array.py:1906: RuntimeWarning: divide by zero encountered in divide
+  out_arr = func(
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******

@@ -13,3 +13,4 @@ cd $PRJDIR
 
 # Run simple post-analysis
 python3 scripts/run_analysis.py ${OUTDIR}
+
