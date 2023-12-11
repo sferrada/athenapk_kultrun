@@ -437,29 +437,29 @@ class SimAthenaPK:
         else:
             return df
 
-    def get_run_statistics(self) -> None:
+    def get_run_statistics(self) -> dict:
         """
         Calculate and print statistics for the simulation.
 
         Returns:
-            None
+            dict: A dictionary containing the calculated statistics.
 
         The function calculates statistics related to the simulation and prints the results. It extracts specific values
-        from the provided identifier and performs calculations. The printed statistics include the following:
+        from the provided identifier and performs calculations. The computed statistics include the following:
 
-        - Forcing correlation time: Both target and actual values are printed, along with the standard deviation.
-        - RMS acceleration: Both target and actual values are printed, along with the standard deviation.
-        - Relative power of solenoidal modes: Both target and actual values are printed, along with the standard deviation.
+        - Forcing correlation time: Target and actual values, along with the standard deviation.
+        - RMS acceleration: Target and actual values, along with the standard deviation.
+        - Relative power of solenoidal modes: Target and actual values, along with the standard deviation.
         """
         # Extract target values from the input file
         target_correlation_time = self.correlation_time
-        # target_rms_acceleration = self.acceleration_field_rms
-        # target_solenoidal_weight = self.solenoidal_weight
+        target_rms_acceleration = self.acceleration_field_rms
+        target_solenoidal_weight = self.solenoidal_weight
 
-        # Calculate the forcing correlation time
-        # find the first zero crossing - we only integrate till that point as it's noise afterwards anyway
-        # this also ensures that the t_corr from later snapshots is not included as too few snapshots would
-        # follow to actually integrate for a full t_corr
+        # Calculate the forcing correlation time:
+        #     find the first zero crossing - we only integrate till that point as it's noise afterwards anyway
+        #     this also ensures that the t_corr from later snapshots is not included as too few snapshots would
+        #     follow to actually integrate for a full t_corr
         correlation_time = self.get_run_integral_times()
         t_corr_values = np.zeros((4, correlation_time.shape[1]))
         for i in range(correlation_time.shape[1]):
@@ -485,14 +485,29 @@ class SimAthenaPK:
                 std[3, i] += (correlation_time[3, i, j] - t_corr_values[3, i]) ** 2
         integral *= self.code_time_between_dumps
 
-        # calculate the correlation time
+        # Calculate the correlation time
         t_corr_values = integral / correlation_time.shape[2]
 
-        # calculate the standard deviation
+        # Calculate the standard deviation
         std = np.sqrt(std / correlation_time.shape[2])
 
-        # return the target, actual and standard deviation values
-        return target_correlation_time, np.mean(t_corr_values[0, :]), np.mean(std[0, :])
+        return {
+            "correlation_time": {
+                "target": target_correlation_time,
+                "actual": np.mean(t_corr_values[0, :]),
+                "std": np.mean(std[0, :])
+            },
+            "rms_acceleration": {
+                "target": target_rms_acceleration,
+                "actual": None,
+                "std": None
+            },
+            "solenoidal_weight": {
+                "target": target_solenoidal_weight,
+                "actual": None,
+                "std": None
+            }
+        }
 
 def get_run_statistics_old(self) -> None:
         """
