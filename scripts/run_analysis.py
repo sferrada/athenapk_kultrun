@@ -1,3 +1,4 @@
+import os
 import h5py
 import argparse as ap
 from src.commons import load_config_file
@@ -37,7 +38,8 @@ def main():
     )
 
     # Save everything in an HDF5 file
-    with h5py.File(args.output, "w") as f:
+    output_path = os.path.join(args.run, args.output)
+    with h5py.File(output_path, "w") as f:
         # Save `config_dict` as attributes of the root group
         for key, value in config_dict.items():
             if isinstance(value, dict):
@@ -47,20 +49,11 @@ def main():
                 f.attrs[key] = value
 
         # Save the run statistics dictionary
-        corr_times_group = f.create_group("correlation_time")
-        corr_times_group.attrs["target"] = run_statistics["correlation_time"]["target"]
-        corr_times_group.attrs["actual"] = run_statistics["correlation_time"]["actual"]
-        corr_times_group.attrs["std"] = run_statistics["correlation_time"]["std"]
-
-        rms_acceleration_group = f.create_group("rms_acceleration")
-        rms_acceleration_group.attrs["target"] = run_statistics["rms_acceleration"]["target"]
-        rms_acceleration_group.attrs["actual"] = run_statistics["rms_acceleration"]["actual"]
-        rms_acceleration_group.attrs["std"] = run_statistics["rms_acceleration"]["std"]
-
-        solenoidal_weight_group = f.create_group("solenoidal_weight")
-        solenoidal_weight_group.attrs["target"] = run_statistics["solenoidal_weight"]["target"]
-        solenoidal_weight_group.attrs["actual"] = run_statistics["solenoidal_weight"]["actual"]
-        solenoidal_weight_group.attrs["std"] = run_statistics["solenoidal_weight"]["std"]
+        for key, value in run_statistics.items():
+            group = f.create_group(key)
+            group.attrs["target"] = value["target"]
+            group.attrs["actual"] = value["actual"]
+            group.attrs["stand_dev"] = value["std"]
 
         # Save `average_values` columns as datasets of a group
         average_values_group = f.create_group("average_values")

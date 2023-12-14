@@ -56,20 +56,18 @@ class SimAthenaPK:
                 self.code_time_between_dumps = float(input_file_dict["parthenon/output2"][2][1])
             if "problem/turbulence" in input_file_dict:
                 turbulence_params = input_file_dict["problem/turbulence"]
-                self.solenoidal_weight = float(turbulence_params[8][1])
-                self.acceleration_field_rms = float(turbulence_params[9][1])
-                self.initial_magnetic_field = float(turbulence_params[2][1])
                 self.correlation_time = float(turbulence_params[6][1])
+                self.solenoidal_weight = float(turbulence_params[8][1])
+                self.initial_magnetic_field = float(turbulence_params[2][1])
+                self.acceleration_field_rms = float(turbulence_params[9][1])
 
             return input_file_dict
         return None
 
     def extract_log_file_info(self):
         """
-        Extract information from the log file in the simulation folder.
-
-        This method extracts walltime, time limit, cycle limit, and cycles per wallsecond from the log file.
-        """
+        Extract walltime, time limit, cycle limit, and cycles per wallsecond from the log
+        file in the simulation folder."""
         log_file_name = next((f for f in os.listdir(self.folder_path) if f.endswith('.out')), None)
         if log_file_name:
             log_file_path = os.path.join(self.folder_path, log_file_name)
@@ -89,8 +87,7 @@ class SimAthenaPK:
 
     def get_snapshot_list(self) -> None:
         """
-        Get a list of snapshot files in the simulation folder.
-        """
+        Get a list of snapshot files in the simulation folder."""
         snapshot_list = [f for f in os.listdir(self.folder_path) if f.endswith('.phdf')]
         snapshot_list.sort()
         return snapshot_list
@@ -104,8 +101,7 @@ class SimAthenaPK:
             n_snap (int or str): The snapshot number or its string representation.
 
         Returns:
-            str: The file path to the snapshot.
-        """
+            str: The file path to the snapshot."""
         snapshot_number_str = str(n_snap).zfill(5)
 
         if isinstance(n_snap, str):
@@ -127,8 +123,7 @@ class SimAthenaPK:
             n_snap (int or str): The snapshot number or its string representation.
 
         Returns:
-            yt.data_objects.static_output.Dataset: A dataset containing the snapshot data.
-        """
+            yt.data_objects.static_output.Dataset: A dataset containing the snapshot data."""
         snapshot_file_path = self.__get_snapshot_file_path__(n_snap)
         if not os.path.exists(snapshot_file_path):
             raise FileNotFoundError(f'Snapshot not found in the current simulation directory: {snapshot_file_path}')
@@ -144,8 +139,7 @@ class SimAthenaPK:
         Load and return the data from all snapshot files.
 
         Returns:
-            dict[str, yt.data_objects.static_output.Dataset]: A dictionary containing all the loaded datasets.
-        """
+            dict[str, yt.data_objects.static_output.Dataset]: A dictionary containing all the loaded datasets."""
         ds_dict = {}
         for snapshot_index, snapshot_file_name in enumerate(self.snapshot_list):
             ds_dict[snapshot_index] = self.__load_snapshot_data__(snapshot_file_name)
@@ -157,8 +151,7 @@ class SimAthenaPK:
         Get information about available fields in a snapshot.
 
         Args:
-            n_snap (int or str): The snapshot number to analyze.
-        """
+            n_snap (int or str): The snapshot number to analyze."""
         # Search for the first available snapshot file in the simulation folder.
         snapshot_file_name = next((f for f in os.listdir(self.folder_path) if f.endswith('.phdf')), None)
         if not snapshot_file_name:
@@ -186,8 +179,7 @@ class SimAthenaPK:
             field (tuple of str): A tuple specifying the field to analyze (e.g., ('gas', 'density')).
         
         Returns:
-            np.ndarray: A NumPy array containing the field data.
-        """
+            np.ndarray: A NumPy array containing the field data."""
         ds = self.__load_snapshot_data__(n_snap)
         ad = ds.all_data()
 
@@ -209,8 +201,7 @@ class SimAthenaPK:
             weight (tuple of str, optional): A tuple specifying the weight field to use for averaging (e.g., ('index', 'volume')).
         
         Returns:
-            averaged_quantity (float): The average value of the field.
-        """
+            averaged_quantity (float): The average value of the field."""
         ds = self.__load_snapshot_data__(n_snap)
         ad = ds.all_data()
 
@@ -232,8 +223,8 @@ class SimAthenaPK:
             n_snap (int or str): The snapshot number or identifier.
 
         Returns:
-            dict[str, float]: A dictionary containing the current physical time, crossing time, and eddy turnover time of the specified snapshot.
-        """
+            dict[str, float]: A dictionary containing the current physical time, crossing
+                              time, and eddy turnover time of the specified snapshot."""
         ds = self.__load_snapshot_data__(n_snap)
 
         # Get current physical time
@@ -255,95 +246,6 @@ class SimAthenaPK:
             "eddy_turnover_time": float(eddy_turnover_time)
         }
 
-    def plot_snapshot_field_map(self,
-                                n_snap: int | str,
-                                field: tuple[str, str],
-                                normal: str = "z",
-                                method: str = "slice",
-                                color_map: str = "viridis",
-                                overplot_velocity: bool = False,
-                                **kwargs: dict) -> None:
-        """
-        This function is a convenient wrapper for creating and customizing slice or projection plots of simulation data using yt.
-        Depending on the specified method, it creates either a slice plot or a projection plot of the given field along the chosen axis.
-        The resulting plot object is returned.
-
-        Args:
-            n_snap (int or str): The snapshot number to plot.
-            field (tuple of str): A tuple specifying the field to plot (e.g., ('gas', 'density')).
-            normal (str, optional): The axis for slicing or project (e.g., 'z'). Defaults to 'z'.
-            method (str, optional): The plotting method ('slice' or 'projection'). Defaults to 'slice'.
-            color_map (str, optional): The colormap to use for visualization. Defaults to 'viridis'.
-            overplot_velocity (bool, optional): If True, overplot the velocity field. Defaults to False.
-            **kwargs (dict, optional): Additional keyword arguments to pass to the yt plot.
-
-        Returns:
-            yt.SlicePlot or yt.ProjectionPlot: The yt plot object representing the field slice or projection.
-        """
-        ds = self.__load_snapshot_data__(n_snap)
-
-        if method.lower() == "slice":
-            _plot = yt.SlicePlot(ds, normal, field, **kwargs)
-        elif method.lower() == "projection":
-            _plot = yt.ProjectionPlot(ds, normal, field, **kwargs)
-        else:
-            raise ValueError("Invalid method. Supported methods are 'slice' and 'projection'.")
-
-        _plot.set_cmap(field=field, cmap=color_map)
-
-        if overplot_velocity:
-            coords = "xyz"
-            indices = coords.index(normal)
-            velocity_coords = coords[:indices] + coords[indices + 1:]
-            _plot.annotate_quiver(
-                ("gas", f"velocity_{velocity_coords[0]}"),
-                ("gas", f"velocity_{velocity_coords[1]}"),
-                color='green',
-                factor=16
-            )
-
-        return _plot
-
-    # def plot_snapshot_power_spectra(self, n_snap: int | str) -> None:
-    #     """
-    #     Plot the power spectra of the velocity and magnetic fields of a snapshot.
-    # 
-    #     Args:
-    #         n_snap (int or str): The snapshot number to plot.
-    #     """
-    #     ds = self.__load_snapshot_data__(n_snap)
-    #     ad = ds.all_data()
-    # 
-    #     # Calculate the power spectra of the velocity, kinetic and magnetic fields
-    #     # using the yt built-in function.
-    #     kinetic_power_spectrum = yt.create_profile(ad, "kinetic_energy", "cell_volume",
-    #                                                logs={"kinetic_energy": True},
-    #                                                n_bins=64, weight_field=None)
-    #     velocity_power_spectrum = yt.create_profile(ad, "velocity_magnitude", "cell_volume",
-    #                                                 logs={"velocity_magnitude": True},
-    #                                                 n_bins=64, weight_field=None)
-    #     magnetic_power_spectrum = yt.create_profile(ad, "magnetic_field_strength", "cell_volume",
-    #                                                 logs={"magnetic_field_strength": True},
-    #                                                 n_bins=64, weight_field=None)
-    # 
-    #     # Calculate forcing spectrum
-    # 
-    #     # Plot the power spectra.
-    #     fig, ax = plt.subplots(1, 3, figsize=(15, 5))
-    #     ax[0].plot(kinetic_power_spectrum.x, kinetic_power_spectrum["kinetic_energy"])
-    #     ax[0].set_xlabel(r"$k$")
-    #     ax[0].set_ylabel(r"$E(k)$")
-    #     ax[0].set_title("Kinetic Power Spectrum")
-    #     ax[1].plot(velocity_power_spectrum.x, velocity_power_spectrum["velocity_magnitude"])
-    #     ax[1].set_xlabel(r"$k$")
-    #     ax[1].set_ylabel(r"$E(k)$")
-    #     ax[1].set_title("Velocity Power Spectrum")
-    #     ax[2].plot(magnetic_power_spectrum.x, magnetic_power_spectrum["magnetic_field_strength"])
-    #     ax[2].set_xlabel(r"$k$")
-    #     ax[2].set_ylabel(r"$E(k)$")
-    #     ax[2].set_title("Magnetic Power Spectrum")
-    #     plt.show()
-
     def get_run_integral_times(self) -> np.ndarray:
         """
         Calculate and return the correlation time between the acceleration fields for a series of simulation snapshots.
@@ -356,8 +258,7 @@ class SimAthenaPK:
         The results are returned as a 4D NumPy array, where the dimensions represent:
         - The acceleration component (0 for full field, 1 for x, 2 for y, 3 for z).
         - The first snapshot's index.
-        - The second snapshot's index (offset by the first snapshot).
-        """
+        - The second snapshot's index (offset by the first snapshot)."""
         ds_arr = yt.load(self.folder_path + '/parthenon.prim.*.phdf')
 
         acc_arr = []
@@ -408,8 +309,7 @@ class SimAthenaPK:
 
         Returns:
             None or ndarray: If save_data is True, the function saves the calculated values to a file and does not return a value.
-                             If save_data is False, the function returns the calculated values as a NumPy array.
-        """
+                             If save_data is False, the function returns the calculated values as a NumPy array."""
         snapshots_data = []
 
         for sim in self.snapshot_list:
@@ -449,8 +349,7 @@ class SimAthenaPK:
 
         - Forcing correlation time: Target and actual values, along with the standard deviation.
         - RMS acceleration: Target and actual values, along with the standard deviation.
-        - Relative power of solenoidal modes: Target and actual values, along with the standard deviation.
-        """
+        - Relative power of solenoidal modes: Target and actual values, along with the standard deviation."""
         # Extract target values from the input file
         target_correlation_time = self.correlation_time
         target_rms_acceleration = self.acceleration_field_rms
@@ -508,6 +407,93 @@ class SimAthenaPK:
                 "std": None
             }
         }
+
+    def plot_snapshot_field_map(self,
+                                n_snap: int | str,
+                                field: tuple[str, str],
+                                normal: str = "z",
+                                method: str = "slice",
+                                color_map: str = "viridis",
+                                overplot_velocity: bool = False,
+                                **kwargs: dict) -> None:
+        """
+        This function is a convenient wrapper for creating and customizing slice or projection plots of simulation data using yt.
+        Depending on the specified method, it creates either a slice plot or a projection plot of the given field along the chosen axis.
+        The resulting plot object is returned.
+
+        Args:
+            n_snap (int or str): The snapshot number to plot.
+            field (tuple of str): A tuple specifying the field to plot (e.g., ('gas', 'density')).
+            normal (str, optional): The axis for slicing or project (e.g., 'z'). Defaults to 'z'.
+            method (str, optional): The plotting method ('slice' or 'projection'). Defaults to 'slice'.
+            color_map (str, optional): The colormap to use for visualization. Defaults to 'viridis'.
+            overplot_velocity (bool, optional): If True, overplot the velocity field. Defaults to False.
+            **kwargs (dict, optional): Additional keyword arguments to pass to the yt plot.
+
+        Returns:
+            yt.SlicePlot or yt.ProjectionPlot: The yt plot object representing the field slice or projection."""
+        ds = self.__load_snapshot_data__(n_snap)
+
+        if method.lower() == "slice":
+            _plot = yt.SlicePlot(ds, normal, field, **kwargs)
+        elif method.lower() == "projection":
+            _plot = yt.ProjectionPlot(ds, normal, field, **kwargs)
+        else:
+            raise ValueError("Invalid method. Supported methods are 'slice' and 'projection'.")
+
+        _plot.set_cmap(field=field, cmap=color_map)
+
+        if overplot_velocity:
+            coords = "xyz"
+            indices = coords.index(normal)
+            velocity_coords = coords[:indices] + coords[indices + 1:]
+            _plot.annotate_quiver(
+                ("gas", f"velocity_{velocity_coords[0]}"),
+                ("gas", f"velocity_{velocity_coords[1]}"),
+                color='green',
+                factor=16
+            )
+
+        return _plot
+
+    # def plot_snapshot_power_spectra(self, n_snap: int | str) -> None:
+    #     """
+    #     Plot the power spectra of the velocity and magnetic fields of a snapshot.
+    # 
+    #     Args:
+    #         n_snap (int or str): The snapshot number to plot."""
+    #     ds = self.__load_snapshot_data__(n_snap)
+    #     ad = ds.all_data()
+    # 
+    #     # Calculate the power spectra of the velocity, kinetic and magnetic fields
+    #     # using the yt built-in function.
+    #     kinetic_power_spectrum = yt.create_profile(ad, "kinetic_energy", "cell_volume",
+    #                                                logs={"kinetic_energy": True},
+    #                                                n_bins=64, weight_field=None)
+    #     velocity_power_spectrum = yt.create_profile(ad, "velocity_magnitude", "cell_volume",
+    #                                                 logs={"velocity_magnitude": True},
+    #                                                 n_bins=64, weight_field=None)
+    #     magnetic_power_spectrum = yt.create_profile(ad, "magnetic_field_strength", "cell_volume",
+    #                                                 logs={"magnetic_field_strength": True},
+    #                                                 n_bins=64, weight_field=None)
+    # 
+    #     # Calculate forcing spectrum
+    # 
+    #     # Plot the power spectra.
+    #     fig, ax = plt.subplots(1, 3, figsize=(15, 5))
+    #     ax[0].plot(kinetic_power_spectrum.x, kinetic_power_spectrum["kinetic_energy"])
+    #     ax[0].set_xlabel(r"$k$")
+    #     ax[0].set_ylabel(r"$E(k)$")
+    #     ax[0].set_title("Kinetic Power Spectrum")
+    #     ax[1].plot(velocity_power_spectrum.x, velocity_power_spectrum["velocity_magnitude"])
+    #     ax[1].set_xlabel(r"$k$")
+    #     ax[1].set_ylabel(r"$E(k)$")
+    #     ax[1].set_title("Velocity Power Spectrum")
+    #     ax[2].plot(magnetic_power_spectrum.x, magnetic_power_spectrum["magnetic_field_strength"])
+    #     ax[2].set_xlabel(r"$k$")
+    #     ax[2].set_ylabel(r"$E(k)$")
+    #     ax[2].set_title("Magnetic Power Spectrum")
+    #     plt.show()
 
 def get_run_statistics_old(self) -> None:
         """

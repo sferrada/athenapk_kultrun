@@ -1,0 +1,2978 @@
+yt : [ERROR    ] 2023-12-14 13:31:46,439 Missing cosmological_simulation in parameter file definition!
+/home/sferrada/.local/lib/python3.11/site-packages/unyt/array.py:1906: RuntimeWarning: divide by zero encountered in divide
+  out_arr = func(
+i = 1, j = 1, correlation_time = 0.9999999999999958
+i = 1, j = 2, correlation_time = 0.6070942969664963
+i = 1, j = 3, correlation_time = 0.3926882078564389
+i = 1, j = 4, correlation_time = 0.23588003181408634
+i = 1, j = 5, correlation_time = 0.2645546440480618
+i = 1, j = 6, correlation_time = 0.21602204250796797
+i = 1, j = 7, correlation_time = 0.21471495210063013
+i = 1, j = 8, correlation_time = 0.1977250981533056
+i = 1, j = 9, correlation_time = 0.1580754121149172
+i = 1, j = 10, correlation_time = 0.08370215385350752
+i = 1, j = 11, correlation_time = 0.09279726697609678
+i = 1, j = 12, correlation_time = 0.13584509680327672
+i = 1, j = 13, correlation_time = 0.10637219827774379
+i = 1, j = 14, correlation_time = 0.15718540221042498
+i = 1, j = 15, correlation_time = 0.2121908502622994
+i = 1, j = 16, correlation_time = 0.21644536823805427
+i = 1, j = 17, correlation_time = 0.23993500658543432
+i = 1, j = 18, correlation_time = 0.12200264768283756
+i = 1, j = 19, correlation_time = 0.10352062989325382
+i = 1, j = 20, correlation_time = 0.2193202969604391
+i = 1, j = 21, correlation_time = 0.17595503187416534
+i = 1, j = 22, correlation_time = 0.14220624956225353
+i = 1, j = 23, correlation_time = 0.09019854758473525
+i = 1, j = 24, correlation_time = 0.008465324692330956
+i = 1, j = 25, correlation_time = 0.010113084064867375
+i = 1, j = 26, correlation_time = -0.025383227413936876
+i = 1, j = 27, correlation_time = -0.02174376925260881
+i = 1, j = 28, correlation_time = -0.00758161538936718
+i = 1, j = 29, correlation_time = 0.052509489785267274
+i = 1, j = 30, correlation_time = 0.0508036822920893
+i = 1, j = 31, correlation_time = -0.011893534623946139
+i = 1, j = 32, correlation_time = 0.012738447751286922
+i = 1, j = 33, correlation_time = 0.005337577874759548
+i = 1, j = 34, correlation_time = -0.002455912306701723
+i = 1, j = 35, correlation_time = 0.09274860198946618
+i = 1, j = 36, correlation_time = 0.07642142345447553
+i = 1, j = 37, correlation_time = 0.00573310958885502
+i = 1, j = 38, correlation_time = -0.00849860984922824
+i = 1, j = 39, correlation_time = 0.051824831606575514
+i = 1, j = 40, correlation_time = 0.034391474941254344
+i = 1, j = 41, correlation_time = 0.07683583325770921
+i = 1, j = 42, correlation_time = 0.0787226572616617
+i = 1, j = 43, correlation_time = 0.11041678716812132
+i = 1, j = 44, correlation_time = 0.13938188514969552
+i = 1, j = 45, correlation_time = 0.12266710258945637
+i = 1, j = 46, correlation_time = 0.15254449877967768
+i = 1, j = 47, correlation_time = 0.08636418894716749
+i = 1, j = 48, correlation_time = 0.014574692336338482
+i = 1, j = 49, correlation_time = -0.02704521609894801
+i = 1, j = 50, correlation_time = 0.10847540094463837
+i = 2, j = 2, correlation_time = 0.99999999999999
+i = 2, j = 3, correlation_time = 0.6571015734200687
+i = 2, j = 4, correlation_time = 0.4629496655154236
+i = 2, j = 5, correlation_time = 0.44735094248444457
+i = 2, j = 6, correlation_time = 0.3870392275959332
+i = 2, j = 7, correlation_time = 0.33446633328735215
+i = 2, j = 8, correlation_time = 0.2535560306132113
+i = 2, j = 9, correlation_time = 0.15906468563447218
+i = 2, j = 10, correlation_time = 0.04634696926307923
+i = 2, j = 11, correlation_time = 0.07676052471240324
+i = 2, j = 12, correlation_time = 0.05638380863660307
+i = 2, j = 13, correlation_time = -0.022714420707841805
+i = 2, j = 14, correlation_time = 0.06966549887095788
+i = 2, j = 15, correlation_time = 0.12502622465452998
+i = 2, j = 16, correlation_time = 0.10458667126029705
+i = 2, j = 17, correlation_time = 0.14327550935051558
+i = 2, j = 18, correlation_time = 0.07051318162305278
+i = 2, j = 19, correlation_time = 0.08421722023791071
+i = 2, j = 20, correlation_time = 0.12362822298022327
+i = 2, j = 21, correlation_time = 0.019264317101949542
+i = 2, j = 22, correlation_time = 0.001252596138380603
+i = 2, j = 23, correlation_time = -0.02313419429103573
+i = 2, j = 24, correlation_time = -0.03007417191870433
+i = 2, j = 25, correlation_time = -0.0694006455072187
+i = 2, j = 26, correlation_time = -0.08508047398951757
+i = 2, j = 27, correlation_time = -0.02994657561997001
+i = 2, j = 28, correlation_time = 0.022159908400772664
+i = 2, j = 29, correlation_time = 0.12492045985081128
+i = 2, j = 30, correlation_time = 0.18385041274852504
+i = 2, j = 31, correlation_time = 0.17028235973749245
+i = 2, j = 32, correlation_time = 0.10474956535553617
+i = 2, j = 33, correlation_time = 0.024573819274510317
+i = 2, j = 34, correlation_time = 0.006162741371903977
+i = 2, j = 35, correlation_time = -0.0029678690104179488
+i = 2, j = 36, correlation_time = -0.028486679745867393
+i = 2, j = 37, correlation_time = -0.11226088732654392
+i = 2, j = 38, correlation_time = -0.11692528438976195
+i = 2, j = 39, correlation_time = -0.026624379615108627
+i = 2, j = 40, correlation_time = -0.0484100162257907
+i = 2, j = 41, correlation_time = -0.09951347965733501
+i = 2, j = 42, correlation_time = -0.13124083714899265
+i = 2, j = 43, correlation_time = -0.07403708661017697
+i = 2, j = 44, correlation_time = -0.038961672368043376
+i = 2, j = 45, correlation_time = -0.055239621518485736
+i = 2, j = 46, correlation_time = 0.033307594749959486
+i = 2, j = 47, correlation_time = -0.023100639373007416
+i = 2, j = 48, correlation_time = 0.02807185047563414
+i = 2, j = 49, correlation_time = -0.04897794610983295
+i = 2, j = 50, correlation_time = 0.12198403565292042
+i = 3, j = 3, correlation_time = 1.0
+i = 3, j = 4, correlation_time = 0.7521637607094348
+i = 3, j = 5, correlation_time = 0.574413402911599
+i = 3, j = 6, correlation_time = 0.4902714398080247
+i = 3, j = 7, correlation_time = 0.4235332462368561
+i = 3, j = 8, correlation_time = 0.3582829648729434
+i = 3, j = 9, correlation_time = 0.31036582350277425
+i = 3, j = 10, correlation_time = 0.20819036373059585
+i = 3, j = 11, correlation_time = 0.14617390654596382
+i = 3, j = 12, correlation_time = 0.13708012466124597
+i = 3, j = 13, correlation_time = 0.07518956531785496
+i = 3, j = 14, correlation_time = 0.12734166640164452
+i = 3, j = 15, correlation_time = 0.08616838076043325
+i = 3, j = 16, correlation_time = 0.056616065767263565
+i = 3, j = 17, correlation_time = 0.16637448612909342
+i = 3, j = 18, correlation_time = 0.19242052154819447
+i = 3, j = 19, correlation_time = 0.07895704158726985
+i = 3, j = 20, correlation_time = 0.14542070199840268
+i = 3, j = 21, correlation_time = 0.07586712021775842
+i = 3, j = 22, correlation_time = 0.06749033924416979
+i = 3, j = 23, correlation_time = 0.06780159882572054
+i = 3, j = 24, correlation_time = 0.11626328324752508
+i = 3, j = 25, correlation_time = 0.05019947017133707
+i = 3, j = 26, correlation_time = 0.008333492992676834
+i = 3, j = 27, correlation_time = -0.0229778857858179
+i = 3, j = 28, correlation_time = 0.10140610455163172
+i = 3, j = 29, correlation_time = 0.170501076266858
+i = 3, j = 30, correlation_time = 0.17783529930884406
+i = 3, j = 31, correlation_time = 0.11933946311101068
+i = 3, j = 32, correlation_time = 0.13761912809711818
+i = 3, j = 33, correlation_time = 0.09017232849073183
+i = 3, j = 34, correlation_time = 0.0026126233629685585
+i = 3, j = 35, correlation_time = 0.02498337167989131
+i = 3, j = 36, correlation_time = -0.03396195194106112
+i = 3, j = 37, correlation_time = -0.0862780892603956
+i = 3, j = 38, correlation_time = -0.15601634180097124
+i = 3, j = 39, correlation_time = -0.15435916510684441
+i = 3, j = 40, correlation_time = -0.20366720279303693
+i = 3, j = 41, correlation_time = -0.19356253159984182
+i = 3, j = 42, correlation_time = -0.1795549922027821
+i = 3, j = 43, correlation_time = -0.15058818159284637
+i = 3, j = 44, correlation_time = -0.0862565423993055
+i = 3, j = 45, correlation_time = -0.11468901499843842
+i = 3, j = 46, correlation_time = -0.021682251271546778
+i = 3, j = 47, correlation_time = -0.13587171571359036
+i = 3, j = 48, correlation_time = -0.04418190769958963
+i = 3, j = 49, correlation_time = -0.08974739786889697
+i = 3, j = 50, correlation_time = -0.03307345247519995
+i = 4, j = 4, correlation_time = 0.9999999999999909
+i = 4, j = 5, correlation_time = 0.7703277146177188
+i = 4, j = 6, correlation_time = 0.6333871342978756
+i = 4, j = 7, correlation_time = 0.5557991624347713
+i = 4, j = 8, correlation_time = 0.4077862293927129
+i = 4, j = 9, correlation_time = 0.23527671682079818
+i = 4, j = 10, correlation_time = 0.153542493681823
+i = 4, j = 11, correlation_time = 0.13810750799626692
+i = 4, j = 12, correlation_time = 0.16169403481910352
+i = 4, j = 13, correlation_time = 0.13340508563376635
+i = 4, j = 14, correlation_time = 0.10805239186807411
+i = 4, j = 15, correlation_time = 0.1506239592518753
+i = 4, j = 16, correlation_time = 0.057802118925128904
+i = 4, j = 17, correlation_time = 0.14628841920394858
+i = 4, j = 18, correlation_time = 0.1188578327734949
+i = 4, j = 19, correlation_time = 0.00949172594649395
+i = 4, j = 20, correlation_time = 0.08488702720019237
+i = 4, j = 21, correlation_time = 0.061905483428387496
+i = 4, j = 22, correlation_time = 0.1047563767141162
+i = 4, j = 23, correlation_time = 0.10737144558116214
+i = 4, j = 24, correlation_time = 0.1364782471726112
+i = 4, j = 25, correlation_time = -0.007558667443910638
+i = 4, j = 26, correlation_time = -0.06442490862910706
+i = 4, j = 27, correlation_time = -0.06300567632013519
+i = 4, j = 28, correlation_time = 0.027699812600142804
+i = 4, j = 29, correlation_time = 0.10301713472954448
+i = 4, j = 30, correlation_time = 0.06362052067454221
+i = 4, j = 31, correlation_time = 0.0470559479189812
+i = 4, j = 32, correlation_time = 0.07384676850600917
+i = 4, j = 33, correlation_time = 0.02910415904640755
+i = 4, j = 34, correlation_time = -0.034939205862202
+i = 4, j = 35, correlation_time = 0.020586555500901063
+i = 4, j = 36, correlation_time = -0.06298315419503428
+i = 4, j = 37, correlation_time = -0.04664193956071566
+i = 4, j = 38, correlation_time = -0.10673914985493826
+i = 4, j = 39, correlation_time = -0.1294068466351522
+i = 4, j = 40, correlation_time = -0.14484537680856188
+i = 4, j = 41, correlation_time = -0.1307628940707039
+i = 4, j = 42, correlation_time = -0.12178477680277333
+i = 4, j = 43, correlation_time = -0.04005740820095393
+i = 4, j = 44, correlation_time = -0.04879447807965791
+i = 4, j = 45, correlation_time = -0.1080759859141624
+i = 4, j = 46, correlation_time = -0.05226074820355514
+i = 4, j = 47, correlation_time = -0.20084932293744373
+i = 4, j = 48, correlation_time = -0.029425948022548457
+i = 4, j = 49, correlation_time = -0.035742438975695706
+i = 4, j = 50, correlation_time = 0.023125377262931103
+i = 5, j = 5, correlation_time = 1.0
+i = 5, j = 6, correlation_time = 0.7751279552907924
+i = 5, j = 7, correlation_time = 0.7311798454096807
+i = 5, j = 8, correlation_time = 0.5923134578705438
+i = 5, j = 9, correlation_time = 0.37657715606257974
+i = 5, j = 10, correlation_time = 0.24284402302526653
+i = 5, j = 11, correlation_time = 0.24523465185692095
+i = 5, j = 12, correlation_time = 0.22958502289356503
+i = 5, j = 13, correlation_time = 0.1932536112566815
+i = 5, j = 14, correlation_time = 0.18944305057709712
+i = 5, j = 15, correlation_time = 0.22209907992372338
+i = 5, j = 16, correlation_time = 0.14966217015702243
+i = 5, j = 17, correlation_time = 0.20679877360870677
+i = 5, j = 18, correlation_time = 0.07721006815724502
+i = 5, j = 19, correlation_time = -0.005236314688653076
+i = 5, j = 20, correlation_time = 0.01815487805147986
+i = 5, j = 21, correlation_time = 0.0711437005560146
+i = 5, j = 22, correlation_time = 0.08208955254895776
+i = 5, j = 23, correlation_time = 0.08207540516934894
+i = 5, j = 24, correlation_time = 0.08817871255793927
+i = 5, j = 25, correlation_time = -0.05516638184871155
+i = 5, j = 26, correlation_time = -0.13353311202253942
+i = 5, j = 27, correlation_time = -0.029440992107115
+i = 5, j = 28, correlation_time = 0.04680901127837688
+i = 5, j = 29, correlation_time = 0.15324358914924174
+i = 5, j = 30, correlation_time = 0.14190470252157328
+i = 5, j = 31, correlation_time = 0.10933216553680408
+i = 5, j = 32, correlation_time = 0.09974780355727145
+i = 5, j = 33, correlation_time = 0.06487991753638547
+i = 5, j = 34, correlation_time = -0.02287724994258424
+i = 5, j = 35, correlation_time = -0.04317486695959417
+i = 5, j = 36, correlation_time = -0.09002356809347453
+i = 5, j = 37, correlation_time = -0.06562740994666655
+i = 5, j = 38, correlation_time = -0.11028415873582945
+i = 5, j = 39, correlation_time = -0.0782120305597052
+i = 5, j = 40, correlation_time = -0.12249001732203989
+i = 5, j = 41, correlation_time = -0.1222163697574453
+i = 5, j = 42, correlation_time = -0.11782604306550626
+i = 5, j = 43, correlation_time = -0.025594238055125514
+i = 5, j = 44, correlation_time = -0.10456439402649903
+i = 5, j = 45, correlation_time = -0.11948942067634169
+i = 5, j = 46, correlation_time = 0.011605054164745842
+i = 5, j = 47, correlation_time = -0.07340862056770306
+i = 5, j = 48, correlation_time = 0.06068648824613317
+i = 5, j = 49, correlation_time = -0.05975695870647681
+i = 5, j = 50, correlation_time = -0.012240312254942043
+i = 6, j = 6, correlation_time = 1.0
+i = 6, j = 7, correlation_time = 0.816878930267321
+i = 6, j = 8, correlation_time = 0.681401213333831
+i = 6, j = 9, correlation_time = 0.5037004739696777
+i = 6, j = 10, correlation_time = 0.37860638928667434
+i = 6, j = 11, correlation_time = 0.39440217392251525
+i = 6, j = 12, correlation_time = 0.37032844594441466
+i = 6, j = 13, correlation_time = 0.3419927380851947
+i = 6, j = 14, correlation_time = 0.26301165326595044
+i = 6, j = 15, correlation_time = 0.3321744436421339
+i = 6, j = 16, correlation_time = 0.25784192481283236
+i = 6, j = 17, correlation_time = 0.28300856908795
+i = 6, j = 18, correlation_time = 0.11210202517445339
+i = 6, j = 19, correlation_time = -0.025042702725710547
+i = 6, j = 20, correlation_time = 0.11362942074912932
+i = 6, j = 21, correlation_time = 0.13421045625554634
+i = 6, j = 22, correlation_time = 0.08574938319767962
+i = 6, j = 23, correlation_time = 0.11094731016171498
+i = 6, j = 24, correlation_time = 0.17319389774284016
+i = 6, j = 25, correlation_time = 0.08021704831307849
+i = 6, j = 26, correlation_time = 0.01454114045667222
+i = 6, j = 27, correlation_time = 0.10532607551581988
+i = 6, j = 28, correlation_time = 0.014324162992161847
+i = 6, j = 29, correlation_time = 0.1467524106052367
+i = 6, j = 30, correlation_time = 0.055343057765557084
+i = 6, j = 31, correlation_time = 0.025421490882117124
+i = 6, j = 32, correlation_time = 0.03193401903551502
+i = 6, j = 33, correlation_time = -0.07179574519000131
+i = 6, j = 34, correlation_time = -0.11256927691927561
+i = 6, j = 35, correlation_time = -0.1434984412728121
+i = 6, j = 36, correlation_time = -0.22254059137359994
+i = 6, j = 37, correlation_time = -0.19506998317077712
+i = 6, j = 38, correlation_time = -0.2084999870322311
+i = 6, j = 39, correlation_time = -0.1968310240652324
+i = 6, j = 40, correlation_time = -0.16211044126624022
+i = 6, j = 41, correlation_time = -0.1646034709634392
+i = 6, j = 42, correlation_time = -0.10313918246377338
+i = 6, j = 43, correlation_time = -0.016589668925433784
+i = 6, j = 44, correlation_time = -0.04383341302286417
+i = 6, j = 45, correlation_time = -0.10163693197232063
+i = 6, j = 46, correlation_time = 0.0016511248250655427
+i = 6, j = 47, correlation_time = -0.15888780997557211
+i = 6, j = 48, correlation_time = -0.01139934535849323
+i = 6, j = 49, correlation_time = -0.11594624933828901
+i = 6, j = 50, correlation_time = -0.056697090872231806
+i = 7, j = 7, correlation_time = 1.0
+i = 7, j = 8, correlation_time = 0.8276032478082511
+i = 7, j = 9, correlation_time = 0.6360454491041833
+i = 7, j = 10, correlation_time = 0.49417300447773926
+i = 7, j = 11, correlation_time = 0.4301204757597547
+i = 7, j = 12, correlation_time = 0.40694586979163194
+i = 7, j = 13, correlation_time = 0.3351924278220997
+i = 7, j = 14, correlation_time = 0.31374073411655345
+i = 7, j = 15, correlation_time = 0.33148318581122327
+i = 7, j = 16, correlation_time = 0.27252792258716513
+i = 7, j = 17, correlation_time = 0.2842194287970875
+i = 7, j = 18, correlation_time = 0.13766649276152598
+i = 7, j = 19, correlation_time = 0.015822828936796842
+i = 7, j = 20, correlation_time = 0.18223497889933654
+i = 7, j = 21, correlation_time = 0.20647949544530597
+i = 7, j = 22, correlation_time = 0.16352942536892864
+i = 7, j = 23, correlation_time = 0.2129675146927618
+i = 7, j = 24, correlation_time = 0.2055762569221994
+i = 7, j = 25, correlation_time = 0.12385654865711566
+i = 7, j = 26, correlation_time = 0.04068236442045815
+i = 7, j = 27, correlation_time = 0.10801988008712025
+i = 7, j = 28, correlation_time = 0.1329804646434003
+i = 7, j = 29, correlation_time = 0.14837589553032532
+i = 7, j = 30, correlation_time = 0.04520922450018484
+i = 7, j = 31, correlation_time = 0.02728621204344042
+i = 7, j = 32, correlation_time = 0.06594201766935975
+i = 7, j = 33, correlation_time = -0.0031928199457848276
+i = 7, j = 34, correlation_time = -0.062327616751552406
+i = 7, j = 35, correlation_time = -0.06911598913639291
+i = 7, j = 36, correlation_time = -0.07130355996315742
+i = 7, j = 37, correlation_time = -0.08192863656020385
+i = 7, j = 38, correlation_time = -0.14556333678182554
+i = 7, j = 39, correlation_time = -0.1825021516090775
+i = 7, j = 40, correlation_time = -0.15894780468892383
+i = 7, j = 41, correlation_time = -0.11053224871582232
+i = 7, j = 42, correlation_time = -0.07756226711196351
+i = 7, j = 43, correlation_time = -0.010339610176610016
+i = 7, j = 44, correlation_time = 0.02932049024577041
+i = 7, j = 45, correlation_time = -0.014702633414177161
+i = 7, j = 46, correlation_time = 0.11503726888249413
+i = 7, j = 47, correlation_time = -0.004874006726453724
+i = 7, j = 48, correlation_time = 0.15481148593078753
+i = 7, j = 49, correlation_time = -0.023761736766083497
+i = 7, j = 50, correlation_time = -0.039220890083513885
+i = 8, j = 8, correlation_time = 0.9999999999999986
+i = 8, j = 9, correlation_time = 0.7938684363286458
+i = 8, j = 10, correlation_time = 0.6522238385555481
+i = 8, j = 11, correlation_time = 0.5459914290363409
+i = 8, j = 12, correlation_time = 0.545482086448295
+i = 8, j = 13, correlation_time = 0.44509563711094297
+i = 8, j = 14, correlation_time = 0.38445626059184895
+i = 8, j = 15, correlation_time = 0.38160128565443985
+i = 8, j = 16, correlation_time = 0.35822427676395063
+i = 8, j = 17, correlation_time = 0.37371840990639404
+i = 8, j = 18, correlation_time = 0.1719943208653799
+i = 8, j = 19, correlation_time = -0.014330766323753606
+i = 8, j = 20, correlation_time = 0.1670910435531914
+i = 8, j = 21, correlation_time = 0.260170040801038
+i = 8, j = 22, correlation_time = 0.19762386636382578
+i = 8, j = 23, correlation_time = 0.2858027859411191
+i = 8, j = 24, correlation_time = 0.2576421912721982
+i = 8, j = 25, correlation_time = 0.18405998204703455
+i = 8, j = 26, correlation_time = 0.08580432125490076
+i = 8, j = 27, correlation_time = 0.13449774757788585
+i = 8, j = 28, correlation_time = 0.17948225898234377
+i = 8, j = 29, correlation_time = 0.2093637274482582
+i = 8, j = 30, correlation_time = 0.06391911061756517
+i = 8, j = 31, correlation_time = 0.02552222836970702
+i = 8, j = 32, correlation_time = 0.07308755300779857
+i = 8, j = 33, correlation_time = 0.03168461202651708
+i = 8, j = 34, correlation_time = -0.05281167194601937
+i = 8, j = 35, correlation_time = -0.06455616486153745
+i = 8, j = 36, correlation_time = -0.09481409126858234
+i = 8, j = 37, correlation_time = -0.0537830282837224
+i = 8, j = 38, correlation_time = -0.09251791525669355
+i = 8, j = 39, correlation_time = -0.10273178315864141
+i = 8, j = 40, correlation_time = -0.04303633426026023
+i = 8, j = 41, correlation_time = -0.08179293278685112
+i = 8, j = 42, correlation_time = -0.04498235022296299
+i = 8, j = 43, correlation_time = -0.002686866635027907
+i = 8, j = 44, correlation_time = 0.01408136401877378
+i = 8, j = 45, correlation_time = -0.05174073400253999
+i = 8, j = 46, correlation_time = 0.06474642345640697
+i = 8, j = 47, correlation_time = -0.04447615824944172
+i = 8, j = 48, correlation_time = 0.05336539138772209
+i = 8, j = 49, correlation_time = -0.08664952706257917
+i = 8, j = 50, correlation_time = -0.1034609313620041
+i = 9, j = 9, correlation_time = 1.0
+i = 9, j = 10, correlation_time = 0.8325299558313765
+i = 9, j = 11, correlation_time = 0.6723680916294977
+i = 9, j = 12, correlation_time = 0.5994888957800402
+i = 9, j = 13, correlation_time = 0.4486052581031795
+i = 9, j = 14, correlation_time = 0.3864657695794724
+i = 9, j = 15, correlation_time = 0.3157398380927644
+i = 9, j = 16, correlation_time = 0.288104694611628
+i = 9, j = 17, correlation_time = 0.3022444803921813
+i = 9, j = 18, correlation_time = 0.18924402277423075
+i = 9, j = 19, correlation_time = 0.02164641604789383
+i = 9, j = 20, correlation_time = 0.1181180786233306
+i = 9, j = 21, correlation_time = 0.12061177110829086
+i = 9, j = 22, correlation_time = 0.07936391152473239
+i = 9, j = 23, correlation_time = 0.2677853239571502
+i = 9, j = 24, correlation_time = 0.17151924689534262
+i = 9, j = 25, correlation_time = 0.12415330482230973
+i = 9, j = 26, correlation_time = 0.04418949244372975
+i = 9, j = 27, correlation_time = 0.11225954328677602
+i = 9, j = 28, correlation_time = 0.22479474228793989
+i = 9, j = 29, correlation_time = 0.25422386005552783
+i = 9, j = 30, correlation_time = 0.09922051633492736
+i = 9, j = 31, correlation_time = 0.07559729998225656
+i = 9, j = 32, correlation_time = 0.12518121992071307
+i = 9, j = 33, correlation_time = 0.12205878611245399
+i = 9, j = 34, correlation_time = -0.014981732705694252
+i = 9, j = 35, correlation_time = -0.04523893363912339
+i = 9, j = 36, correlation_time = -0.05043849060316567
+i = 9, j = 37, correlation_time = -0.04420515242818024
+i = 9, j = 38, correlation_time = -0.0877853381123771
+i = 9, j = 39, correlation_time = -0.1380657459490533
+i = 9, j = 40, correlation_time = -0.06578098094679877
+i = 9, j = 41, correlation_time = -0.1262533408565656
+i = 9, j = 42, correlation_time = -0.06387213817696186
+i = 9, j = 43, correlation_time = -0.008661963822380362
+i = 9, j = 44, correlation_time = -0.017687806750117094
+i = 9, j = 45, correlation_time = -0.075355828159174
+i = 9, j = 46, correlation_time = 0.02672239500296764
+i = 9, j = 47, correlation_time = -0.04632407450837972
+i = 9, j = 48, correlation_time = 0.029731346222313874
+i = 9, j = 49, correlation_time = -0.10938641746181452
+i = 9, j = 50, correlation_time = -0.1882344449218547
+i = 10, j = 10, correlation_time = 0.9999999999999931
+i = 10, j = 11, correlation_time = 0.7989581334973346
+i = 10, j = 12, correlation_time = 0.7146268457863701
+i = 10, j = 13, correlation_time = 0.6001782310735917
+i = 10, j = 14, correlation_time = 0.49275133220315104
+i = 10, j = 15, correlation_time = 0.41683067114484856
+i = 10, j = 16, correlation_time = 0.38551872934804804
+i = 10, j = 17, correlation_time = 0.4274406097557586
+i = 10, j = 18, correlation_time = 0.36768469382270424
+i = 10, j = 19, correlation_time = 0.1682877118810065
+i = 10, j = 20, correlation_time = 0.2070723905656113
+i = 10, j = 21, correlation_time = 0.20768124612660183
+i = 10, j = 22, correlation_time = 0.1551770126199333
+i = 10, j = 23, correlation_time = 0.35748681283988154
+i = 10, j = 24, correlation_time = 0.24651244226216767
+i = 10, j = 25, correlation_time = 0.21013868152908494
+i = 10, j = 26, correlation_time = 0.12958914642014552
+i = 10, j = 27, correlation_time = 0.19750765882855786
+i = 10, j = 28, correlation_time = 0.23946293124424917
+i = 10, j = 29, correlation_time = 0.2303767832659394
+i = 10, j = 30, correlation_time = 0.03763862460684343
+i = 10, j = 31, correlation_time = 0.01741477649822576
+i = 10, j = 32, correlation_time = 0.027694698030309866
+i = 10, j = 33, correlation_time = 0.039974011701786855
+i = 10, j = 34, correlation_time = -0.03128422507723819
+i = 10, j = 35, correlation_time = -0.03078721626153707
+i = 10, j = 36, correlation_time = -0.05779900742990782
+i = 10, j = 37, correlation_time = -0.06607910596145343
+i = 10, j = 38, correlation_time = -0.15226938349402355
+i = 10, j = 39, correlation_time = -0.25713075173230837
+i = 10, j = 40, correlation_time = -0.17353089262398816
+i = 10, j = 41, correlation_time = -0.1293995991862797
+i = 10, j = 42, correlation_time = -0.05182898621754357
+i = 10, j = 43, correlation_time = -0.015906025245470582
+i = 10, j = 44, correlation_time = -0.018456146698373126
+i = 10, j = 45, correlation_time = -0.10524225625795072
+i = 10, j = 46, correlation_time = -0.07938111775775479
+i = 10, j = 47, correlation_time = -0.13927071663296092
+i = 10, j = 48, correlation_time = -0.09216981419775977
+i = 10, j = 49, correlation_time = -0.18216939477871075
+i = 10, j = 50, correlation_time = -0.2500347753373059
+i = 11, j = 11, correlation_time = 0.9999999999999871
+i = 11, j = 12, correlation_time = 0.7999826316287814
+i = 11, j = 13, correlation_time = 0.6741378169781548
+i = 11, j = 14, correlation_time = 0.5500665104530301
+i = 11, j = 15, correlation_time = 0.4879097860862303
+i = 11, j = 16, correlation_time = 0.4857559279957521
+i = 11, j = 17, correlation_time = 0.4932955142925775
+i = 11, j = 18, correlation_time = 0.406153950115277
+i = 11, j = 19, correlation_time = 0.2101506108834829
+i = 11, j = 20, correlation_time = 0.2210299638352082
+i = 11, j = 21, correlation_time = 0.259464507175849
+i = 11, j = 22, correlation_time = 0.18854549034758808
+i = 11, j = 23, correlation_time = 0.30471516464160603
+i = 11, j = 24, correlation_time = 0.2089743826320047
+i = 11, j = 25, correlation_time = 0.15834141626229525
+i = 11, j = 26, correlation_time = 0.10531321268612873
+i = 11, j = 27, correlation_time = 0.28039996907821024
+i = 11, j = 28, correlation_time = 0.2526434318740841
+i = 11, j = 29, correlation_time = 0.23831590874221636
+i = 11, j = 30, correlation_time = 0.14151733151662083
+i = 11, j = 31, correlation_time = 0.11269595052377405
+i = 11, j = 32, correlation_time = 0.11751657201851115
+i = 11, j = 33, correlation_time = 0.07769999563090016
+i = 11, j = 34, correlation_time = -0.02940777587991427
+i = 11, j = 35, correlation_time = -0.07026159311211524
+i = 11, j = 36, correlation_time = -0.17330325246049
+i = 11, j = 37, correlation_time = -0.13073814707780052
+i = 11, j = 38, correlation_time = -0.20217653672698999
+i = 11, j = 39, correlation_time = -0.26248778130175776
+i = 11, j = 40, correlation_time = -0.13654936908653853
+i = 11, j = 41, correlation_time = -0.14022425993347437
+i = 11, j = 42, correlation_time = -0.05148616072523121
+i = 11, j = 43, correlation_time = 0.03609505399682465
+i = 11, j = 44, correlation_time = 0.007655179836585508
+i = 11, j = 45, correlation_time = -0.01287338617261444
+i = 11, j = 46, correlation_time = -0.036338525471814175
+i = 11, j = 47, correlation_time = -0.15366347263015406
+i = 11, j = 48, correlation_time = -0.12100911521891031
+i = 11, j = 49, correlation_time = -0.20523239084086786
+i = 11, j = 50, correlation_time = -0.3094929464183328
+i = 12, j = 12, correlation_time = 1.0
+i = 12, j = 13, correlation_time = 0.8464687098901669
+i = 12, j = 14, correlation_time = 0.718478854065528
+i = 12, j = 15, correlation_time = 0.6216031593540783
+i = 12, j = 16, correlation_time = 0.5816192886643983
+i = 12, j = 17, correlation_time = 0.5433600849213971
+i = 12, j = 18, correlation_time = 0.41610160275111874
+i = 12, j = 19, correlation_time = 0.1832760083475618
+i = 12, j = 20, correlation_time = 0.20974001300373288
+i = 12, j = 21, correlation_time = 0.29093169963014864
+i = 12, j = 22, correlation_time = 0.25841440197543125
+i = 12, j = 23, correlation_time = 0.35089821234756613
+i = 12, j = 24, correlation_time = 0.257104953896753
+i = 12, j = 25, correlation_time = 0.26247716552709294
+i = 12, j = 26, correlation_time = 0.17799912507914406
+i = 12, j = 27, correlation_time = 0.25031842126679804
+i = 12, j = 28, correlation_time = 0.2633016667140596
+i = 12, j = 29, correlation_time = 0.1903895479053247
+i = 12, j = 30, correlation_time = 0.00803599882540227
+i = 12, j = 31, correlation_time = 0.00895234396488373
+i = 12, j = 32, correlation_time = 0.022989113253284163
+i = 12, j = 33, correlation_time = -0.02961861593557191
+i = 12, j = 34, correlation_time = -0.07199354482214598
+i = 12, j = 35, correlation_time = -0.06984528056149575
+i = 12, j = 36, correlation_time = -0.11950977114692833
+i = 12, j = 37, correlation_time = -0.10014873506285751
+i = 12, j = 38, correlation_time = -0.15813963573163253
+i = 12, j = 39, correlation_time = -0.1759168651698525
+i = 12, j = 40, correlation_time = -0.024878950597095
+i = 12, j = 41, correlation_time = -0.005031309146032628
+i = 12, j = 42, correlation_time = 0.02400038729356973
+i = 12, j = 43, correlation_time = 0.0928733947744948
+i = 12, j = 44, correlation_time = 0.12372095864327035
+i = 12, j = 45, correlation_time = 0.07479148601982119
+i = 12, j = 46, correlation_time = 0.03808663384911817
+i = 12, j = 47, correlation_time = -0.11334582590706985
+i = 12, j = 48, correlation_time = -0.1012933475903608
+i = 12, j = 49, correlation_time = -0.1196029753138052
+i = 12, j = 50, correlation_time = -0.20181395478006725
+i = 13, j = 13, correlation_time = 1.0
+i = 13, j = 14, correlation_time = 0.8597129851812636
+i = 13, j = 15, correlation_time = 0.7365268153902589
+i = 13, j = 16, correlation_time = 0.6869982682482855
+i = 13, j = 17, correlation_time = 0.5988643367930879
+i = 13, j = 18, correlation_time = 0.48306338101349744
+i = 13, j = 19, correlation_time = 0.27324835398770164
+i = 13, j = 20, correlation_time = 0.3594462330532542
+i = 13, j = 21, correlation_time = 0.433975958424482
+i = 13, j = 22, correlation_time = 0.3407493792259582
+i = 13, j = 23, correlation_time = 0.39000218329061986
+i = 13, j = 24, correlation_time = 0.27412309859217354
+i = 13, j = 25, correlation_time = 0.2803420539965834
+i = 13, j = 26, correlation_time = 0.15744315139626355
+i = 13, j = 27, correlation_time = 0.16475329493115545
+i = 13, j = 28, correlation_time = 0.07084113263190371
+i = 13, j = 29, correlation_time = -0.015518839788890168
+i = 13, j = 30, correlation_time = -0.17048484094038274
+i = 13, j = 31, correlation_time = -0.15708531570932288
+i = 13, j = 32, correlation_time = -0.11283978767199279
+i = 13, j = 33, correlation_time = -0.11775831097400538
+i = 13, j = 34, correlation_time = -0.15361226422323385
+i = 13, j = 35, correlation_time = -0.13080773189625444
+i = 13, j = 36, correlation_time = -0.17064485874015484
+i = 13, j = 37, correlation_time = -0.15905591794770507
+i = 13, j = 38, correlation_time = -0.21531147615097485
+i = 13, j = 39, correlation_time = -0.1680334199043662
+i = 13, j = 40, correlation_time = -0.06296138496284659
+i = 13, j = 41, correlation_time = 0.015670462267827524
+i = 13, j = 42, correlation_time = 0.08016757977405183
+i = 13, j = 43, correlation_time = 0.1512530985504327
+i = 13, j = 44, correlation_time = 0.16217482840779449
+i = 13, j = 45, correlation_time = 0.05241775504016935
+i = 13, j = 46, correlation_time = 0.058051582346739766
+i = 13, j = 47, correlation_time = -0.05212807196320152
+i = 13, j = 48, correlation_time = -0.1180304491762103
+i = 13, j = 49, correlation_time = -0.07743524946675057
+i = 13, j = 50, correlation_time = -0.15504183338674252
+i = 14, j = 14, correlation_time = 1.0
+i = 14, j = 15, correlation_time = 0.8408735562154124
+i = 14, j = 16, correlation_time = 0.7752941194646047
+i = 14, j = 17, correlation_time = 0.6119765256261811
+i = 14, j = 18, correlation_time = 0.5147793528524957
+i = 14, j = 19, correlation_time = 0.40019428149135794
+i = 14, j = 20, correlation_time = 0.3800498219705903
+i = 14, j = 21, correlation_time = 0.3729492282110517
+i = 14, j = 22, correlation_time = 0.2759664490457084
+i = 14, j = 23, correlation_time = 0.2665116028650447
+i = 14, j = 24, correlation_time = 0.11905117579039853
+i = 14, j = 25, correlation_time = 0.13944858570524538
+i = 14, j = 26, correlation_time = 0.009993855122121507
+i = 14, j = 27, correlation_time = 0.03822141756988118
+i = 14, j = 28, correlation_time = 0.017412714116891832
+i = 14, j = 29, correlation_time = -0.05738559172780101
+i = 14, j = 30, correlation_time = -0.16439961410787102
+i = 14, j = 31, correlation_time = -0.18759872858760607
+i = 14, j = 32, correlation_time = -0.12292745929354819
+i = 14, j = 33, correlation_time = -0.12792641638729021
+i = 14, j = 34, correlation_time = -0.14674085885379579
+i = 14, j = 35, correlation_time = -0.11127005827984054
+i = 14, j = 36, correlation_time = -0.08080037489747924
+i = 14, j = 37, correlation_time = -0.178738150242906
+i = 14, j = 38, correlation_time = -0.25526284184009673
+i = 14, j = 39, correlation_time = -0.21046463901828283
+i = 14, j = 40, correlation_time = -0.13501739760288267
+i = 14, j = 41, correlation_time = 0.003793234271639442
+i = 14, j = 42, correlation_time = 0.10528933653845335
+i = 14, j = 43, correlation_time = 0.0915606805771868
+i = 14, j = 44, correlation_time = 0.17781996177929216
+i = 14, j = 45, correlation_time = 0.1142344065515269
+i = 14, j = 46, correlation_time = 0.1484540597021268
+i = 14, j = 47, correlation_time = 0.04519476248030931
+i = 14, j = 48, correlation_time = -0.07328330955050419
+i = 14, j = 49, correlation_time = -0.04185019827575541
+i = 14, j = 50, correlation_time = -0.10058547095919461
+i = 15, j = 15, correlation_time = 1.0
+i = 15, j = 16, correlation_time = 0.8344738692079877
+i = 15, j = 17, correlation_time = 0.6541586479861394
+i = 15, j = 18, correlation_time = 0.48483136969257323
+i = 15, j = 19, correlation_time = 0.3925110414629417
+i = 15, j = 20, correlation_time = 0.3985873568720165
+i = 15, j = 21, correlation_time = 0.3663240662708131
+i = 15, j = 22, correlation_time = 0.29466935482326173
+i = 15, j = 23, correlation_time = 0.25015354301969717
+i = 15, j = 24, correlation_time = 0.12506504359145695
+i = 15, j = 25, correlation_time = 0.10343759203731695
+i = 15, j = 26, correlation_time = -0.022056601982771123
+i = 15, j = 27, correlation_time = 0.011782718937963236
+i = 15, j = 28, correlation_time = 0.02253459972931467
+i = 15, j = 29, correlation_time = 0.017779956841710326
+i = 15, j = 30, correlation_time = -0.06687676251097843
+i = 15, j = 31, correlation_time = -0.12799449264037033
+i = 15, j = 32, correlation_time = -0.08335267304040757
+i = 15, j = 33, correlation_time = -0.1053875530470196
+i = 15, j = 34, correlation_time = -0.04810132858493783
+i = 15, j = 35, correlation_time = 0.03839571014901989
+i = 15, j = 36, correlation_time = 0.04796201026920501
+i = 15, j = 37, correlation_time = -0.029102709759790027
+i = 15, j = 38, correlation_time = -0.11985578491787019
+i = 15, j = 39, correlation_time = -0.07398860994066496
+i = 15, j = 40, correlation_time = -0.04303017088081582
+i = 15, j = 41, correlation_time = 0.07086250455090673
+i = 15, j = 42, correlation_time = 0.12676614343268738
+i = 15, j = 43, correlation_time = 0.08493086126095972
+i = 15, j = 44, correlation_time = 0.12610786090979476
+i = 15, j = 45, correlation_time = 0.09837838004912819
+i = 15, j = 46, correlation_time = 0.10095192782743703
+i = 15, j = 47, correlation_time = -0.034689755995457844
+i = 15, j = 48, correlation_time = -0.11883538175854155
+i = 15, j = 49, correlation_time = -0.06349820812955445
+i = 15, j = 50, correlation_time = -0.035289411573184874
+i = 16, j = 16, correlation_time = 1.0
+i = 16, j = 17, correlation_time = 0.8069405567910769
+i = 16, j = 18, correlation_time = 0.6506986419152893
+i = 16, j = 19, correlation_time = 0.49280017313614244
+i = 16, j = 20, correlation_time = 0.43439838333543024
+i = 16, j = 21, correlation_time = 0.4147006375834386
+i = 16, j = 22, correlation_time = 0.23935984799464335
+i = 16, j = 23, correlation_time = 0.14536615762227095
+i = 16, j = 24, correlation_time = 0.042627152888264
+i = 16, j = 25, correlation_time = 0.0523620475071926
+i = 16, j = 26, correlation_time = -0.07921565796882227
+i = 16, j = 27, correlation_time = -0.025581051133739187
+i = 16, j = 28, correlation_time = -0.015030995669661812
+i = 16, j = 29, correlation_time = -0.059348399580393736
+i = 16, j = 30, correlation_time = -0.051184723542943476
+i = 16, j = 31, correlation_time = -0.1345782510524806
+i = 16, j = 32, correlation_time = -0.1557415373436987
+i = 16, j = 33, correlation_time = -0.16615587744136712
+i = 16, j = 34, correlation_time = -0.16718856897917225
+i = 16, j = 35, correlation_time = -0.17366650288663732
+i = 16, j = 36, correlation_time = -0.1497563451557087
+i = 16, j = 37, correlation_time = -0.1637849654779987
+i = 16, j = 38, correlation_time = -0.1476639543080981
+i = 16, j = 39, correlation_time = -0.04445901560487012
+i = 16, j = 40, correlation_time = 0.016160144711351413
+i = 16, j = 41, correlation_time = 0.09526873419127482
+i = 16, j = 42, correlation_time = 0.1567924180181438
+i = 16, j = 43, correlation_time = 0.07470398908108261
+i = 16, j = 44, correlation_time = 0.08191103782525783
+i = 16, j = 45, correlation_time = 0.0596782496644256
+i = 16, j = 46, correlation_time = 0.11102149716215828
+i = 16, j = 47, correlation_time = -0.0011794904786384536
+i = 16, j = 48, correlation_time = -0.14634911837044123
+i = 16, j = 49, correlation_time = -0.040978480013140875
+i = 16, j = 50, correlation_time = -0.08914723136052169
+i = 17, j = 17, correlation_time = 0.9999999999999958
+i = 17, j = 18, correlation_time = 0.8080237834784584
+i = 17, j = 19, correlation_time = 0.6255820632331588
+i = 17, j = 20, correlation_time = 0.5878176144174224
+i = 17, j = 21, correlation_time = 0.5682731226243669
+i = 17, j = 22, correlation_time = 0.43495892177174605
+i = 17, j = 23, correlation_time = 0.3727323643161673
+i = 17, j = 24, correlation_time = 0.2776658634558439
+i = 17, j = 25, correlation_time = 0.23308105472974716
+i = 17, j = 26, correlation_time = 0.06549619267037449
+i = 17, j = 27, correlation_time = 0.1347823332974461
+i = 17, j = 28, correlation_time = 0.192279520324909
+i = 17, j = 29, correlation_time = 0.08371752258505685
+i = 17, j = 30, correlation_time = 0.021564003426735437
+i = 17, j = 31, correlation_time = -0.055921606373043053
+i = 17, j = 32, correlation_time = -0.007012115035737818
+i = 17, j = 33, correlation_time = -0.06163472809403651
+i = 17, j = 34, correlation_time = -0.07870951295773641
+i = 17, j = 35, correlation_time = -0.08624304266395816
+i = 17, j = 36, correlation_time = -0.133709757373456
+i = 17, j = 37, correlation_time = -0.1422029499137166
+i = 17, j = 38, correlation_time = -0.07569929169550689
+i = 17, j = 39, correlation_time = -0.034896459366070436
+i = 17, j = 40, correlation_time = 0.06025090851974103
+i = 17, j = 41, correlation_time = 0.10756917634656427
+i = 17, j = 42, correlation_time = 0.12781111950432128
+i = 17, j = 43, correlation_time = 0.08835745254203428
+i = 17, j = 44, correlation_time = 0.07005969357435851
+i = 17, j = 45, correlation_time = -0.0017691978619535102
+i = 17, j = 46, correlation_time = 0.047094547735412856
+i = 17, j = 47, correlation_time = -0.08049627377435178
+i = 17, j = 48, correlation_time = -0.20672405878405264
+i = 17, j = 49, correlation_time = -0.13516049420561044
+i = 17, j = 50, correlation_time = -0.14440050209630556
+i = 18, j = 18, correlation_time = 0.9999999999999903
+i = 18, j = 19, correlation_time = 0.8491704936122988
+i = 18, j = 20, correlation_time = 0.6966308631628997
+i = 18, j = 21, correlation_time = 0.6084479230961415
+i = 18, j = 22, correlation_time = 0.46051527012372595
+i = 18, j = 23, correlation_time = 0.33395089425697777
+i = 18, j = 24, correlation_time = 0.24977150220361272
+i = 18, j = 25, correlation_time = 0.2661799503188462
+i = 18, j = 26, correlation_time = 0.14418327019034682
+i = 18, j = 27, correlation_time = 0.16045809020761193
+i = 18, j = 28, correlation_time = 0.19365437941669011
+i = 18, j = 29, correlation_time = 0.03855545538060026
+i = 18, j = 30, correlation_time = 0.0069717616645437845
+i = 18, j = 31, correlation_time = -0.058741824590844816
+i = 18, j = 32, correlation_time = -0.06202726423382526
+i = 18, j = 33, correlation_time = -0.08352870819757802
+i = 18, j = 34, correlation_time = -0.10191915251240571
+i = 18, j = 35, correlation_time = -0.17787702225202906
+i = 18, j = 36, correlation_time = -0.1466563939963545
+i = 18, j = 37, correlation_time = -0.18619618863119128
+i = 18, j = 38, correlation_time = -0.043130673372241024
+i = 18, j = 39, correlation_time = -0.06236877391637839
+i = 18, j = 40, correlation_time = -0.005395226667109785
+i = 18, j = 41, correlation_time = 0.0877791431165722
+i = 18, j = 42, correlation_time = 0.07392360317732033
+i = 18, j = 43, correlation_time = 0.03432887166745792
+i = 18, j = 44, correlation_time = 0.021592219558518096
+i = 18, j = 45, correlation_time = -0.025226588023315233
+i = 18, j = 46, correlation_time = 0.03363838513818322
+i = 18, j = 47, correlation_time = -0.04490142038792202
+i = 18, j = 48, correlation_time = -0.1820888768120728
+i = 18, j = 49, correlation_time = -0.10267281406593373
+i = 18, j = 50, correlation_time = -0.1610373952046883
+i = 19, j = 19, correlation_time = 0.9999999999999883
+i = 19, j = 20, correlation_time = 0.7582829395002716
+i = 19, j = 21, correlation_time = 0.5703428229762717
+i = 19, j = 22, correlation_time = 0.4101643665295952
+i = 19, j = 23, correlation_time = 0.299858953869943
+i = 19, j = 24, correlation_time = 0.12983888273826694
+i = 19, j = 25, correlation_time = 0.1705056926138121
+i = 19, j = 26, correlation_time = 0.04482960527088296
+i = 19, j = 27, correlation_time = 0.04946527678786758
+i = 19, j = 28, correlation_time = 0.09414101677658185
+i = 19, j = 29, correlation_time = 0.01619247797991815
+i = 19, j = 30, correlation_time = 0.035891506465749165
+i = 19, j = 31, correlation_time = -0.020375678304692568
+i = 19, j = 32, correlation_time = -0.07719968714055854
+i = 19, j = 33, correlation_time = -0.14433648789204143
+i = 19, j = 34, correlation_time = -0.09181443176134525
+i = 19, j = 35, correlation_time = -0.15675954297741093
+i = 19, j = 36, correlation_time = -0.06461848529116156
+i = 19, j = 37, correlation_time = -0.1910260220852722
+i = 19, j = 38, correlation_time = -0.0035518962699245824
+i = 19, j = 39, correlation_time = -0.029852902840599632
+i = 19, j = 40, correlation_time = -0.01594904801554344
+i = 19, j = 41, correlation_time = 0.07574006030324874
+i = 19, j = 42, correlation_time = 0.08487733202246328
+i = 19, j = 43, correlation_time = -0.0031582407305020105
+i = 19, j = 44, correlation_time = -0.029819393997499017
+i = 19, j = 45, correlation_time = -0.07776368621997909
+i = 19, j = 46, correlation_time = -0.022087245216255755
+i = 19, j = 47, correlation_time = -0.010854972725540923
+i = 19, j = 48, correlation_time = -0.14018172384582456
+i = 19, j = 49, correlation_time = -0.09783018678907981
+i = 19, j = 50, correlation_time = -0.09010625226154759
+i = 20, j = 20, correlation_time = 1.0
+i = 20, j = 21, correlation_time = 0.783970066803279
+i = 20, j = 22, correlation_time = 0.6068999398382244
+i = 20, j = 23, correlation_time = 0.5520305099687475
+i = 20, j = 24, correlation_time = 0.41757639493319276
+i = 20, j = 25, correlation_time = 0.4108385763495619
+i = 20, j = 26, correlation_time = 0.24735685991914996
+i = 20, j = 27, correlation_time = 0.14619916239331338
+i = 20, j = 28, correlation_time = 0.13627643398927075
+i = 20, j = 29, correlation_time = 0.017819162683859607
+i = 20, j = 30, correlation_time = -0.0246490154745141
+i = 20, j = 31, correlation_time = -0.1067039550180828
+i = 20, j = 32, correlation_time = -0.0440567447829176
+i = 20, j = 33, correlation_time = -0.07704286709636969
+i = 20, j = 34, correlation_time = -0.01619864619116796
+i = 20, j = 35, correlation_time = -0.07038987864332634
+i = 20, j = 36, correlation_time = -0.03671942510636844
+i = 20, j = 37, correlation_time = -0.1398046955151614
+i = 20, j = 38, correlation_time = -0.0449550855753242
+i = 20, j = 39, correlation_time = -0.11142969414556778
+i = 20, j = 40, correlation_time = 0.007277621900396345
+i = 20, j = 41, correlation_time = 0.08684344066277612
+i = 20, j = 42, correlation_time = 0.06963898191177251
+i = 20, j = 43, correlation_time = 0.004017624883221202
+i = 20, j = 44, correlation_time = 0.03331969114177376
+i = 20, j = 45, correlation_time = -0.08358340567090378
+i = 20, j = 46, correlation_time = 0.015703782887885938
+i = 20, j = 47, correlation_time = -0.05571617023937317
+i = 20, j = 48, correlation_time = -0.16721157977077045
+i = 20, j = 49, correlation_time = -0.1253896320123674
+i = 20, j = 50, correlation_time = -0.0898981036759034
+i = 21, j = 21, correlation_time = 0.9999999999999927
+i = 21, j = 22, correlation_time = 0.8245281166823194
+i = 21, j = 23, correlation_time = 0.6430830031466285
+i = 21, j = 24, correlation_time = 0.4988488680230606
+i = 21, j = 25, correlation_time = 0.5057633207624028
+i = 21, j = 26, correlation_time = 0.33458821517364346
+i = 21, j = 27, correlation_time = 0.25689303160620647
+i = 21, j = 28, correlation_time = 0.206903661730997
+i = 21, j = 29, correlation_time = 0.007729779996084984
+i = 21, j = 30, correlation_time = 0.0005202959869729617
+i = 21, j = 31, correlation_time = -0.043903569357821484
+i = 21, j = 32, correlation_time = 0.04213208404620432
+i = 21, j = 33, correlation_time = -0.02689766184824781
+i = 21, j = 34, correlation_time = 0.004904555021819803
+i = 21, j = 35, correlation_time = -0.05518570685235592
+i = 21, j = 36, correlation_time = -0.02910475457418932
+i = 21, j = 37, correlation_time = -0.04589799488892677
+i = 21, j = 38, correlation_time = -0.04099209517518422
+i = 21, j = 39, correlation_time = -0.027586357834817124
+i = 21, j = 40, correlation_time = 0.12889590686588026
+i = 21, j = 41, correlation_time = 0.24056545756836192
+i = 21, j = 42, correlation_time = 0.25706646520987264
+i = 21, j = 43, correlation_time = 0.18423491640493345
+i = 21, j = 44, correlation_time = 0.19432871980409952
+i = 21, j = 45, correlation_time = 0.08509270747225856
+i = 21, j = 46, correlation_time = 0.17018351157515768
+i = 21, j = 47, correlation_time = 0.11461347810220092
+i = 21, j = 48, correlation_time = -0.04403193215077773
+i = 21, j = 49, correlation_time = -0.06498883267901918
+i = 21, j = 50, correlation_time = -0.10058000041357493
+i = 22, j = 22, correlation_time = 0.9999999999999911
+i = 22, j = 23, correlation_time = 0.7673604110227131
+i = 22, j = 24, correlation_time = 0.6108605793335669
+i = 22, j = 25, correlation_time = 0.5608272309772994
+i = 22, j = 26, correlation_time = 0.3509734133364524
+i = 22, j = 27, correlation_time = 0.2628735259609022
+i = 22, j = 28, correlation_time = 0.2521416289368743
+i = 22, j = 29, correlation_time = 0.10976710930167395
+i = 22, j = 30, correlation_time = 0.05753764271001021
+i = 22, j = 31, correlation_time = 0.09130810002373765
+i = 22, j = 32, correlation_time = 0.17678783116043384
+i = 22, j = 33, correlation_time = 0.08221549031928232
+i = 22, j = 34, correlation_time = 0.11911911903812168
+i = 22, j = 35, correlation_time = 0.0719483156383584
+i = 22, j = 36, correlation_time = 0.06559950000366933
+i = 22, j = 37, correlation_time = 0.032526304319301785
+i = 22, j = 38, correlation_time = 0.0337185779854491
+i = 22, j = 39, correlation_time = 0.042176181998767055
+i = 22, j = 40, correlation_time = 0.14482831730798248
+i = 22, j = 41, correlation_time = 0.24187838831738023
+i = 22, j = 42, correlation_time = 0.23067339864081385
+i = 22, j = 43, correlation_time = 0.1655148242791394
+i = 22, j = 44, correlation_time = 0.12215922199336791
+i = 22, j = 45, correlation_time = 0.06232026057741542
+i = 22, j = 46, correlation_time = 0.04963196976396898
+i = 22, j = 47, correlation_time = 0.03700640012393805
+i = 22, j = 48, correlation_time = -0.09817201797905094
+i = 22, j = 49, correlation_time = -0.09109173145764772
+i = 22, j = 50, correlation_time = -0.11064098697866137
+i = 23, j = 23, correlation_time = 1.0
+i = 23, j = 24, correlation_time = 0.8108110788755569
+i = 23, j = 25, correlation_time = 0.7312758688118961
+i = 23, j = 26, correlation_time = 0.500001001432383
+i = 23, j = 27, correlation_time = 0.37000586853060424
+i = 23, j = 28, correlation_time = 0.3735153560047349
+i = 23, j = 29, correlation_time = 0.291910156253847
+i = 23, j = 30, correlation_time = 0.19440928553271059
+i = 23, j = 31, correlation_time = 0.20569861504317288
+i = 23, j = 32, correlation_time = 0.2900138670143211
+i = 23, j = 33, correlation_time = 0.2088370681333761
+i = 23, j = 34, correlation_time = 0.19594088987905067
+i = 23, j = 35, correlation_time = 0.16712515697511307
+i = 23, j = 36, correlation_time = 0.10290002579090272
+i = 23, j = 37, correlation_time = 0.060751191178024896
+i = 23, j = 38, correlation_time = 0.060365458869935676
+i = 23, j = 39, correlation_time = 0.007505476059355553
+i = 23, j = 40, correlation_time = 0.13764350044863322
+i = 23, j = 41, correlation_time = 0.14767092970335388
+i = 23, j = 42, correlation_time = 0.12836119530271542
+i = 23, j = 43, correlation_time = 0.12839620146608327
+i = 23, j = 44, correlation_time = 0.07667798216279331
+i = 23, j = 45, correlation_time = 0.016325457381775394
+i = 23, j = 46, correlation_time = 0.015635672326030095
+i = 23, j = 47, correlation_time = -0.0579985951664614
+i = 23, j = 48, correlation_time = -0.10431264680974328
+i = 23, j = 49, correlation_time = -0.07382196348031952
+i = 23, j = 50, correlation_time = -0.0609600668171103
+i = 24, j = 24, correlation_time = 1.0
+i = 24, j = 25, correlation_time = 0.8287361938985633
+i = 24, j = 26, correlation_time = 0.7180593177213273
+i = 24, j = 27, correlation_time = 0.5256334655162304
+i = 24, j = 28, correlation_time = 0.43234400749564744
+i = 24, j = 29, correlation_time = 0.2845743175467697
+i = 24, j = 30, correlation_time = 0.20779916264598736
+i = 24, j = 31, correlation_time = 0.14838164176668917
+i = 24, j = 32, correlation_time = 0.2701724099394982
+i = 24, j = 33, correlation_time = 0.1899887749496514
+i = 24, j = 34, correlation_time = 0.1421978572283502
+i = 24, j = 35, correlation_time = 0.08718969485732297
+i = 24, j = 36, correlation_time = -0.016295117089558792
+i = 24, j = 37, correlation_time = -0.036154619362275695
+i = 24, j = 38, correlation_time = 0.0064127973836263725
+i = 24, j = 39, correlation_time = -0.046542243289508484
+i = 24, j = 40, correlation_time = 0.048272037093518363
+i = 24, j = 41, correlation_time = 0.0011710232041712287
+i = 24, j = 42, correlation_time = -0.0669134954948017
+i = 24, j = 43, correlation_time = -0.027444594602569806
+i = 24, j = 44, correlation_time = -0.0471294427961723
+i = 24, j = 45, correlation_time = -0.038416156013241956
+i = 24, j = 46, correlation_time = -0.028637164412491672
+i = 24, j = 47, correlation_time = -0.14787559385260973
+i = 24, j = 48, correlation_time = -0.15189349230298754
+i = 24, j = 49, correlation_time = -0.08249860620340532
+i = 24, j = 50, correlation_time = -0.09740674261392088
+i = 25, j = 25, correlation_time = 1.0
+i = 25, j = 26, correlation_time = 0.8575600004026243
+i = 25, j = 27, correlation_time = 0.6776901799201905
+i = 25, j = 28, correlation_time = 0.5114443877436388
+i = 25, j = 29, correlation_time = 0.3651824348689703
+i = 25, j = 30, correlation_time = 0.24421292508459386
+i = 25, j = 31, correlation_time = 0.18152149071921486
+i = 25, j = 32, correlation_time = 0.3041254794458683
+i = 25, j = 33, correlation_time = 0.21161166393676656
+i = 25, j = 34, correlation_time = 0.20218108623081044
+i = 25, j = 35, correlation_time = 0.12293416393366602
+i = 25, j = 36, correlation_time = 0.03549782344445172
+i = 25, j = 37, correlation_time = -0.02287247980733667
+i = 25, j = 38, correlation_time = -0.004483172974033254
+i = 25, j = 39, correlation_time = -0.0057779472433983885
+i = 25, j = 40, correlation_time = 0.10640742274537812
+i = 25, j = 41, correlation_time = 0.08583809636704492
+i = 25, j = 42, correlation_time = 0.0466636720805272
+i = 25, j = 43, correlation_time = 0.013803408468814888
+i = 25, j = 44, correlation_time = 0.08563059971381828
+i = 25, j = 45, correlation_time = 0.06439091095571184
+i = 25, j = 46, correlation_time = 0.08035737676601684
+i = 25, j = 47, correlation_time = 0.026950540921096965
+i = 25, j = 48, correlation_time = -0.03729691073066087
+i = 25, j = 49, correlation_time = 0.0001356582989323697
+i = 25, j = 50, correlation_time = -0.021902080688466437
+i = 26, j = 26, correlation_time = 1.0
+i = 26, j = 27, correlation_time = 0.7940030859140893
+i = 26, j = 28, correlation_time = 0.5654647219106541
+i = 26, j = 29, correlation_time = 0.39707981777446977
+i = 26, j = 30, correlation_time = 0.23485713713560988
+i = 26, j = 31, correlation_time = 0.21489642889642535
+i = 26, j = 32, correlation_time = 0.3162374603560556
+i = 26, j = 33, correlation_time = 0.25194590871745814
+i = 26, j = 34, correlation_time = 0.23018696404587774
+i = 26, j = 35, correlation_time = 0.13807338620931728
+i = 26, j = 36, correlation_time = 0.044105039663660625
+i = 26, j = 37, correlation_time = -0.01581719756473592
+i = 26, j = 38, correlation_time = -0.013695136824937337
+i = 26, j = 39, correlation_time = -0.005245727469407607
+i = 26, j = 40, correlation_time = 0.05447318686449566
+i = 26, j = 41, correlation_time = 0.002525230972645288
+i = 26, j = 42, correlation_time = -0.04124335652603738
+i = 26, j = 43, correlation_time = 0.013422651750705556
+i = 26, j = 44, correlation_time = 0.07176445662455201
+i = 26, j = 45, correlation_time = 0.08569436922260684
+i = 26, j = 46, correlation_time = 0.015267832098808116
+i = 26, j = 47, correlation_time = -0.02049424018748816
+i = 26, j = 48, correlation_time = -0.05551733792680865
+i = 26, j = 49, correlation_time = 0.009757145445553634
+i = 26, j = 50, correlation_time = -0.04629991412317807
+i = 27, j = 27, correlation_time = 1.0
+i = 27, j = 28, correlation_time = 0.7251094623587631
+i = 27, j = 29, correlation_time = 0.5800727365130376
+i = 27, j = 30, correlation_time = 0.39412024729842954
+i = 27, j = 31, correlation_time = 0.37899128019951456
+i = 27, j = 32, correlation_time = 0.41152703021389203
+i = 27, j = 33, correlation_time = 0.2567026581329258
+i = 27, j = 34, correlation_time = 0.23845627147140122
+i = 27, j = 35, correlation_time = 0.1550234318672762
+i = 27, j = 36, correlation_time = 0.025797250245124023
+i = 27, j = 37, correlation_time = -0.025448864607398883
+i = 27, j = 38, correlation_time = -0.022928673459726174
+i = 27, j = 39, correlation_time = -0.0020406836900449107
+i = 27, j = 40, correlation_time = 0.027698412198278018
+i = 27, j = 41, correlation_time = -0.03516461594689821
+i = 27, j = 42, correlation_time = -0.058400572725774626
+i = 27, j = 43, correlation_time = 0.04742086555620925
+i = 27, j = 44, correlation_time = 0.12216077161931177
+i = 27, j = 45, correlation_time = 0.14186820219172386
+i = 27, j = 46, correlation_time = 0.033539777161417345
+i = 27, j = 47, correlation_time = -0.028441962889510633
+i = 27, j = 48, correlation_time = -0.054086480103088065
+i = 27, j = 49, correlation_time = -0.03974172175840953
+i = 27, j = 50, correlation_time = -0.13261502579614787
+i = 28, j = 28, correlation_time = 1.0
+i = 28, j = 29, correlation_time = 0.7632911981299992
+i = 28, j = 30, correlation_time = 0.6153178322793706
+i = 28, j = 31, correlation_time = 0.5693693393875423
+i = 28, j = 32, correlation_time = 0.629296311881965
+i = 28, j = 33, correlation_time = 0.4988945804975141
+i = 28, j = 34, correlation_time = 0.4114481764497296
+i = 28, j = 35, correlation_time = 0.27702259134536583
+i = 28, j = 36, correlation_time = 0.20321335226130696
+i = 28, j = 37, correlation_time = 0.16820330245418127
+i = 28, j = 38, correlation_time = 0.1810042256900825
+i = 28, j = 39, correlation_time = 0.13239995996464088
+i = 28, j = 40, correlation_time = 0.1464973098146715
+i = 28, j = 41, correlation_time = 0.032887045179327515
+i = 28, j = 42, correlation_time = -0.006464675258203048
+i = 28, j = 43, correlation_time = 0.032559296185546746
+i = 28, j = 44, correlation_time = 0.12476260430744787
+i = 28, j = 45, correlation_time = 0.1408774441346382
+i = 28, j = 46, correlation_time = 0.10657281018501646
+i = 28, j = 47, correlation_time = -0.040321913976960166
+i = 28, j = 48, correlation_time = -0.05379732748497463
+i = 28, j = 49, correlation_time = -0.06835898903798068
+i = 28, j = 50, correlation_time = -0.1249314703164282
+i = 29, j = 29, correlation_time = 1.0
+i = 29, j = 30, correlation_time = 0.7903578283333222
+i = 29, j = 31, correlation_time = 0.7149246811102732
+i = 29, j = 32, correlation_time = 0.7022815988020439
+i = 29, j = 33, correlation_time = 0.5576093585864059
+i = 29, j = 34, correlation_time = 0.47664083900932824
+i = 29, j = 35, correlation_time = 0.4189030877055235
+i = 29, j = 36, correlation_time = 0.2682261737545983
+i = 29, j = 37, correlation_time = 0.16308049299026542
+i = 29, j = 38, correlation_time = 0.16315696412147704
+i = 29, j = 39, correlation_time = 0.13121572577761365
+i = 29, j = 40, correlation_time = 0.06899153266931221
+i = 29, j = 41, correlation_time = -0.04220603015499659
+i = 29, j = 42, correlation_time = -0.12006211872493411
+i = 29, j = 43, correlation_time = -0.0766893213308039
+i = 29, j = 44, correlation_time = -0.05571547758435914
+i = 29, j = 45, correlation_time = 0.0015490380908096892
+i = 29, j = 46, correlation_time = -0.07096535900754211
+i = 29, j = 47, correlation_time = -0.14324750119669938
+i = 29, j = 48, correlation_time = -0.11976733323464137
+i = 29, j = 49, correlation_time = -0.16396325447733026
+i = 29, j = 50, correlation_time = -0.1213176974794628
+i = 30, j = 30, correlation_time = 0.9999999999999973
+i = 30, j = 31, correlation_time = 0.8530443565192382
+i = 30, j = 32, correlation_time = 0.7586126392461221
+i = 30, j = 33, correlation_time = 0.593953533379239
+i = 30, j = 34, correlation_time = 0.5031003564729384
+i = 30, j = 35, correlation_time = 0.37803195088821373
+i = 30, j = 36, correlation_time = 0.2694521030544151
+i = 30, j = 37, correlation_time = 0.14523059035309982
+i = 30, j = 38, correlation_time = 0.15060888493897656
+i = 30, j = 39, correlation_time = 0.16621232893394072
+i = 30, j = 40, correlation_time = 0.08554539325927385
+i = 30, j = 41, correlation_time = -0.013485837736285488
+i = 30, j = 42, correlation_time = -0.09699960648221427
+i = 30, j = 43, correlation_time = -0.129472831642572
+i = 30, j = 44, correlation_time = -0.09137827738036874
+i = 30, j = 45, correlation_time = 0.06015705384701604
+i = 30, j = 46, correlation_time = 0.04688644077142793
+i = 30, j = 47, correlation_time = 0.007287975337324044
+i = 30, j = 48, correlation_time = -0.028263586414272103
+i = 30, j = 49, correlation_time = -0.04818578721513236
+i = 30, j = 50, correlation_time = -0.05278636228647407
+i = 31, j = 31, correlation_time = 0.9999999999999967
+i = 31, j = 32, correlation_time = 0.81581261727557
+i = 31, j = 33, correlation_time = 0.6656108971018877
+i = 31, j = 34, correlation_time = 0.5441291420443857
+i = 31, j = 35, correlation_time = 0.371046070796585
+i = 31, j = 36, correlation_time = 0.22972488738282043
+i = 31, j = 37, correlation_time = 0.11846368885854035
+i = 31, j = 38, correlation_time = 0.12907635716800292
+i = 31, j = 39, correlation_time = 0.17950166449642715
+i = 31, j = 40, correlation_time = 0.15109252005372892
+i = 31, j = 41, correlation_time = 0.01667647459315575
+i = 31, j = 42, correlation_time = -0.05611705287432866
+i = 31, j = 43, correlation_time = -0.013268892845387346
+i = 31, j = 44, correlation_time = -0.06208546385250284
+i = 31, j = 45, correlation_time = 0.01802500300631231
+i = 31, j = 46, correlation_time = -0.03337091044526452
+i = 31, j = 47, correlation_time = -0.03466129417198262
+i = 31, j = 48, correlation_time = -0.014641750719325717
+i = 31, j = 49, correlation_time = 0.01604972952644549
+i = 31, j = 50, correlation_time = -0.019502614139199428
+i = 32, j = 32, correlation_time = 0.999999999999992
+i = 32, j = 33, correlation_time = 0.8345366420707601
+i = 32, j = 34, correlation_time = 0.7164243629148085
+i = 32, j = 35, correlation_time = 0.565844961722004
+i = 32, j = 36, correlation_time = 0.4122338670357092
+i = 32, j = 37, correlation_time = 0.2699928824280149
+i = 32, j = 38, correlation_time = 0.2119162948987608
+i = 32, j = 39, correlation_time = 0.15797968564658527
+i = 32, j = 40, correlation_time = 0.1851669819391371
+i = 32, j = 41, correlation_time = 0.09351221773858413
+i = 32, j = 42, correlation_time = 0.029346721121847677
+i = 32, j = 43, correlation_time = 0.04447095424156481
+i = 32, j = 44, correlation_time = 0.07650928228159182
+i = 32, j = 45, correlation_time = 0.10712574812889097
+i = 32, j = 46, correlation_time = 0.1008941616998849
+i = 32, j = 47, correlation_time = 0.06245433215140553
+i = 32, j = 48, correlation_time = 0.00014656201515897562
+i = 32, j = 49, correlation_time = -0.0367838222649565
+i = 32, j = 50, correlation_time = -0.06304658658492392
+i = 33, j = 33, correlation_time = 1.0
+i = 33, j = 34, correlation_time = 0.8574494964862882
+i = 33, j = 35, correlation_time = 0.709982061273172
+i = 33, j = 36, correlation_time = 0.5545114640388553
+i = 33, j = 37, correlation_time = 0.39256049016785205
+i = 33, j = 38, correlation_time = 0.3297878521872279
+i = 33, j = 39, correlation_time = 0.22627346082934047
+i = 33, j = 40, correlation_time = 0.2370442809835999
+i = 33, j = 41, correlation_time = 0.19404144035543192
+i = 33, j = 42, correlation_time = 0.09654014931691218
+i = 33, j = 43, correlation_time = 0.10540679992963672
+i = 33, j = 44, correlation_time = 0.0961072495960017
+i = 33, j = 45, correlation_time = 0.08004044860980737
+i = 33, j = 46, correlation_time = 0.0351328933002439
+i = 33, j = 47, correlation_time = 0.026014922481197897
+i = 33, j = 48, correlation_time = -0.04660789889997488
+i = 33, j = 49, correlation_time = -0.00357638100440666
+i = 33, j = 50, correlation_time = -0.04545632206219148
+i = 34, j = 34, correlation_time = 1.0
+i = 34, j = 35, correlation_time = 0.8544246672212044
+i = 34, j = 36, correlation_time = 0.6957407916295691
+i = 34, j = 37, correlation_time = 0.5165553966470485
+i = 34, j = 38, correlation_time = 0.39360253960523167
+i = 34, j = 39, correlation_time = 0.27632599013166176
+i = 34, j = 40, correlation_time = 0.27540826412193176
+i = 34, j = 41, correlation_time = 0.3110329014613685
+i = 34, j = 42, correlation_time = 0.22805594800455398
+i = 34, j = 43, correlation_time = 0.19806012035783965
+i = 34, j = 44, correlation_time = 0.23575028403109272
+i = 34, j = 45, correlation_time = 0.21301545013708661
+i = 34, j = 46, correlation_time = 0.11072738297390762
+i = 34, j = 47, correlation_time = 0.12154602806005628
+i = 34, j = 48, correlation_time = 0.03558885329329369
+i = 34, j = 49, correlation_time = 0.06859740442234596
+i = 34, j = 50, correlation_time = 0.07757965688678901
+i = 35, j = 35, correlation_time = 1.0
+i = 35, j = 36, correlation_time = 0.8544886635796216
+i = 35, j = 37, correlation_time = 0.6953913462315504
+i = 35, j = 38, correlation_time = 0.4801117965912629
+i = 35, j = 39, correlation_time = 0.3168304008874794
+i = 35, j = 40, correlation_time = 0.26578942232253827
+i = 35, j = 41, correlation_time = 0.35963649547942517
+i = 35, j = 42, correlation_time = 0.2420243323800867
+i = 35, j = 43, correlation_time = 0.19416182706865517
+i = 35, j = 44, correlation_time = 0.2565566036462805
+i = 35, j = 45, correlation_time = 0.20615698416615363
+i = 35, j = 46, correlation_time = 0.05049395891493025
+i = 35, j = 47, correlation_time = 0.026778700509944228
+i = 35, j = 48, correlation_time = -0.04321542487125259
+i = 35, j = 49, correlation_time = -0.01849023847531221
+i = 35, j = 50, correlation_time = 0.03522233194800645
+i = 36, j = 36, correlation_time = 0.9999999999999996
+i = 36, j = 37, correlation_time = 0.8081617478333141
+i = 36, j = 38, correlation_time = 0.6312608872334867
+i = 36, j = 39, correlation_time = 0.40709529009044265
+i = 36, j = 40, correlation_time = 0.29892955619110606
+i = 36, j = 41, correlation_time = 0.45067102813973736
+i = 36, j = 42, correlation_time = 0.3728418676050703
+i = 36, j = 43, correlation_time = 0.2718605024146248
+i = 36, j = 44, correlation_time = 0.29965214904708704
+i = 36, j = 45, correlation_time = 0.2975588321114184
+i = 36, j = 46, correlation_time = 0.16073695531739912
+i = 36, j = 47, correlation_time = 0.17390750173886016
+i = 36, j = 48, correlation_time = 0.004617724960107009
+i = 36, j = 49, correlation_time = 0.018685361008173456
+i = 36, j = 50, correlation_time = 0.05754751946993892
+i = 37, j = 37, correlation_time = 1.0
+i = 37, j = 38, correlation_time = 0.7693566752762593
+i = 37, j = 39, correlation_time = 0.6224094558602229
+i = 37, j = 40, correlation_time = 0.5302192451447993
+i = 37, j = 41, correlation_time = 0.5734695787086748
+i = 37, j = 42, correlation_time = 0.5001631290320048
+i = 37, j = 43, correlation_time = 0.46724533996751144
+i = 37, j = 44, correlation_time = 0.363594909968583
+i = 37, j = 45, correlation_time = 0.3811479759195707
+i = 37, j = 46, correlation_time = 0.22300672691029744
+i = 37, j = 47, correlation_time = 0.15913642967136302
+i = 37, j = 48, correlation_time = 0.05491288046492864
+i = 37, j = 49, correlation_time = 0.02657235268965976
+i = 37, j = 50, correlation_time = 0.08292089117632169
+i = 38, j = 38, correlation_time = 0.999999999999992
+i = 38, j = 39, correlation_time = 0.8022323078157898
+i = 38, j = 40, correlation_time = 0.6517294927529034
+i = 38, j = 41, correlation_time = 0.5409865027703984
+i = 38, j = 42, correlation_time = 0.44340057570704833
+i = 38, j = 43, correlation_time = 0.39499638737930126
+i = 38, j = 44, correlation_time = 0.18579047982655858
+i = 38, j = 45, correlation_time = 0.18978872398125132
+i = 38, j = 46, correlation_time = 0.15096521994994877
+i = 38, j = 47, correlation_time = 0.10018620932632906
+i = 38, j = 48, correlation_time = -0.03136979460842608
+i = 38, j = 49, correlation_time = -0.01003265088223921
+i = 38, j = 50, correlation_time = 0.043356570479564246
+i = 39, j = 39, correlation_time = 0.9999999999999996
+i = 39, j = 40, correlation_time = 0.7985071903011896
+i = 39, j = 41, correlation_time = 0.6543440153081256
+i = 39, j = 42, correlation_time = 0.5204621502360808
+i = 39, j = 43, correlation_time = 0.4949444854993373
+i = 39, j = 44, correlation_time = 0.2491425284618291
+i = 39, j = 45, correlation_time = 0.2732574049233582
+i = 39, j = 46, correlation_time = 0.2028013887803206
+i = 39, j = 47, correlation_time = 0.166717635181857
+i = 39, j = 48, correlation_time = 0.03651855487991666
+i = 39, j = 49, correlation_time = 0.13315045089735145
+i = 39, j = 50, correlation_time = 0.17699069857814398
+i = 40, j = 40, correlation_time = 1.0
+i = 40, j = 41, correlation_time = 0.787783451383488
+i = 40, j = 42, correlation_time = 0.6263778731554573
+i = 40, j = 43, correlation_time = 0.5282807454632613
+i = 40, j = 44, correlation_time = 0.31328684526700723
+i = 40, j = 45, correlation_time = 0.27784298679920727
+i = 40, j = 46, correlation_time = 0.24647651233982182
+i = 40, j = 47, correlation_time = 0.1691849419275379
+i = 40, j = 48, correlation_time = 0.021927599808785662
+i = 40, j = 49, correlation_time = 0.1501849989641582
+i = 40, j = 50, correlation_time = 0.15601743057818662
+i = 41, j = 41, correlation_time = 0.9999999999999901
+i = 41, j = 42, correlation_time = 0.8336296148927199
+i = 41, j = 43, correlation_time = 0.7004007456224466
+i = 41, j = 44, correlation_time = 0.5405516209666502
+i = 41, j = 45, correlation_time = 0.5176127575490913
+i = 41, j = 46, correlation_time = 0.41338697746553144
+i = 41, j = 47, correlation_time = 0.3560478496587006
+i = 41, j = 48, correlation_time = 0.16818525421819625
+i = 41, j = 49, correlation_time = 0.2812019636169478
+i = 41, j = 50, correlation_time = 0.28004097024214275
+i = 42, j = 42, correlation_time = 0.9999999999999949
+i = 42, j = 43, correlation_time = 0.8235437858407217
+i = 42, j = 44, correlation_time = 0.6847438001696453
+i = 42, j = 45, correlation_time = 0.6140350148165857
+i = 42, j = 46, correlation_time = 0.45884729251257905
+i = 42, j = 47, correlation_time = 0.34680445302339746
+i = 42, j = 48, correlation_time = 0.1813351083835506
+i = 42, j = 49, correlation_time = 0.2302084373143905
+i = 42, j = 50, correlation_time = 0.2377507854617915
+i = 43, j = 43, correlation_time = 0.9999999999999907
+i = 43, j = 44, correlation_time = 0.7945476872523654
+i = 43, j = 45, correlation_time = 0.6900190410874849
+i = 43, j = 46, correlation_time = 0.5127922029357012
+i = 43, j = 47, correlation_time = 0.3342529244673954
+i = 43, j = 48, correlation_time = 0.22243276565666587
+i = 43, j = 49, correlation_time = 0.2239736022160273
+i = 43, j = 50, correlation_time = 0.2476817237322304
+i = 44, j = 44, correlation_time = 1.0
+i = 44, j = 45, correlation_time = 0.8078312938979391
+i = 44, j = 46, correlation_time = 0.6569506257304012
+i = 44, j = 47, correlation_time = 0.4773285344389316
+i = 44, j = 48, correlation_time = 0.39393629938392083
+i = 44, j = 49, correlation_time = 0.32783990654584816
+i = 44, j = 50, correlation_time = 0.29745613524648706
+i = 45, j = 45, correlation_time = 0.9999999999999993
+i = 45, j = 46, correlation_time = 0.8012981855364448
+i = 45, j = 47, correlation_time = 0.646332315407885
+i = 45, j = 48, correlation_time = 0.4953096220418397
+i = 45, j = 49, correlation_time = 0.4321530738660355
+i = 45, j = 50, correlation_time = 0.41568617483808956
+i = 46, j = 46, correlation_time = 1.0
+i = 46, j = 47, correlation_time = 0.8207811809769276
+i = 46, j = 48, correlation_time = 0.6878159041102156
+i = 46, j = 49, correlation_time = 0.5280752922268921
+i = 46, j = 50, correlation_time = 0.47289369319967156
+i = 47, j = 47, correlation_time = 0.999999999999989
+i = 47, j = 48, correlation_time = 0.7921097450817374
+i = 47, j = 49, correlation_time = 0.611102681644656
+i = 47, j = 50, correlation_time = 0.5286987281826923
+i = 48, j = 48, correlation_time = 0.9999999999999885
+i = 48, j = 49, correlation_time = 0.7331002882595424
+i = 48, j = 50, correlation_time = 0.6120799991340247
+i = 49, j = 49, correlation_time = 1.0
+i = 49, j = 50, correlation_time = 0.832501407074562
+i = 50, j = 50, correlation_time = 0.9999999999999932
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: mach_number
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: sound_speed
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_energy_density
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Running analysis for field: magnetic_field_magnitude
+
+ ******* None *******
+
+ ******* ('index', 'ones') *******
+Traceback (most recent call last):
+  File "/home/sferrada/athenapk_kultrun/scripts/run_analysis.py", line 64, in <module>
+    main()
+  File "/home/sferrada/athenapk_kultrun/scripts/run_analysis.py", line 55, in main
+    group.attrs["actual"] = value["actual"]
+    ~~~~~~~~~~~^^^^^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "/opt/Python/Python-3.11.4/lib/python3.11/site-packages/h5py/_hl/attrs.py", line 104, in __setitem__
+    self.create(name, data=value)
+  File "/opt/Python/Python-3.11.4/lib/python3.11/site-packages/h5py/_hl/attrs.py", line 182, in create
+    htype = h5t.py_create(original_dtype, logical=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "h5py/h5t.pyx", line 1664, in h5py.h5t.py_create
+  File "h5py/h5t.pyx", line 1688, in h5py.h5t.py_create
+  File "h5py/h5t.pyx", line 1748, in h5py.h5t.py_create
+TypeError: Object dtype dtype('O') has no native HDF5 equivalent
