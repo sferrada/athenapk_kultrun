@@ -51,9 +51,9 @@ def main():
         # Save the run statistics dictionary
         for key, value in run_statistics.items():
             group = f.create_group(key)
-            group.attrs["target"] = value["target"]
-            group.attrs["actual"] = value["actual"]
-            group.attrs["stand_dev"] = value["std"]
+            group.attrs["target"] = float(value["target"])
+            group.attrs["actual"] = float(value["actual"])
+            group.attrs["stand_dev"] = float(value["std"])
 
         # Save `average_values` columns as datasets of a group
         average_values_group = f.create_group("average_values")

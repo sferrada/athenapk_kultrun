@@ -19,8 +19,7 @@ class SimAthenaPK:
         Initialize an instance of an AthenaPK run with the folder path containing simulation data.
 
         Args:
-            folder_path (str): The path to the folder containing AthenaPK simulation data.
-        """
+            folder_path (str): The path to the folder containing AthenaPK simulation data."""
         self.number_of_cells = None
         self.correlation_time = None
         self.solenoidal_weight = None
@@ -43,8 +42,7 @@ class SimAthenaPK:
         Read and return the input attributes from the input file if it exists.
 
         Returns:
-            dict or None: The input attributes as a dictionary, or None if the input file doesn't exist.
-        """
+            dict or None: The input attributes as a dictionary, or None if the input file doesn't exist."""
         input_file_name = next((f for f in os.listdir(self.folder_path) if f.endswith('.in')), None)
         if input_file_name:
             input_file_path = os.path.join(self.folder_path, input_file_name)
@@ -205,12 +203,8 @@ class SimAthenaPK:
         ds = self.__load_snapshot_data__(n_snap)
         ad = ds.all_data()
 
-        print(f"\n ******* {weight} *******")
-
         if weight is None or weight == "None":
             weight = ('index', 'ones')
-
-        print(f"\n ******* {weight} *******")
 
         return ad.quantities.weighted_average_quantity(field, weight)
 
@@ -284,8 +278,8 @@ class SimAthenaPK:
                 correlation_time[2, i, j-i] = sp.stats.pearsonr(acc_arr[i, 1, :, :, :].reshape(-1), acc_arr[j, 1, :, :, :].reshape(-1))[0]
                 correlation_time[3, i, j-i] = sp.stats.pearsonr(acc_arr[i, 2, :, :, :].reshape(-1), acc_arr[j, 2, :, :, :].reshape(-1))[0]
 
-                # Print current status of the foor loops
-                print(f"i = {i}, j = {j}, correlation_time = {correlation_time[0, i, j-i]}")
+                # # Print current status of the foor loops
+                # print(f"i = {i}, j = {j}, correlation_time = {correlation_time[0, i, j-i]}")
 
         return correlation_time
 
@@ -356,9 +350,9 @@ class SimAthenaPK:
         target_solenoidal_weight = self.solenoidal_weight
 
         # Calculate the forcing correlation time:
-        #     find the first zero crossing - we only integrate till that point as it's noise afterwards anyway
-        #     this also ensures that the t_corr from later snapshots is not included as too few snapshots would
-        #     follow to actually integrate for a full t_corr
+        #   Find the first zero crossing - we only integrate till that point as it's noise afterwards anyway
+        #   this also ensures that the t_corr from later snapshots is not included as too few snapshots would
+        #   follow to actually integrate for a full t_corr
         correlation_time = self.get_run_integral_times()
         t_corr_values = np.zeros((4, correlation_time.shape[1]))
         for i in range(correlation_time.shape[1]):
@@ -417,9 +411,8 @@ class SimAthenaPK:
                                 overplot_velocity: bool = False,
                                 **kwargs: dict) -> None:
         """
-        This function is a convenient wrapper for creating and customizing slice or projection plots of simulation data using yt.
-        Depending on the specified method, it creates either a slice plot or a projection plot of the given field along the chosen axis.
-        The resulting plot object is returned.
+        This function creates slice or projection plots of simulation data using yt,
+        returning the resulting plot object.
 
         Args:
             n_snap (int or str): The snapshot number to plot.
