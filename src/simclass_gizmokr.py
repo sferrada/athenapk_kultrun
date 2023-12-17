@@ -45,6 +45,7 @@ class SimGizmo:
         # Load chemistry data (species names, index and mass)
         self.species = None
         self.number_of_species = None
+        self.load_species = load_species
         self.load_chemistry_data()
 
         # Containers of all and gas particles data
@@ -116,7 +117,7 @@ class SimGizmo:
             print(f'{key: <{column_size}}{shape: <{column_size}}{units: <{column_size}}')
 
     def load_chemistry_data(self):
-        """ Load chemistry data (species names, index and mass) from the KROME simulation. """
+        """ Load chemistry data (species names, index and mass). """
         # Load species data from KROME
         species = read_chem_info(f"{user_home}/ammonia_paper/info.dat")
         self.species = species
@@ -134,14 +135,15 @@ class SimGizmo:
                    units : str,
                    norm1 : float = 1,
                    norm2 : float = 1,
-                   resolution : int = 1500,
-                   recenter : str | None = None,
                    width : str = None,
+                   resolution : int = 1500,
                    length : str = "0.2 pc",
                    orientation : str = "xy",
+                   recenter : Union(str, None) = None,
                    av_z : bool = False):
         """
-        Makes a map of a given quantity `field`. The map can be projected or a slice dependending on `units` or `av_z`
+        Makes a map of a given quantity `field`.
+        The map can be projected or a slice dependending on `units` or `av_z`
         """
         # Adjust the image in accord to the required parameters of recentering, column length and orientation
         slab = self.Slab(recenter, orientation, length)
@@ -152,8 +154,16 @@ class SimGizmo:
             _width = self.clump_props["size"]
 
         # Make image
-        image = pynbody.plot.sph.image(slab.g, qty=field, units=units, width=_width, noplot=True,
-                                       log=False, av_z=av_z, resolution=resolution) / norm1 / norm2
+        image = pynbody.plot.sph.image(
+            slab.g,
+            qty=field,
+            av_z=av_z,
+            units=units,
+            width=_width,
+            log=False,
+            noplot=True,
+            resolution=resolution
+        ) / norm1 / norm2
 
         # # Plot the image if plot is True
         # if plot:
@@ -163,7 +173,13 @@ class SimGizmo:
 
         return image
 
-    def make_profile(self, field, resolution=1500, norm=1.0, weight="itself", filename=None, nbins=500):
+    def make_profile(self,
+                     field : str,
+                     nbins : int = 500,
+                     norm : float = 1.0,
+                     weight : str = "itself",
+                     resolution : int = 1500,
+                     filename : Union[str, None] = None) -> tuple[list, list]:
         """
         Compute a radial profile of a given quantity.
 
@@ -211,11 +227,11 @@ class SimGizmo:
         return rpos, field_prof
 
     def make_3d_profile(self,
-                        field,
+                        field : str,
+                        nbins : int = 500,
                         norm : float = 1.0,
-                        filename : str | None = None,
                         binning : tuple[str, float, float] = ("log", -5, 0),
-                        nbins : int = 500):
+                        filename : Union[str, None] = None):
         """
         Calculate the 3D radial profile of a given field around a central point.
 
@@ -336,6 +352,29 @@ class SimGizmo:
         def __init__(self,
                      sub_filter: tuple,
                      recenter_method: Union[str, None] = None) -> None:
+            """
+            Initialize a Subview object.
+
+            Args:
+            sub_filter (tuple):
+                A tuple containing the filter and filter properties.
+            recenter_method (str or None):
+                The recentering method to be used. Default is None.
+                Available methods are:
+                - "maximum_rho".
+                - "center_of_mass".
+                - "shrinking_sphere".
+                - "center_of_potential".
+
+            Returns:
+                None
+            """
+            self.filter, self.filter_props = sub_filter
+            self.recenter_method = recenter_method
+    class Subview:
+        def __init__(self,
+                     sub_filter: tuple,
+                     recenter_method: Union[str, None] = None) -> None:
             self.filter, self.filter_props = sub_filter
             self.recenter_method = recenter_method
 
@@ -360,7 +399,7 @@ class SimGizmo:
                     retcen=True
                 )
             else:
-                raise ValueError("Invalid recenter method. Use 'ssc', 'maximum_rho', 'center_of_mass', or 'center_of_potential'.")
+                raise ValueError("Invalid recenter method. Use 'shrinking_sphere', 'maximum_rho', 'center_of_mass', or 'center_of_potential'.")
 
         def _slab(self,
                   orientation: str = "xy"):

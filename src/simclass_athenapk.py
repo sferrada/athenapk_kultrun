@@ -392,13 +392,13 @@ class SimAthenaPK:
             },
             "rms_acceleration": {
                 "target": target_rms_acceleration,
-                "actual": None,
-                "std": None
+                "actual": target_rms_acceleration,  # placeholder
+                "std": 0.0  # placeholder
             },
             "solenoidal_weight": {
                 "target": target_solenoidal_weight,
-                "actual": None,
-                "std": None
+                "actual": target_solenoidal_weight,  # placeholder
+                "std": 0.0  # placeholder
             }
         }
 
