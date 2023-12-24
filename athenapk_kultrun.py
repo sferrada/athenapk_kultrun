@@ -29,7 +29,7 @@ Dependencies:
 - cuda >= 12.2
 """
 import argparse
-from scripts.prepare_run import prepare_run
+from scripts.mdl_prepare import prepare_run
 
 def main():
     """

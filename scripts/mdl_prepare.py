@@ -117,14 +117,14 @@ No actual analysis will be run..."""
             fa.writelines("\n")
             if analysis_val == 1:
                 fa.writelines("# Run simple post-analysis\n")
-                fa.writelines("python3 scripts/run_analysis.py ${OUTDIR}\n")
-                # fa.writelines('srun -N 1 -n 1 python3 scripts/run_analysis.py ${OUTDIR} --weight=config_dict["post_analysis"]["weight"]\n')
+                fa.writelines("python3 scripts/mdl_analyse.py ${OUTDIR}\n")
+                # fa.writelines('srun -N 1 -n 1 python3 scripts/mdl_analyse.py ${OUTDIR} --weight=config_dict["post_analysis"]["weight"]\n')
             elif analysis_val == 2:
                 fa.writelines("# Run P.G.'s flow analysis (requires the repository!)\n")
-                # fa.writelines('for X in `seq -w 00001 00049`; do srun -n 2 python3 ~/energy-transfer-analysis/run_analysis.py --res 256 --data_path ${OUTDIR}/$X.phdf --data_type AthenaPK --type flow --eos adiabatic --gamma 1.0001 --outfile ${OUTDIR}/flow-$X.hdf5 -forced; done\n')
+                # fa.writelines('for X in `seq -w 00001 00049`; do srun -n 2 python3 ~/energy-transfer-analysis/mdl_analyse.py --res 256 --data_path ${OUTDIR}/$X.phdf --data_type AthenaPK --type flow --eos adiabatic --gamma 1.0001 --outfile ${OUTDIR}/flow-$X.hdf5 -forced; done\n')
             elif analysis_val == 3:
                 fa.writelines("# Run P.G.'s energy transfer analysis (requires the repository!)\n")
-                # fa.writelines('for X in `seq -w 00001 00049`; do srun -n 2 python3 ~/energy-transfer-analysis/run_analysis.py --res 256 --data_path ${OUTDIR}/$X.phdf --data_type AthenaPK --type flow --eos adiabatic --gamma 1.0001 --outfile ${OUTDIR}/flow-$X.hdf5 -forced; done\n')
+                # fa.writelines('for X in `seq -w 00001 00049`; do srun -n 2 python3 ~/energy-transfer-analysis/mdl_analyse.py --res 256 --data_path ${OUTDIR}/$X.phdf --data_type AthenaPK --type flow --eos adiabatic --gamma 1.0001 --outfile ${OUTDIR}/flow-$X.hdf5 -forced; done\n')
             else:
                 raise ValueError(f"Non-valid post-analysis method ({analysis_val}), please refer to the config file.")
 
