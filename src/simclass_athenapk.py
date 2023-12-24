@@ -353,8 +353,9 @@ class SimAthenaPK:
         #   Find the first zero crossing - we only integrate till that point as it's noise afterwards anyway
         #   this also ensures that the t_corr from later snapshots is not included as too few snapshots would
         #   follow to actually integrate for a full t_corr
+        vector_size = 4
         correlation_time = self.get_run_integral_times()
-        t_corr_values = np.zeros((4, correlation_time.shape[1]))
+        t_corr_values = np.zeros((vector_size, correlation_time.shape[1]))
         for i in range(correlation_time.shape[1]):
             for j in range(correlation_time.shape[2]):
                 if correlation_time[0, i, j] < 0:
@@ -364,18 +365,13 @@ class SimAthenaPK:
                     t_corr_values[0, i] = correlation_time.shape[2]
 
         # calculate the integral
-        integral = np.zeros((4, correlation_time.shape[1]))
-        std = np.zeros((4, correlation_time.shape[1]))
+        integral = np.zeros((vector_size, correlation_time.shape[1]))
+        std = np.zeros((vector_size, correlation_time.shape[1]))
         for i in range(correlation_time.shape[1]):
             for j in range(int(t_corr_values[0, i])):
-                integral[0, i] += correlation_time[0, i, j]
-                integral[1, i] += correlation_time[1, i, j]
-                integral[2, i] += correlation_time[2, i, j]
-                integral[3, i] += correlation_time[3, i, j]
-                std[0, i] += (correlation_time[0, i, j] - t_corr_values[0, i]) ** 2
-                std[1, i] += (correlation_time[1, i, j] - t_corr_values[1, i]) ** 2
-                std[2, i] += (correlation_time[2, i, j] - t_corr_values[2, i]) ** 2
-                std[3, i] += (correlation_time[3, i, j] - t_corr_values[3, i]) ** 2
+                for k in range(vector_size):
+                    integral[k, i] += correlation_time[k, i, j]
+                    std[k, i] += correlation_time[k, i, j] ** 2
         integral *= self.code_time_between_dumps
 
         # Calculate the correlation time

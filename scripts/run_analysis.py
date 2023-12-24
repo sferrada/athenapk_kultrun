@@ -33,8 +33,8 @@ def main():
     average_values = sim.get_run_average_fields(
         fields_for_analysis,
         weight=field_weight,
-        verbose=True,
-        in_time=True
+        in_time=True,
+        verbose=True
     )
 
     # Save everything in an HDF5 file
