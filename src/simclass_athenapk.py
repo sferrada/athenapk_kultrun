@@ -28,16 +28,66 @@ class SimAthenaPK:
         self.code_time_between_dumps = None
 
         self.folder_path = folder_path
-        self.input_attrs = self.read_input_attrs()
-        self.snapshot_list = self.get_snapshot_list()
+        self.input_attrs = self.__read_input_attrs__()
+        self.snapshot_list = self.__get_snapshot_list__()
 
         self.walltime = None
         self.time_limit = None
         self.cycle_limit = None
         self.cycles_per_wallsecond = None
-        self.extract_log_file_info()
+        self.__extract_log_file_info__()
 
-    def read_input_attrs(self):
+    def __get_snapshot_file_path__(self,
+                                   snap_id: int | str) -> str:
+        """
+        Get the file path for a snapshot based on its number or string representation.
+
+        Args:
+            snap_id (int or str): The snapshot ID.
+
+        Returns:
+            str: The file path to the snapshot."""
+        snapshot_number_str = str(snap_id).zfill(5)
+
+        if not snapshot_number_str.endswith('.phdf'):
+            snapshot_number_str += '.phdf'
+
+        # Return the full path to the snapshot file.
+        return os.path.join(self.folder_path, f'parthenon.prim.{snapshot_number_str}')
+
+    def __load_snapshot_data__(self,
+                               snap_id: int | str) -> yt.data_objects.static_output.Dataset:
+        """
+        Load and return the data from a snapshot file.
+
+        Args:
+            snap_id (int or str): The snapshot ID.
+
+        Returns:
+            yt.data_objects.static_output.Dataset: A dataset containing the snapshot data."""
+        snapshot_file_path = self.__get_snapshot_file_path__(snap_id)
+        if not os.path.exists(snapshot_file_path):
+            raise FileNotFoundError(f'Snapshot not found in the current simulation directory: {snapshot_file_path}')
+
+        try:
+            ds = yt.load(snapshot_file_path)
+            return ds
+        except Exception as e:
+            raise RuntimeError(f'Error loading snapshot data: {str(e)}')
+
+    def __load_all_snapshot_data__(self) -> dict[str, yt.data_objects.static_output.Dataset]:
+        """
+        Load and return the data from all snapshot files.
+
+        Returns:
+            dict[str, yt.data_objects.static_output.Dataset]: A dictionary containing all the loaded datasets."""
+        ds_dict = {}
+        for snapshot_index, snapshot_file_name in enumerate(self.snapshot_list):
+            ds_dict[snapshot_index] = self.__load_snapshot_data__(snapshot_file_name)
+        
+        return ds_dict
+
+    def __read_input_attrs__(self):
         """
         Read and return the input attributes from the input file if it exists.
 
@@ -62,7 +112,7 @@ class SimAthenaPK:
             return input_file_dict
         return None
 
-    def extract_log_file_info(self):
+    def __extract_log_file_info__(self):
         """
         Extract walltime, time limit, cycle limit, and cycles per wallsecond from the log
         file in the simulation folder."""
@@ -83,73 +133,138 @@ class SimAthenaPK:
                     if 'zone-cycles/wallsecond =' in line:
                         self.cycles_per_wallsecond = float(re.search(self.CYCLES_PER_WALLSECOND_PATTERN, line).group(1))
 
-    def get_snapshot_list(self) -> None:
+    def __get_snapshot_list__(self) -> None:
         """
         Get a list of snapshot files in the simulation folder."""
         snapshot_list = [f for f in os.listdir(self.folder_path) if f.endswith('.phdf')]
         snapshot_list.sort()
         return snapshot_list
 
-    def __get_snapshot_file_path__(self,
-                                   n_snap: int | str) -> str:
+    def get_snapshot_field_data(self, snap_id: int | str, field: tuple[str, str]) -> np.ndarray:
         """
-        Get the file path for a snapshot based on its number or string representation.
+        Get the data of a field in a snapshot.
 
         Args:
-            n_snap (int or str): The snapshot number or its string representation.
-
+            snap_id (int or str): The snapshot ID to analyze.
+            field (tuple of str): A tuple specifying the field to analyze (e.g., ('gas', 'density')).
+        
         Returns:
-            str: The file path to the snapshot."""
-        snapshot_number_str = str(n_snap).zfill(5)
+            np.ndarray: A NumPy array containing the field data."""
+        ds = self.__load_snapshot_data__(snap_id)
+        ad = ds.all_data()
 
-        if isinstance(n_snap, str):
-            if not n_snap.endswith('.phdf'):
-                snapshot_number_str += '.phdf'
-
-        if isinstance(n_snap, int):
-            snapshot_number_str += '.phdf'
-
-        # Return the full path to the snapshot file.
-        return os.path.join(self.folder_path, f'parthenon.prim.{snapshot_number_str}')
-
-    def __load_snapshot_data__(self,
-                               n_snap: int | str) -> yt.data_objects.static_output.Dataset:
-        """
-        Load and return the data from a snapshot file.
-
-        Args:
-            n_snap (int or str): The snapshot number or its string representation.
-
-        Returns:
-            yt.data_objects.static_output.Dataset: A dataset containing the snapshot data."""
-        snapshot_file_path = self.__get_snapshot_file_path__(n_snap)
-        if not os.path.exists(snapshot_file_path):
-            raise FileNotFoundError(f'Snapshot not found in the current simulation directory: {snapshot_file_path}')
-
-        try:
-            ds = yt.load(snapshot_file_path)
-            return ds
+        try :
+            return ad[field].value
         except Exception as e:
             raise RuntimeError(f'Error loading snapshot data: {str(e)}')
 
-    def __load_all_snapshot_data__(self) -> dict[str, yt.data_objects.static_output.Dataset]:
+    def get_snapshot_field_average(self,
+                                   snap_id: int | str,
+                                   field: tuple[str, str],
+                                   weight: tuple[str, str] | None = None) -> float:
         """
-        Load and return the data from all snapshot files.
+        Get the average value of a field in a snapshot.
+
+        Args:
+            snap_id (int or str): The snapshot ID to analyze.
+            field (tuple of str): A tuple specifying the field to analyze (e.g., ('gas', 'density')).
+            weight (tuple of str, optional): A tuple specifying the weight field to use for averaging (e.g., ('index', 'volume')).
+        
+        Returns:
+            averaged_quantity (float): The average value of the field."""
+        ds = self.__load_snapshot_data__(snap_id)
+        ad = ds.all_data()
+
+        if weight is None or weight == "None":
+            weight = ('index', 'ones')
+
+        return ad.quantities.weighted_average_quantity(field, weight)
+
+    def get_snapshot_magnetic_energy(self,
+                                     snap_id: int | str) -> float:
+        """
+        Get the magnetic energy at each cell from their magnetic energy density.
+
+        Args:
+            snap_id (int or str): The snapshot ID to analyze.
 
         Returns:
-            dict[str, yt.data_objects.static_output.Dataset]: A dictionary containing all the loaded datasets."""
-        ds_dict = {}
-        for snapshot_index, snapshot_file_name in enumerate(self.snapshot_list):
-            ds_dict[snapshot_index] = self.__load_snapshot_data__(snapshot_file_name)
-        
-        return ds_dict
+            float: The magnetic energy of the snapshot."""
+        def _magnetic_energy(field, data):
+            return (data["gas", "magnetic_energy_density"] * data["gas", "cell_volume"])
 
-    def get_snapshot_field_info(self) -> None:
+        ds = self.__load_snapshot_data__(snap_id)
+        ds.add_field(
+            ("gas", "magnetic_energy"),
+            units="dyne*cm",
+            function=_magnetic_energy,
+            sampling_type="local"
+        )
+
+        return ds.all_data()[("gas", "magnetic_energy")]
+    
+    def get_snapshot_turbulent_energy(self,
+                                      snap_id: int | str) -> float:
+        """
+        Get the turbulent energy at each cell from their kinetic energy density.
+
+        Args:
+            snap_id (int or str): The snapshot ID to analyze.
+        
+        Returns:
+            float: The turbulent energy of the snapshot."""
+        def _turbulent_energy(field, data):
+            return (data["gas", "kinetic_energy_density"] * data["gas", "cell_volume"])
+
+        ds = self.__load_snapshot_data__(snap_id)
+        ad = ds.all_data()
+
+        # Get snapshot's average kinetic energy density
+        kinetic_energy_density = self.get_snapshot_field_average(snap_id, ("gas", "kinetic_energy_density"))
+
+        # Calculate the turbulent energy from the average kinetic energy density
+        turbulent_energy = kinetic_energy_density * ds.domain_width[0] ** 3
+
+        return float(turbulent_energy)
+
+    def get_snapshot_timescales(self,
+                                snap_id: int | str) -> dict[str, float]:
+        """
+        Get various time-related information of a snapshot in the simulation.
+
+        Args:
+            snap_id (int or str): The snapshot ID or identifier.
+
+        Returns:
+            dict[str, float]: A dictionary containing the current physical time, crossing
+                              time, and eddy turnover time of the specified snapshot."""
+        ds = self.__load_snapshot_data__(snap_id)
+
+        # Get current physical time
+        current_time = float(ds.current_time)
+
+        # Calculate crossing time
+        domain_width = ds.domain_width[0]
+        domain_dimensions = ds.domain_dimensions[0]
+        crossing_time = float(domain_width / domain_dimensions / current_time)
+
+        # Calculate eddy turnover time
+        mach_number = self.get_snapshot_field_average(snap_id, ("gas", "mach_number"))
+        sound_speed = self.get_snapshot_field_average(snap_id, ("gas", "sound_speed"))
+        eddy_turnover_time = domain_width / (2 * mach_number * sound_speed)
+
+        return {
+            "current_time": float(current_time),
+            "crossing_time": float(crossing_time),
+            "eddy_turnover_time": float(eddy_turnover_time)
+        }
+
+    def get_run_available_fields(self) -> None:
         """
         Get information about available fields in a snapshot.
 
         Args:
-            n_snap (int or str): The snapshot number to analyze."""
+            snap_id (int or str): The snapshot ID to analyze."""
         # Search for the first available snapshot file in the simulation folder.
         snapshot_file_name = next((f for f in os.listdir(self.folder_path) if f.endswith('.phdf')), None)
         if not snapshot_file_name:
@@ -167,78 +282,6 @@ class SimAthenaPK:
         print('\n>> [Field] Parthenon:')
         for elem in dir(ds.fields.parthenon):
             print(elem)
-
-    def get_snapshot_field_data(self, n_snap: int | str, field: tuple[str, str]) -> np.ndarray:
-        """
-        Get the data of a field in a snapshot.
-
-        Args:
-            n_snap (int or str): The snapshot number to analyze.
-            field (tuple of str): A tuple specifying the field to analyze (e.g., ('gas', 'density')).
-        
-        Returns:
-            np.ndarray: A NumPy array containing the field data."""
-        ds = self.__load_snapshot_data__(n_snap)
-        ad = ds.all_data()
-
-        try :
-            return ad[field].value
-        except Exception as e:
-            raise RuntimeError(f'Error loading snapshot data: {str(e)}')
-
-    def get_snapshot_field_average(self,
-                                   n_snap: int | str,
-                                   field: tuple[str, str],
-                                   weight: tuple[str, str] | None = None) -> float:
-        """
-        Get the average value of a field in a snapshot.
-
-        Args:
-            n_snap (int or str): The snapshot number to analyze.
-            field (tuple of str): A tuple specifying the field to analyze (e.g., ('gas', 'density')).
-            weight (tuple of str, optional): A tuple specifying the weight field to use for averaging (e.g., ('index', 'volume')).
-        
-        Returns:
-            averaged_quantity (float): The average value of the field."""
-        ds = self.__load_snapshot_data__(n_snap)
-        ad = ds.all_data()
-
-        if weight is None or weight == "None":
-            weight = ('index', 'ones')
-
-        return ad.quantities.weighted_average_quantity(field, weight)
-
-    def get_snapshot_timescales(self,
-                                n_snap: int | str) -> dict[str, float]:
-        """
-        Get various time-related information of a snapshot in the simulation.
-
-        Args:
-            n_snap (int or str): The snapshot number or identifier.
-
-        Returns:
-            dict[str, float]: A dictionary containing the current physical time, crossing
-                              time, and eddy turnover time of the specified snapshot."""
-        ds = self.__load_snapshot_data__(n_snap)
-
-        # Get current physical time
-        current_time = float(ds.current_time)
-
-        # Calculate crossing time
-        domain_width = ds.domain_width[0]
-        domain_dimensions = ds.domain_dimensions[0]
-        crossing_time = float(domain_width / domain_dimensions / current_time)
-
-        # Calculate eddy turnover time
-        mach_number = self.get_snapshot_field_average(n_snap, ("gas", "mach_number"))
-        sound_speed = self.get_snapshot_field_average(n_snap, ("gas", "sound_speed"))
-        eddy_turnover_time = domain_width / (2 * mach_number * sound_speed)
-
-        return {
-            "current_time": float(current_time),
-            "crossing_time": float(crossing_time),
-            "eddy_turnover_time": float(eddy_turnover_time)
-        }
 
     def get_run_integral_times(self) -> np.ndarray:
         """
@@ -277,9 +320,6 @@ class SimAthenaPK:
                 correlation_time[1, i, j-i] = sp.stats.pearsonr(acc_arr[i, 0, :, :, :].reshape(-1), acc_arr[j, 0, :, :, :].reshape(-1))[0]
                 correlation_time[2, i, j-i] = sp.stats.pearsonr(acc_arr[i, 1, :, :, :].reshape(-1), acc_arr[j, 1, :, :, :].reshape(-1))[0]
                 correlation_time[3, i, j-i] = sp.stats.pearsonr(acc_arr[i, 2, :, :, :].reshape(-1), acc_arr[j, 2, :, :, :].reshape(-1))[0]
-
-                # # Print current status of the foor loops
-                # print(f"i = {i}, j = {j}, correlation_time = {correlation_time[0, i, j-i]}")
 
         return correlation_time
 
@@ -350,9 +390,9 @@ class SimAthenaPK:
         target_solenoidal_weight = self.solenoidal_weight
 
         # Calculate the forcing correlation time:
-        #   Find the first zero crossing - we only integrate till that point as it's noise afterwards anyway
+        #   Find the first zero crossing - we only integrate unitl that point as it is noise afterwards anyway
         #   this also ensures that the t_corr from later snapshots is not included as too few snapshots would
-        #   follow to actually integrate for a full t_corr
+        #   follow to actually integrate for a full t_corr.
         vector_size = 4
         correlation_time = self.get_run_integral_times()
         t_corr_values = np.zeros((vector_size, correlation_time.shape[1]))
@@ -399,7 +439,7 @@ class SimAthenaPK:
         }
 
     def plot_snapshot_field_map(self,
-                                n_snap: int | str,
+                                snap_id: int | str,
                                 field: tuple[str, str],
                                 normal: str = "z",
                                 method: str = "slice",
@@ -411,7 +451,7 @@ class SimAthenaPK:
         returning the resulting plot object.
 
         Args:
-            n_snap (int or str): The snapshot number to plot.
+            snap_id (int or str): The snapshot ID to plot.
             field (tuple of str): A tuple specifying the field to plot (e.g., ('gas', 'density')).
             normal (str, optional): The axis for slicing or project (e.g., 'z'). Defaults to 'z'.
             method (str, optional): The plotting method ('slice' or 'projection'). Defaults to 'slice'.
@@ -421,7 +461,7 @@ class SimAthenaPK:
 
         Returns:
             yt.SlicePlot or yt.ProjectionPlot: The yt plot object representing the field slice or projection."""
-        ds = self.__load_snapshot_data__(n_snap)
+        ds = self.__load_snapshot_data__(snap_id)
 
         if method.lower() == "slice":
             _plot = yt.SlicePlot(ds, normal, field, **kwargs)
@@ -445,13 +485,13 @@ class SimAthenaPK:
 
         return _plot
 
-    # def plot_snapshot_power_spectra(self, n_snap: int | str) -> None:
+    # def plot_snapshot_power_spectra(self, snap_id: int | str) -> None:
     #     """
     #     Plot the power spectra of the velocity and magnetic fields of a snapshot.
     # 
     #     Args:
-    #         n_snap (int or str): The snapshot number to plot."""
-    #     ds = self.__load_snapshot_data__(n_snap)
+    #         snap_id (int or str): The snapshot ID to plot."""
+    #     ds = self.__load_snapshot_data__(snap_id)
     #     ad = ds.all_data()
     # 
     #     # Calculate the power spectra of the velocity, kinetic and magnetic fields
