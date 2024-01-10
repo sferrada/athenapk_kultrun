@@ -12,9 +12,8 @@ def make_output_dir(run_dir):
     """
     Check if the directory exists, and if not, create it.
 
-    Parameters:
-    - run_dir (str): Name of the run directory.
-    """
+    Args:
+      run_dir (str): Name of the run directory."""
     out_dir = os.path.join("outputs", run_dir)
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
@@ -26,7 +25,14 @@ def prepare_run(input_file: str,
                 script_file: str):
     """
     Main function for preparing the run directory, input file, and submission script.
-    """
+
+    Args:
+      input_file (str): Path to the template input file.
+      config_file (str): Path to the configuration file.
+      script_file (str): Path to the submission script file.
+
+    Returns:
+      None"""
     # Generates input file from a given template
     config_dict = load_config_file(config_file)
 

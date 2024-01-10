@@ -1,30 +1,67 @@
 import os
 import h5py
-import argparse as ap
-from src.commons import load_config_file
+import argparse
+from src.commons import read_athenapk_input_file
 from src.simclass_athenapk import SimAthenaPK
 
+def parse_input_file(input_file: str) -> dict:
+    """
+    Parse and filter an AthenaPK input file to a dictionary with only the relevant parameters.
+
+    Parameters:
+        input_file (str): The path to the input file.
+
+    Returns:
+        dict: The parsed dictionary.
+    """
+    input_dict = read_athenapk_input_file(input_file)
+
+    parsed_dict = {}
+    for section, options in input_dict.items():
+        parsed_dict[section] = {}
+        for key, value, _ in options:
+            parsed_dict[section][key] = value
+
+    filtered_dict = {
+        "time_limit": parsed_dict["parthenon/time"]["tlim"],
+        "cycle_limit": parsed_dict["parthenon/time"]["nlim"],
+        "cells_number": parsed_dict["parthenon/mesh"]["nx1"],
+        "box_length_x1": parsed_dict["parthenon/mesh"]["x1max"],
+        "box_length_x2": parsed_dict["parthenon/mesh"]["x2max"],
+        "box_length_x3": parsed_dict["parthenon/mesh"]["x3max"],
+        "eos_type": parsed_dict["hydro"]["eos"],
+        "eos_gamma": parsed_dict["hydro"]["gamma"],
+        "initial_density": parsed_dict["problem/turbulence"]["rho0"],
+        "initial_pressure": parsed_dict["problem/turbulence"]["p0"],
+        "initial_magnetic_field": parsed_dict["problem/turbulence"]["b0"],
+        "magnetic_field_configuration": parsed_dict["problem/turbulence"]["b_config"],
+        "correlation_time": parsed_dict["problem/turbulence"]["corr_time"],
+        "solenoidal_weight": parsed_dict["problem/turbulence"]["sol_weight"],
+        "acceleration_field_rms": parsed_dict["problem/turbulence"]["accel_rms"]
+    }
+
+    return filtered_dict
+
 def main():
-    parser = ap.ArgumentParser(description="Perform a simple analysis routine on a run.")
+    parser = argparse.ArgumentParser(description="Perform a simple analysis routine on a run.")
     parser.add_argument("run", help="Simulation run directory")
     parser.add_argument("--weight", help="Weight for the average", default=None)
     parser.add_argument("--output", help="Output file name for analysis results", default="analysis.h5")
     args = parser.parse_args()
 
-    # Load run and configuration
+    # Load run
     sim = SimAthenaPK(args.run)
-    config_dict = load_config_file("config.yaml")
+
+    # Parse input file as a dictionary
+    input_file = os.path.join(args.run, "turbulence_philipp.in")
+    config_dict = parse_input_file(input_file)
+    # for key, value in config_dict.items():
+    #     print(f"{key:>30}: {value}")
 
     # # Calculate correlation time
     # corr_time_vector = sim.get_run_integral_times()
 
-    # # Get final-snapshot time scales
-    # times_dict = sim.get_snapshot_timescales("final")
-    # print("Final snapshot time scales:")
-    # for key, value in times_dict.items():
-    #     print("{}: {}".format(key, value))
-
-    # Print run statistics
+    # Get run statistics
     run_statistics = sim.get_run_statistics()
 
     # Get average value of desired fields
@@ -42,11 +79,7 @@ def main():
     with h5py.File(output_path, "w") as f:
         # Save `config_dict` as attributes of the root group
         for key, value in config_dict.items():
-            if isinstance(value, dict):
-                for subkey, subvalue in value.items():
-                    f.attrs[subkey] = subvalue
-            else:
-                f.attrs[key] = value
+            f.attrs[key] = value
 
         # Save the run statistics dictionary
         for key, value in run_statistics.items():
