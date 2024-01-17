@@ -202,7 +202,7 @@ class SimAthenaPK:
         )
 
         return ds.all_data()[("gas", "magnetic_energy")]
-    
+
     def get_snapshot_turbulent_energy(self,
                                       snap_id: int | str) -> float:
         """
@@ -389,10 +389,9 @@ class SimAthenaPK:
         target_rms_acceleration = self.acceleration_field_rms
         target_solenoidal_weight = self.solenoidal_weight
 
-        # Calculate the forcing correlation time:
-        #   Find the first zero crossing - we only integrate unitl that point as it is noise afterwards anyway
-        #   this also ensures that the t_corr from later snapshots is not included as too few snapshots would
-        #   follow to actually integrate for a full t_corr.
+        # Find the first zero crossing - we only integrate unitl that point as it is noise afterwards anyway
+        # this also ensures that the t_corr from later snapshots is not included as too few snapshots would
+        # follow to actually integrate for a full forcing correlation time t_corr.
         vector_size = 4
         correlation_time = self.get_run_integral_times()
         t_corr_values = np.zeros((vector_size, correlation_time.shape[1]))

@@ -1,6 +1,5 @@
 import os
 import yaml
-from typing import (Union)
 
 def custom_column_widths():
     """ Custom widths for specific input file sections. """
@@ -20,12 +19,13 @@ def output_dir(run_name: str) -> str:
         run_name (str): The name of the run or simulation.
 
     Returns:
-        str: The output directory path for the specified run.
-    """
+        str: The output directory path for the specified run."""
     return os.path.join('outputs', run_name)
 
-def validate_parameter(param_to_validate,
-                       default):
+def validate_parameter(
+        param_to_validate,
+        default
+    ):
     """
     Validate and substitute a parameter with a default value if it is set to None.
     
@@ -34,24 +34,24 @@ def validate_parameter(param_to_validate,
         default: The default value to use if the parameter is set to None.
     
     Returns:
-        The `param_to_validate` if it is not None, otherwise, the `default` value.
-    """
+        The `param_to_validate` if it is not None, otherwise, the `default` value."""
     return param_to_validate if param_to_validate is not None else default
 
-def load_config_file(config_file_path: str,
-                     override_config: Union[dict, None] = None) -> dict:
+def load_config_file(
+        config_file_path: str,
+        override_config: dict = None
+    ) -> dict:
     """
     Load information from a YAML configuration file into a Python dictionary,
     optionally allowing parameter overrides.
 
     Args:
         config_file_path (str): The path to the configuration file.
-        override_config (Union[dict, None], optional): Parameters to override in the loaded configuration.
-            Defaults to None.
+        override_config (dict, optional): Parameters to override in the loaded configuration.
+                                          Defaults to None.
 
     Returns:
-        dict: A dictionary with the parsed configuration information.
-    """
+        dict: A dictionary with the parsed configuration information."""
     _override_config = validate_parameter(override_config, default={})
     with open(config_file_path) as config_file:
         config = yaml.load(config_file, Loader=yaml.FullLoader)
@@ -66,9 +66,11 @@ def load_config_file(config_file_path: str,
 
     return config
 
-def output_directory_name(config_dict: dict,
-                          prefix: str = "",
-                          suffix: list = []) -> str:
+def output_directory_name(
+        config_dict: dict,
+        prefix: str = "",
+        suffix: list = []
+    ) -> str:
     """
     Generate a unique output directory name based on the configuration settings.
 
@@ -78,8 +80,7 @@ def output_directory_name(config_dict: dict,
         suffix (list, optional): A list of suffixes to be added to the directory name. Defaults to an empty list.
 
     Returns:
-        str: A unique directory name based on the configuration.
-    """
+        str: A unique directory name based on the configuration."""
     base_name = prefix
 
     base_name += f"NG_{config_dict['numeric_settings']['number_of_gpus']}-"
@@ -96,8 +97,10 @@ def output_directory_name(config_dict: dict,
 
     return base_name
 
-def read_athenapk_input_file(filename: str, 
-                             skip_header: bool = True) -> dict:
+def read_athenapk_input_file(
+        filename: str, 
+        skip_header: bool = True
+    ) -> dict:
     """
     Read and parse an AthenaPK configuration file.
 
@@ -106,8 +109,7 @@ def read_athenapk_input_file(filename: str,
         skip_header (bool): Whether to skip the first section (e.g., <comment>). Default is True.
 
     Returns:
-        dict: A dictionary representing the parsed configuration.
-    """
+        dict: A dictionary representing the parsed configuration."""
     config_dict = {}
     current_section = None
     skip_lines = False
@@ -137,8 +139,10 @@ def read_athenapk_input_file(filename: str,
 
     return config_dict
 
-def modify_athenapk_input_file(config: dict,
-                               modifications: list) -> dict:
+def modify_athenapk_input_file(
+        config: dict,
+        modifications: list
+    ) -> dict:
     """
     Modify a configuration dictionary based on a list of specified modifications.
 
@@ -148,8 +152,7 @@ def modify_athenapk_input_file(config: dict,
         (section, key, new_value) specifying the section, key, and the new value to be set.
 
     Returns:
-        dict: The modified configuration dictionary.
-    """
+        dict: The modified configuration dictionary."""
     modified_config = config.copy()
     for section, key, new_value in modifications:
         if section in modified_config:
@@ -158,10 +161,12 @@ def modify_athenapk_input_file(config: dict,
                     modified_config[section][i] = (key, new_value, comment)
     return modified_config
                 
-def write_athenapk_input_file(filename: str,
-                              config_dict: dict,
-                              column_widths: dict = None,
-                              number_of_cells: int = 512) -> None:
+def write_athenapk_input_file(
+        filename: str,
+        config_dict: dict,
+        column_widths: dict = None,
+        number_of_cells: int = 512
+    ) -> None:
     """
     Write an AthenaPK configuration to a file with custom column padding widths and substitute `number_of_cells`.
 
@@ -172,8 +177,7 @@ def write_athenapk_input_file(filename: str,
         number_of_cells (int, optional): The number of cells to substitute in the configuration.
 
     Returns:
-        None
-    """
+        None"""
     with open(filename, 'w') as file:
         for section, options in config_dict.items():
             file.write(f"<{section}>\n")
@@ -214,8 +218,10 @@ def write_athenapk_input_file(filename: str,
 
             file.write("\n")
 
-def format_athenapk_input_file(config_dict: dict,
-                               print_formatted: bool = False) -> str:
+def format_athenapk_input_file(
+        config_dict: dict,
+        print_formatted: bool = False
+    ) -> str:
     """
     Format an AthenaPK configuration dictionary as a string.
 
@@ -223,8 +229,7 @@ def format_athenapk_input_file(config_dict: dict,
         config_dict (dict): The configuration dictionary to format.
 
     Returns:
-        str: The formatted configuration as a string.
-    """
+        str: The formatted configuration as a string."""
     formatted_config = ""
     for section, options in config_dict.items():
         formatted_config += f"<{section}>\n"

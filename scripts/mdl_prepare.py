@@ -20,9 +20,11 @@ def make_output_dir(run_dir):
     else:
         print(f"\033[93mWARNING:\033[0m\nDirectory '{run_dir}' already exists.\n")
 
-def prepare_run(input_file: str,
-                config_file: str,
-                script_file: str):
+def prepare_run(
+        input_file: str,
+        config_file: str,
+        script_file: str
+    ) -> None:
     """
     Main function for preparing the run directory, input file, and submission script.
 
