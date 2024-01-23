@@ -4,6 +4,7 @@ import yt
 import numpy as np
 import scipy as sp
 import pandas as pd
+from typing import Union
 from collections import deque
 from src.commons import read_athenapk_input_file
 yt.funcs.mylog.setLevel("ERROR")
@@ -14,7 +15,10 @@ class SimAthenaPK:
     WALLTIME_PATTERN = r'walltime used = (\S+)'
     CYCLES_PER_WALLSECOND_PATTERN = r'zone-cycles/wallsecond = (\S+)'
 
-    def __init__(self, folder_path):
+    def __init__(
+            self,
+            folder_path: str
+        ) -> None:
         """
         Initialize an instance of an AthenaPK run with the folder path containing simulation data.
 
@@ -37,8 +41,10 @@ class SimAthenaPK:
         self.cycles_per_wallsecond = None
         self.__extract_log_file_info__()
 
-    def __get_snapshot_file_path__(self,
-                                   snap_id: int | str) -> str:
+    def __get_snapshot_file_path__(
+            self,
+            snap_id: Union[int, str]
+        ) -> str:
         """
         Get the file path for a snapshot based on its number or string representation.
 
@@ -55,8 +61,10 @@ class SimAthenaPK:
         # Return the full path to the snapshot file.
         return os.path.join(self.folder_path, f'parthenon.prim.{snapshot_number_str}')
 
-    def __load_snapshot_data__(self,
-                               snap_id: int | str) -> yt.data_objects.static_output.Dataset:
+    def __load_snapshot_data__(
+            self,
+            snap_id: Union[int, str]
+        ) -> yt.data_objects.static_output.Dataset:
         """
         Load and return the data from a snapshot file.
 
@@ -87,7 +95,7 @@ class SimAthenaPK:
         
         return ds_dict
 
-    def __read_input_attrs__(self):
+    def __read_input_attrs__(self) -> Union[dict, None]:
         """
         Read and return the input attributes from the input file if it exists.
 
@@ -112,7 +120,7 @@ class SimAthenaPK:
             return input_file_dict
         return None
 
-    def __extract_log_file_info__(self):
+    def __extract_log_file_info__(self) -> None:
         """
         Extract walltime, time limit, cycle limit, and cycles per wallsecond from the log
         file in the simulation folder."""
@@ -140,7 +148,11 @@ class SimAthenaPK:
         snapshot_list.sort()
         return snapshot_list
 
-    def get_snapshot_field_data(self, snap_id: int | str, field: tuple[str, str]) -> np.ndarray:
+    def get_snapshot_field_data(
+            self,
+            snap_id: Union[int, str],
+            field: tuple[str, str]
+        ) -> np.ndarray:
         """
         Get the data of a field in a snapshot.
 
@@ -158,10 +170,12 @@ class SimAthenaPK:
         except Exception as e:
             raise RuntimeError(f'Error loading snapshot data: {str(e)}')
 
-    def get_snapshot_field_average(self,
-                                   snap_id: int | str,
-                                   field: tuple[str, str],
-                                   weight: tuple[str, str] | None = None) -> float:
+    def get_snapshot_field_average(
+            self,
+            snap_id: Union[int, str],
+            field: tuple[str, str],
+            weight: Union[tuple[str, str], None] = None
+        ) -> float:
         """
         Get the average value of a field in a snapshot.
 
@@ -180,8 +194,10 @@ class SimAthenaPK:
 
         return ad.quantities.weighted_average_quantity(field, weight)
 
-    def get_snapshot_magnetic_energy(self,
-                                     snap_id: int | str) -> float:
+    def get_snapshot_magnetic_energy(
+            self,
+            snap_id: Union[int, str]
+        ) -> float:
         """
         Get the magnetic energy at each cell from their magnetic energy density.
 
@@ -190,21 +206,38 @@ class SimAthenaPK:
 
         Returns:
             float: The magnetic energy of the snapshot."""
-        def _magnetic_energy(field, data):
-            return (data["gas", "magnetic_energy_density"] * data["gas", "cell_volume"])
+        def _magnetic_energy_test1(field, data):
+            return (data["gas", "magnetic_energy_density"])  # * data["gas", "cell_volume"])
+
+        def _magnetic_energy_test2(field, data):
+            mu_0 = 4 * np.pi * 1e-7  # Vacuum permeability
+            return 0.5 * (data["gas", "magnetic_field_strength"]**2 / mu_0)
 
         ds = self.__load_snapshot_data__(snap_id)
+
         ds.add_field(
-            ("gas", "magnetic_energy"),
-            units="dyne*cm",
-            function=_magnetic_energy,
+            ("gas", "magnetic_energy_test1"),
+            units="dyne/cm**2",  # "*cm",
+            function=_magnetic_energy_test1,
             sampling_type="local"
         )
 
-        return ds.all_data()[("gas", "magnetic_energy")]
+        ds.add_field(
+            ("gas", "magnetic_energy_test2"),
+            units="G**2",  # "dyne*cm",
+            function=_magnetic_energy_test2,
+            sampling_type="local"
+        )
 
-    def get_snapshot_turbulent_energy(self,
-                                      snap_id: int | str) -> float:
+        magnetic_energy_test1 = ds.all_data()[("gas", "magnetic_energy_test1")]
+        magnetic_energy_test2 = ds.all_data()[("gas", "magnetic_energy_test2")]
+
+        return magnetic_energy_test1, magnetic_energy_test2
+
+    def get_snapshot_turbulent_energy(
+            self,
+            snap_id: Union[int, str]
+        ) -> float:
         """
         Get the turbulent energy at each cell from their kinetic energy density.
 
@@ -227,8 +260,56 @@ class SimAthenaPK:
 
         return float(turbulent_energy)
 
-    def get_snapshot_timescales(self,
-                                snap_id: int | str) -> dict[str, float]:
+    def get_snapshot_turbulent_to_magnetic_energy_ratio(
+            self,
+            snap_id: Union[int, str]
+        ) -> float:
+        """
+        Get the ratio of turbulent to magnetic energy in a snapshot.
+
+        Args:
+            snap_id (int or str): The snapshot ID to analyze.
+
+        Returns:
+            float: The ratio of turbulent to magnetic energy."""
+        def _turbulent_energy(field, data):
+            return 0.5 * data["gas", "density"] * data["gas", "velocity_magnitude"] ** 2
+
+        def _magnetic_energy(field, data):
+            mu_0 = 4 * np.pi * 1e-7  # Vacuum permeability
+            return 0.5 * (data["gas", "magnetic_field_strength"]**2 / mu_0)
+
+        ds = self.__load_snapshot_data__(snap_id)
+        ds.add_field(
+            ("gas", "turbulent_energy"),
+            units="dyne*cm",
+            function=_turbulent_energy,
+            sampling_type="local"
+        )
+        ds.add_field(
+            ("gas", "magnetic_energy"),
+            units="dyne*cm",
+            function=_magnetic_energy,
+            sampling_type="local"
+        )
+
+        # Turbulent energy (kinetic energy)
+        turbulent_energy = ds.all_data()[("gas", "turbulent_energy")]
+
+        # Magnetic energy
+        magnetic_energy = ds.all_data()[("gas", "magnetic_energy")]
+
+        # Get snapshot averages
+        turbulent_energy = self.get_snapshot_field_average(snap_id, ("gas", "turbulent_energy"))
+        magnetic_energy = self.get_snapshot_field_average(snap_id, ("gas", "magnetic_energy"))            
+
+        # Turbulent to magnetic energy ratio
+        return float(turbulent_energy) / float(magnetic_energy)
+
+    def get_snapshot_timescales(
+            self,
+            snap_id: Union[int, str]
+        ) -> dict[str, float]:
         """
         Get various time-related information of a snapshot in the simulation.
 
@@ -253,10 +334,31 @@ class SimAthenaPK:
         sound_speed = self.get_snapshot_field_average(snap_id, ("gas", "sound_speed"))
         eddy_turnover_time = domain_width / (2 * mach_number * sound_speed)
 
+        # Calculate sound crossing time
+        sound_crossing_time = domain_width / sound_speed
+
+        # Calculate turbulence crossing time (turbulence formation characteristic time)
+        def _velocity_rms(field, data):
+            return np.sqrt(
+                data[("gas", "velocity_x")] ** 2 +
+                data[("gas", "velocity_y")] ** 2 +
+                data[("gas", "velocity_z")] ** 2
+            )
+        ds.add_field(("gas", "velocity_rms"), function=_velocity_rms, sampling_type="local",  units="cm/s")
+        velocity_rms = self.get_snapshot_field_average(snap_id, ("gas", "velocity_rms"))
+        turbulence_crossing_time = domain_width / velocity_rms
+
+        # # Calculate Alfven crossing time
+        # magnetic_field_strength = self.get_snapshot_field_average(snap_id, ("gas", "magnetic_field_strength"))
+        # alfven_crossing_time = domain_width / magnetic_field_strength
+
         return {
             "current_time": float(current_time),
             "crossing_time": float(crossing_time),
-            "eddy_turnover_time": float(eddy_turnover_time)
+            "eddy_turnover_time": float(eddy_turnover_time),
+            "sound_crossing_time": float(sound_crossing_time),
+            "turbulence_crossing_time": float(turbulence_crossing_time),
+            # "alfven_crossing_time": float(alfven_crossing_time)
         }
 
     def get_run_available_fields(self) -> None:
@@ -323,12 +425,14 @@ class SimAthenaPK:
 
         return correlation_time
 
-    def get_run_average_fields(self,
-                               fields: list[str],
-                               weight: tuple[str, str] | None = None,
-                               verbose: bool = False,
-                               in_time: bool = False,
-                               save_data: bool = False) -> None:
+    def get_run_average_fields(
+            self,
+            fields: list[str],
+            weight: Union[tuple[str, str], None] = None,
+            verbose: bool = False,
+            in_time: bool = False,
+            save_data: bool = False
+        ) -> None:
         """
         Calculate and save the density-weighted average values for specified fields.
 
