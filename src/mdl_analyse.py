@@ -1,20 +1,15 @@
 import os
 import h5py
-from src.commons import (
-    load_config_file,
-    read_athenapk_input_file
-)
-from src.simclass_athenapk import SimAthenaPK
+from src.commons import (load_config_file,
+                         read_athenapk_input_file)
+from src.mdl_simcls_athenapk import SimAthenaPK
 
 def parse_input_file(input_file: str) -> dict:
     """
     Parse and filter an AthenaPK input file to a dictionary with only the relevant parameters.
 
-    Parameters:
-        input_file (str): The path to the input file.
-
-    Returns:
-        dict: The parsed and filttered dictionary."""
+    :param input_file: str, path to the input file.
+    :return: dict, parsed and filttered dictionary. """
     input_dict = read_athenapk_input_file(input_file)
 
     parsed_dict = {}
@@ -51,13 +46,10 @@ def analyse_run(
     """
     Main function for analyzing a run.
 
-    Args:
-        run_dir (str): Path to the run directory.
-        weight (float): Weight for the average.
-        output_file (str): Path to the output file
-        
-    Returns:
-        None"""
+    :param run_dir: str, path to the run directory.
+    :param weight: float, weight for the average.
+    :param output_file: str, path to the output file.
+    :return: None """    
     # Load run
     sim = SimAthenaPK(run_dir)
 

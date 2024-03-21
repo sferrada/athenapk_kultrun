@@ -1,19 +1,16 @@
 import os
-from src.commons import (
-    load_config_file,
-    custom_column_widths,
-    output_directory_name,
-    read_athenapk_input_file,
-    write_athenapk_input_file,
-    modify_athenapk_input_file,
-)
+from src.commons import (load_config_file,
+                         custom_column_widths,
+                         output_directory_name,
+                         read_athenapk_input_file,
+                         write_athenapk_input_file,
+                         modify_athenapk_input_file)
 
 def make_output_dir(run_dir):
     """
     Check if the directory exists, and if not, create it.
 
-    Args:
-      run_dir (str): Name of the run directory."""
+    :param run_dir: str, name of the run directory. """
     out_dir = os.path.join("outputs", run_dir)
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
@@ -28,22 +25,21 @@ def prepare_run(
     """
     Main function for preparing the run directory, input file, and submission script.
 
-    Args:
-      input_file (str): Path to the template input file.
-      config_file (str): Path to the configuration file.
-      script_file (str): Path to the submission script file.
-
-    Returns:
-      None"""
+    :param input_file: str, path to the template input file.
+    :param config_file: str, path to the configuration file.
+    :param script_file: str, path to the submission script file.
+    :return: None """
     # Generates input file from a given template
-    config_dict = load_config_file(config_file)
+    config_dict = load_config_file("config/" + config_file)
 
-    # Specify the directory path and create it
+    # Specify the directory path
     out_dir = output_directory_name(config_dict)  # , suffix=["MFM_0"])
+
+    # Create the output directory
     make_output_dir(out_dir)
 
     # Read the template configuration file
-    run_input = read_athenapk_input_file(input_file, skip_header=False)
+    run_input = read_athenapk_input_file("inputs/" + input_file, skip_header=False)
 
     # List of modifications to apply
     modifications = [
@@ -61,7 +57,10 @@ def prepare_run(
 
     # Write the configuration file with custom column widths
     column_widths = custom_column_widths()
+
     final_input_file = os.path.join("outputs", out_dir, "turbulence_philipp.in")
+
+    # Write the final input file
     write_athenapk_input_file(
         final_input_file,
         config_dict=modified_input,
