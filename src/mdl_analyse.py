@@ -25,7 +25,7 @@ def parse_input_file(input_file: str) -> dict:
         "box_length_x1": float(parsed_dict["parthenon/mesh"]["x1max"]),
         "box_length_x2": float(parsed_dict["parthenon/mesh"]["x2max"]),
         "box_length_x3": float(parsed_dict["parthenon/mesh"]["x3max"]),
-        "eos_type": parsed_dict["hydro"]["eos"],
+        "eos_type": str(parsed_dict["hydro"]["eos"]),
         "eos_gamma": float(parsed_dict["hydro"]["gamma"]),
         "initial_density": float(parsed_dict["problem/turbulence"]["rho0"]),
         "initial_pressure": float(parsed_dict["problem/turbulence"]["p0"]),
