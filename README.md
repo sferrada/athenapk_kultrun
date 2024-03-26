@@ -10,7 +10,7 @@ More details on **AthenaPK** and its installation can be found on [its official 
 
 To configure the compiler on the **login node** and Intel CPUs, use the following command:
 ```
-cmake -S. -Bbuild-host -DKokkos_ENABLE_CUDA=ON -DCMAKE_CXX_COMPILER=/home/sferrada/athena_project/athenapk/external/Kokkos/bin/nvcc_wrapper -DKokkos_ARCH_AMPERE80=ON -DCMAKE_INSTALL_PREFIX=/opt/athenapk/athenapk
+cmake -S. -Bbuild-host -DKokkos_ENABLE_CUDA=ON -DPARTHENON_ENABLE_PYTHON_MODULE_CHECK=OFF -DCMAKE_CXX_COMPILER=/home/sferrada/athenapk/external/Kokkos/bin/nvcc_wrapper -DKokkos_ARCH_AMPERE80=ON -DCMAKE_INSTALL_PREFIX=/opt/athenapk/athenapk
 ```
 
 To configure it directly on the **GPU node** (*WARNING: might give permission errors*), use the following command:
