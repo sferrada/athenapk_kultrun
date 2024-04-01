@@ -34,11 +34,12 @@ Obtain all (AthenaPK, Parthenon, and Kokkos) sources
 Most of the general build instructions and options for Parthenon (see [here](https://parthenon-hpc-lab.github.io/parthenon/develop/src/building.html)) also apply to AthenaPK.
 The following applies for KULTRUN, remember to change **<user_name>** to your actual username.
 
-> Before configuring the compiler, make sure you have the following modules loaded through `module load`:
-> - gcc/12.2.0
-> - openmpi/4.1.5
-> - hdf5/1.14.1-2_openmpi-4.1.5_parallel
-> - cuda/12.2
+> Before configuring, make sure you hava loaded the following modules using `module load`:
+> * gcc/12.2.0
+> * openmpi/4.1.5
+> * hdf5/1.14.1-2_openmpi-4.1.5_parallel
+> * cuda/12.2
+> * A Python interpreter module (tested with Python/3.11.4)
 
 To configure the compiler on the **login node** and Intel CPUs, use the following command:
 ```
@@ -72,10 +73,30 @@ restartings simulation) an additional hint to the location of the library can be
 `-DHDF5_ROOT=/path/to/local/hdf5` on the first `cmake` command for configuration.
 
 ## Analysing a run
+The easiest way to load an AthenaPK snapshot is using `[yt](https://yt-project.org/)`. However, the frontend is not yet part of the main branch. Thus, it has to be installed manually, e.g.,
+as follows:
+```bash
+cd ~/src # or any other folder of choice
+git clone https://github.com/forrestglines/yt.git
+cd yt
+git checkout parthenon-frontend
+
+# If you're using conda or virtualenv
+pip install -e .
+# OR alternatively, if you using the plain Python environment
+pip install --user -e .
+```
+Afterwards, `*.phdf` files can be read as usual with `yt.load()`.
+
+Simple analysis scripts are included in this repository. For more complex analysis, please refer to [the following repository](https://github.com/pgrete/energy-transfer-analysis#turbulent-flow-analysis).
+To run these scripts on AthenaPK data, the `back-to-mpi4py-fft` branch of that repository is needed to use `AthenaPK`" as `--data_type`.
 
 ## To-do
 
 ## Known errors and warnings
+After any error is encountered, it is recommended to "clean" the build directory before calling cmake again so that there are no old information stored in the cache.
+For this deleting either the build directory (safest option) or just the `CMakeCache.txt` and `CMakeFiles` might do the trick.
+
 1. The flag `-DCMAKE_CXX_COMPILER=/home/<user_name>/athena_project/athenapk/external/Kokkos/bin/nvcc_wrapper` might not be needed at all when configuring the build. It can help, however, when the following error shows up:
 ```
 CMake Error at external/Kokkos/cmake/kokkos_test_cxx_std.cmake:132 (MESSAGE):
