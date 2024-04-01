@@ -1,8 +1,11 @@
-# AthenaPK compilation and usage in KULTRUN
+# AthenaPK compilation and usage in Kultrun
+
 More details on **AthenaPK** and its installation can be found on [its official GitHub page](https://github.com/parthenon-hpc-lab/athenapk/tree/main).
 
 ## Installation
-Most of this guide has been taken from the original GitHub readme. Only what is pertinent to KULTRUN is new.
+
+Most of this guide has been taken from the original GitHub readme. Only what is pertinent to Kultrun is new.
+
 ### Dependencies
 
 #### Required
@@ -32,7 +35,7 @@ Obtain all (AthenaPK, Parthenon, and Kokkos) sources
     git submodule update
 
 Most of the general build instructions and options for Parthenon (see [here](https://parthenon-hpc-lab.github.io/parthenon/develop/src/building.html)) also apply to AthenaPK.
-The following applies for KULTRUN, remember to change **<user_name>** to your actual username.
+The following applies for Kultrun, remember to change **<user_name>** to your actual username.
 
 > Before configuring, make sure you hava loaded the following modules using `module load`:
 > * gcc/12.2.0
@@ -53,6 +56,7 @@ cmake -S. -Bbuild-host -DKokkos_ENABLE_CUDA=ON -DCMAKE_CXX_COMPILER=/home/<user_
 here, the flag `-DKokkos_ARCH_ZEN2=ON` is probably not even needed as `cmake` should automatically detect the CPU architecture.
 
 ### Compiling the code
+
 > Again, make sure you have the following modules loaded with `module load` before compiling, plus a `Python interpreter` module:
 > - gcc/12.2.0
 > - openmpi/4.1.5
@@ -73,6 +77,7 @@ restartings simulation) an additional hint to the location of the library can be
 `-DHDF5_ROOT=/path/to/local/hdf5` on the first `cmake` command for configuration.
 
 ## Analysing a run
+
 The easiest way to load an AthenaPK snapshot is using [the Python `yt` module](https://yt-project.org/). However, the frontend is not yet part of the main branch and, as such, has to be installed manually as follows:
 ```bash
 cd ~/src # or any other folder of choice
@@ -90,15 +95,10 @@ Afterwards, `*.phdf` files can be read as usual with `yt.load()`.
 Simple analysis scripts are included in this repository. For more complex analysis, please refer to [the following repository](https://github.com/pgrete/energy-transfer-analysis#turbulent-flow-analysis).
 To run these scripts on AthenaPK data, the `back-to-mpi4py-fft` branch of that repository is needed to use `--data_type AthenaPK`.
 
-## To-do
-
-* Everything that has to do with [benchmarking the code](https://gitlab.com/pgrete/kathena/-/wikis/turbulence).
-* Decide how to integrate this as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) of the main/fork branch of the AthenaPK repo.
-
-
 ## Known errors and warnings
-After any error is encountered, it is recommended to "clean" the build directory before calling cmake again so that there are no old information stored in the cache.
-For this deleting either the build directory (safest option) or just the `CMakeCache.txt` and `CMakeFiles` might do the trick.
+
+> After any error is encountered, it is recommended to "clean" the build directory before calling cmake again so that there are no old information stored in the cache.
+> For this, deleting either the build directory (safest option) or just the `CMakeCache.txt` and `CMakeFiles` might do the trick.
 
 1. The flag `-DCMAKE_CXX_COMPILER=/home/<user_name>/athena_project/athenapk/external/Kokkos/bin/nvcc_wrapper` might not be needed at all when configuring the build. It can help, however, when the following error shows up:
 ```
@@ -148,3 +148,8 @@ Call Stack (most recent call first):
   external/parthenon/cmake/TestSetup.cmake:32 (python_modules_found)
   tst/regression/CMakeLists.txt:14 (include)
 ```
+
+## To-do
+
+* Everything that has to do with [benchmarking the code](https://gitlab.com/pgrete/kathena/-/wikis/turbulence).
+* Decide how to integrate this as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) of the main/fork branch of the AthenaPK repo.
