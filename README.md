@@ -98,7 +98,7 @@ To run these scripts on AthenaPK data, the `back-to-mpi4py-fft` branch of that r
 ## Known errors and warnings
 
 > After any error is encountered, it is recommended to "clean" the build directory before calling cmake again so that there are no old information stored in the cache.
-> For this, deleting either the build directory (safest option) or just the `CMakeCache.txt` and `CMakeFiles` might do the trick.
+> For this, deleting either the `build-host` directory (safest option) or just the `CMakeCache.txt` and `CMakeFiles` might do the trick.
 
 1. The flag `-DCMAKE_CXX_COMPILER=/home/<user_name>/athena_project/athenapk/external/Kokkos/bin/nvcc_wrapper` might not be needed at all when configuring the build. It can help, however, when the following error shows up:
 ```
