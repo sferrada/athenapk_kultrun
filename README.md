@@ -88,9 +88,10 @@ pip install --user -e .
 Afterwards, `*.phdf` files can be read as usual with `yt.load()`.
 
 Simple analysis scripts are included in this repository. For more complex analysis, please refer to [the following repository](https://github.com/pgrete/energy-transfer-analysis#turbulent-flow-analysis).
-To run these scripts on AthenaPK data, the `back-to-mpi4py-fft` branch of that repository is needed to use `AthenaPK`" as `--data_type`.
+To run these scripts on AthenaPK data, the `back-to-mpi4py-fft` branch of that repository is needed to use `--data_type AthenaPK`.
 
 ## To-do
+--------
 
 ## Known errors and warnings
 After any error is encountered, it is recommended to "clean" the build directory before calling cmake again so that there are no old information stored in the cache.
