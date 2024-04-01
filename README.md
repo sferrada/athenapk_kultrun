@@ -52,7 +52,7 @@ cmake -S. -Bbuild-host -DKokkos_ENABLE_CUDA=ON -DCMAKE_CXX_COMPILER=/home/<user_
 ```
 here, the flag `-DKokkos_ARCH_ZEN2=ON` is probably not even needed as `cmake` should automatically detect the CPU architecture.
 
-### Compile the code
+### Compiling the code
 > Again, make sure you have the following modules loaded with `module load` before compiling, plus a `Python interpreter` module:
 > - gcc/12.2.0
 > - openmpi/4.1.5
@@ -73,8 +73,7 @@ restartings simulation) an additional hint to the location of the library can be
 `-DHDF5_ROOT=/path/to/local/hdf5` on the first `cmake` command for configuration.
 
 ## Analysing a run
-The easiest way to load an AthenaPK snapshot is using [the Python `yt` module](https://yt-project.org/). However, the frontend is not yet part of the main branch and as such, it has to be installed manually, e.g.,
-as follows:
+The easiest way to load an AthenaPK snapshot is using [the Python `yt` module](https://yt-project.org/). However, the frontend is not yet part of the main branch and, as such, has to be installed manually as follows:
 ```bash
 cd ~/src # or any other folder of choice
 git clone https://github.com/forrestglines/yt.git
