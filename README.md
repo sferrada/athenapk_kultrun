@@ -91,7 +91,10 @@ Simple analysis scripts are included in this repository. For more complex analys
 To run these scripts on AthenaPK data, the `back-to-mpi4py-fft` branch of that repository is needed to use `--data_type AthenaPK`.
 
 ## To-do
---------
+
+* Everything that has to do with [benchmarking the code](https://gitlab.com/pgrete/kathena/-/wikis/turbulence).
+* Decide how to integrate this as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) of the main/fork branch of the AthenaPK repo.
+
 
 ## Known errors and warnings
 After any error is encountered, it is recommended to "clean" the build directory before calling cmake again so that there are no old information stored in the cache.
