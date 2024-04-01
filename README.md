@@ -73,7 +73,7 @@ restartings simulation) an additional hint to the location of the library can be
 `-DHDF5_ROOT=/path/to/local/hdf5` on the first `cmake` command for configuration.
 
 ## Analysing a run
-The easiest way to load an AthenaPK snapshot is using [the Python `yt` module](https://yt-project.org/). However, the frontend is not yet part of the main branch. Thus, it has to be installed manually, e.g.,
+The easiest way to load an AthenaPK snapshot is using [the Python `yt` module](https://yt-project.org/). However, the frontend is not yet part of the main branch and as such, it has to be installed manually, e.g.,
 as follows:
 ```bash
 cd ~/src # or any other folder of choice
