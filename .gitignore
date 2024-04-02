@@ -3,7 +3,6 @@
 *.phdf*
 *.rhdf*
 
-
 # JetBrains IDE
 .idea/
 
@@ -14,7 +13,5 @@
 Thumbs.db
 
 # Others
-.trash
-athenapk
 __pycache__
 

@@ -39,68 +39,87 @@ import argparse
 from src.mdl_prepare import prepare_run
 from src.mdl_analyse import analyse_run
 
-def main():
+
+def main(
+    exec: str = None,
+    infile: str = None,
+    config: str = None,
+    script: str = None,
+    rundir: str = None,
+    weight: float = None,
+    output: str = None
+):
     """
-    Main function for the AthenaPK in Kultrun package. """
-    parser = argparse.ArgumentParser(description="")
-    # parser.add_argument("action", help="Action to perform", choices=["prepare", "analyse"])
+        Main entry point for the script.
+    """
+    match exec:
+        case "prepare":
+            prepare_run(infile,
+                        config,
+                        script)
+        case "analyse":
+            analyse_run(rundir,
+                        weight,
+                        output)
+        case _:
+            raise ValueError(f"Unknown execution mode: {exec}")
 
-    # Add arguments
-    exec_mode = parser.add_mutually_exclusive_group(required=True)
 
-    # Preparing a run
-    exec_mode.add_argument("-prepare", "--prepare", action="store_true",
-                           help="Prepare files for an AthenaPK run.")
+def parser():
+    """
+        Parse command line arguments.
+    """
+    parser = argparse.ArgumentParser(description="AthenaPK preparation and analysis helper for Kultrun.")
 
-    parser.add_argument("-input", "--input", type=str, metavar="FILE", 
-                        default="turbulence_philipp.in", help="Template input file")
+    parser.add_argument("--exec-mode", choices=["prepare", "analyse"], required=True, default="prepare",
+                        help="Execution mode: prepare or analyse")
 
-    parser.add_argument("-config", "--config", type=str, metavar="FILE",
-                        default="config.yaml", help="Configuration file for the run",)
+    parser.add_argument("--input", type=str, metavar="FILE", default="turbulence_philipp.in",
+                        help="Template input file")
 
-    parser.add_argument("-script", "--script", type=str, metavar="FILE",
-                        default="submit_run.sh", help="Submission script file")
+    parser.add_argument("--config", type=str, metavar="FILE", default="config.yaml",
+                        help="Configuration file for the run")
 
-    # Todo : implement
-    # parser.add_argument("--name", help="Run name", default="run")
-    # parser.add_argument("--verbose", help="Verbose output", action="store_true")
-    # parser.add_argument("--overwrite", help="Overwrite output directory", action="store_true")
+    parser.add_argument("--script", type=str, metavar="FILE", default="submit_run.sh",
+                        help="Submission script file")
 
-    # Analyzing a run
-    exec_mode.add_argument("-analyse", "--analyse", action="store_true",
-                           help="Analyse results from an AthenaPK run")
+    parser.add_argument("--name", type=str, metavar="NAME", default="run",
+                        help="[UNUSED] Run name")
 
-    parser.add_argument("-run", "--run", type=str, metavar="DIR",
+    parser.add_argument("--rundir", type=str, metavar="DIR", default="run",
                         help="Simulation run directory")
 
-    parser.add_argument("-weight", "--weight", type=float, metavar="FLOAT",
-                        default=None, help="Weight for the average")
+    parser.add_argument("--weight", type=float, metavar="FLOAT", default=None,
+                        help="Weight for the average")
 
-    parser.add_argument("-output", "--output", type=str, metavar="FILE",
-                        default="analysis.h5", help="Output file with results")
+    parser.add_argument("--output", type=str, metavar="FILE", default="analysis.h5",
+                        help="Output file with results")
 
-    # Todo : implement
-    # parser.add_argument("--script", help="Submission script file", default="submit_analysis.sh")
+    parser.add_argument("--script", type=str, metavar="FILE", default="submit_run.sh",
+                        help="[UNUSED] Submission script file")
 
-    # Parse arguments
-    args = parser.parse_args()
+    parser.add_argument("--overwrite", action="store_true",
+                        help="[UNUSED] Overwrite output directory")
 
-    # Perform the requested action according to the mutually exclusive group
-    if args.prepare:
-        prepare_run(
-            args.input,
-            args.config,
-            args.script
-        )
-    elif args.analyse:
-        analyse_run(
-            args.run,
-            args.weight,
-            args.output
-        )
-    else:
-        raise ValueError(f"Unknown action!")
+    parser.add_argument("--verbose", action="store_true",
+                        help="[UNUSED] Verbose output")
+
+    return parser
+
 
 if __name__ == "__main__":
-    main()
+    # Handle command line arguments
+    pars = parser()
+    args = pars.parse_args()
+
+    # Call main function with parsed arguments
+    main(
+        exec=args.exec_mode,
+        infile=args.input,
+        config=args.config,
+        script=args.script,
+        rundir=args.rundir,
+        weight=args.weight,
+        output=args.output
+    )
 
