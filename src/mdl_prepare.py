@@ -1,10 +1,12 @@
 import os
-from src.commons import (load_config_file,
-                         custom_column_widths,
-                         output_directory_name,
-                         read_athenapk_input_file,
-                         write_athenapk_input_file,
-                         modify_athenapk_input_file)
+from src.commons import load_config_file
+from src.mdl_files import (
+    custom_column_widths,
+    output_directory_name,
+    read_athenapk_input_file,
+    write_athenapk_input_file,
+    modify_athenapk_input_file
+)
 
 def make_output_dir(run_dir):
     """
