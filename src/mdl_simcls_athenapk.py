@@ -9,37 +9,58 @@ from collections import deque
 from src.commons import read_athenapk_input_file
 yt.funcs.mylog.setLevel("ERROR")
 
+class Snapshot:
+    def __init__(self, id, outdir):
+        self.id = id
+        self.outdir =
+
+    def path(self):
+        num_id = str(self.id).zfill(5)
+        num_id += ".phdf" if not num_id.endswith(".phdf") else ""
+
+        return os.path.join(self.outdir, f"parthenon.prim.{num_id}")
+
+    def load(self):
+        """
+            Load and return snapshot data
+        """
+        try:
+            return yt.load(self.path)
+        except:
+            raise FileNotFoundError("")
+
 class SimAthenaPK:
     T_LIMIT_PATTERN = r'tlim=(\S+)'
     N_LIMIT_PATTERN = r'nlim=(\S+)'
     WALLTIME_PATTERN = r'walltime used = (\S+)'
     CYCLES_PER_WALLSECOND_PATTERN = r'zone-cycles/wallsecond = (\S+)'
 
-    def __init__(
-            self,
-            folder_path: str
-        ) -> None:
+    def __init__(self, folder_path: str) -> None:
         """
         Initialize an instance of an AthenaPK run with the folder path containing simulation data.
 
-        Args:
-            folder_path (str): The path to the folder containing AthenaPK simulation data."""
-        self.number_of_cells = None
-        self.correlation_time = None
-        self.solenoidal_weight = None
-        self.acceleration_field_rms = None
-        self.initial_magnetic_field = None
-        self.code_time_between_dumps = None
+        :param folder_path: str, the path to the folder containing AthenaPK simulation data. """
+        self.outdir = folder_path  # Path to the simulation folder
+        self.snapshots = {}  # Dictionary of snapshots
+        self.input_attrs = {}  # Dictionary of input file attributes
 
-        self.folder_path = folder_path
-        self.input_attrs = self.__read_input_attrs__()
-        self.snapshot_list = self.__get_snapshot_list__()
+        # Input file parameters
+        self.cells_number = None  # Number of cells in the simulation
+        self.dump_code_time = None  # Physical time between code dumps
+        self.correlation_time = None  # Correlation time between acceleration fields
+        self.solenoidal_weight = None  # Relative power of solenoidal modes
+        self.acceleration_field_rms = None  # RMS acceleration field
+        self.initial_magnetic_field = None  # Initial magnetic field strength
 
-        self.walltime = None
-        self.time_limit = None
-        self.cycle_limit = None
-        self.cycles_per_wallsecond = None
-        self.__extract_log_file_info__()
+        # Log file parameters
+        self.walltime = None  # Walltime used by the simulation
+        self.time_limit = None  # Physical maximum time limit
+        self.cycle_limit = None  # Maximum cycle limit
+        self.cycles_per_walls = None  # Cycles per walltime in seconds
+
+        self.parse_infile()
+        self.parse_logfile()
+        self.get_snapshots()
 
     def __get_snapshot_file_path__(
             self,
@@ -56,7 +77,7 @@ class SimAthenaPK:
             snapshot_number_str += '.phdf'
 
         # Return the full path to the snapshot file.
-        return os.path.join(self.folder_path, f'parthenon.prim.{snapshot_number_str}')
+        return os.path.join(self.outdir, f'parthenon.prim.{snapshot_number_str}')
 
     def __load_snapshot_data__(
             self,
@@ -67,12 +88,12 @@ class SimAthenaPK:
 
         :param snap_id: int or str, the snapshot ID to load.
         :return: yt.data_objects.static_output.Dataset, a yt dataset containing the snapshot data. """
-        snapshot_file_path = self.__get_snapshot_file_path__(snap_id)
-        if not os.path.exists(snapshot_file_path):
-            raise FileNotFoundError(f'Snapshot not found in the current simulation directory: {snapshot_file_path}')
+        snapshot_path = self.__get_snapshot_file_path__(snap_id)
+        if not os.path.exists(snapshot_path):
+            raise FileNotFoundError(f'Snapshot not found in the current simulation directory: {snapshot_path}')
 
         try:
-            ds = yt.load(snapshot_file_path)
+            ds = yt.load(snapshot_path)
             return ds
         except Exception as e:
             raise RuntimeError(f'Error loading snapshot data: {str(e)}')
@@ -89,56 +110,72 @@ class SimAthenaPK:
         
         return ds_dict
 
-    def __read_input_attrs__(self) -> Union[dict, None]:
+    def parse_infile(self) -> None:
         """
-        Read and return the input attributes from the input file if it exists.
-
-        Returns:
-            dict or None: The input attributes as a dictionary, or None if the input file doesn't exist."""
-        input_file_name = next((f for f in os.listdir(self.folder_path) if f.endswith('.in')), None)
-        if input_file_name:
-            input_file_path = os.path.join(self.folder_path, input_file_name)
-            input_file_dict = read_athenapk_input_file(input_file_path)
-
-            if "parthenon/mesh" in input_file_dict:
-                self.number_of_cells = int(input_file_dict["parthenon/mesh"][1][1])
-            if "parthenon/output2" in input_file_dict:
-                self.dump_code_time = float(input_file_dict["parthenon/output2"][2][1])
-            if "problem/turbulence" in input_file_dict:
-                turbulence_params = input_file_dict["problem/turbulence"]
-                self.correlation_time = float(turbulence_params[6][1])
-                self.solenoidal_weight = float(turbulence_params[8][1])
-                self.initial_magnetic_field = float(turbulence_params[2][1])
-                self.acceleration_field_rms = float(turbulence_params[9][1])
-
-            return input_file_dict
-        return None
-
-    def __extract_log_file_info__(self) -> None:
+            Read and return the input attributes from the input file if it exists.
         """
-        Extract walltime, time limit, cycle limit, and cycles per wallsecond from the log
-        file in the simulation folder."""
-        log_file_name = next((f for f in os.listdir(self.folder_path) if f.endswith('.out')), None)
-        if log_file_name:
-            log_file_path = os.path.join(self.folder_path, log_file_name)
-            last_lines = deque(maxlen=5)
+        infile_name = next(
+            (f for f in os.listdir(self.outdir) if f.endswith('.in')
+        ), None)
 
-            with open(log_file_path, 'r') as file:
-                for line in file:
-                    last_lines.append(line)
-                    if 'tlim=' in line:
+        try:
+            infile_dict = read_athenapk_input_file(
+                os.path.join(self.outdir, infile_name)
+            )
+
+            # Extract the relevant parameters from the input file
+            if "parthenon/mesh" in infile_dict:
+                self.cells_number = int(infile_dict["parthenon/mesh"][1][1])
+            if "parthenon/output2" in infile_dict:
+                self.dump_code_time = float(infile_dict["parthenon/output2"][2][1])
+            if "problem/turbulence" in infile_dict:
+                turb_params = infile_dict["problem/turbulence"]
+                self.correlation_time = float(turb_params[6][1])
+                self.solenoidal_weight = float(turb_params[8][1])
+                self.initial_magnetic_field = float(turb_params[2][1])
+                self.acceleration_field_rms = float(turb_params[9][1])
+
+            # Get other parameters from the input file as a dictionary
+                self.input_attrs = infile_dict
+
+        except Exception as e:
+            print(f"Error reading input file: {str(e)}")
+
+    def parse_logfile(self) -> None:
+        """
+            Extract walltime, time limit, cycle limit, and cycles per wallsecond from the log
+        file in the simulation folder.
+        """
+        logfile_name = next(
+            (f for f in os.listdir(self.outdir) if f.endswith('.out')
+        ), None)
+
+        try:
+            logfile_path = os.path.join(self.outdir, logfile_name)
+            logfile_tail = deque(maxlen=5)
+
+            with open(logfile_path, "r") as log:
+                for line in log:
+                    logfile_tail.append(line)
+
+                    # Get key parameters from the log file
+                    if "tlim=" in line:
                         self.time_limit = float(re.search(self.T_LIMIT_PATTERN, line).group(1))
-                    if 'nlim=' in line:
+                    if "nlim=" in line:
                         self.cycle_limit = int(re.search(self.N_LIMIT_PATTERN, line).group(1))
-                    if 'walltime used =' in line:
+                    if "walltime used =" in line:
                         self.walltime = float(re.search(self.WALLTIME_PATTERN, line).group(1))
-                    if 'zone-cycles/wallsecond =' in line:
-                        self.cycles_per_wallsecond = float(re.search(self.CYCLES_PER_WALLSECOND_PATTERN, line).group(1))
+                    if "zone-cycles/wallsecond =" in line:
+                        self.cycles_per_walls = float(re.search(self.CYCLES_PER_WALLSECOND_PATTERN, line).group(1))
 
-    def __get_snapshot_list__(self) -> None:
+        except Exception as e:
+            print(f"Error reading log file: {str(e)}")
+
+    def get_snapshots(self) -> None:
         """
-        Get a list of snapshot files in the simulation folder."""
-        snapshot_list = [f for f in os.listdir(self.folder_path) if f.endswith('.phdf')]
+            Get a list of snapshot files in the simulation folder.
+        """
+        snapshot_list = [f for f in os.listdir(self.outdir) if f.endswith('.phdf')]
         snapshot_list.sort()
         return snapshot_list
 
@@ -356,7 +393,7 @@ class SimAthenaPK:
         Args:
             snap_id (int or str): The snapshot ID to analyze."""
         # Search for the first available snapshot file in the simulation folder.
-        snapshot_file_name = next((f for f in os.listdir(self.folder_path) if f.endswith('.phdf')), None)
+        snapshot_file_name = next((f for f in os.listdir(self.outdir) if f.endswith('.phdf')), None)
         if not snapshot_file_name:
             raise FileNotFoundError('No snapshot file found in the current simulation directory.')
 
@@ -386,7 +423,7 @@ class SimAthenaPK:
         - The acceleration component (0 for full field, 1 for x, 2 for y, 3 for z).
         - The first snapshot's index.
         - The second snapshot's index (offset by the first snapshot)."""
-        ds_arr = yt.load(self.folder_path + '/parthenon.prim.*.phdf')
+        ds_arr = yt.load(self.outdir + '/parthenon.prim.*.phdf')
 
         acc_arr = []
         for ds in ds_arr:    
@@ -457,7 +494,7 @@ class SimAthenaPK:
 
         if save_data:
             fout = "average_values.tsv"
-            df.to_csv(os.path.join(self.folder_path, fout), index=False, sep="\t", float_format="%.10E")
+            df.to_csv(os.path.join(self.outdir, fout), index=False, sep="\t", float_format="%.10E")
         else:
             return df
 
@@ -670,13 +707,13 @@ def get_run_statistics_old(self) -> None:
 
         # Calculate the relative power of solenoidal modes, method 2
         def get_mean_squared_ratio(field1, field2):
-            ds = yt.load(self.folder_path + '/parthenon.prim.*.phdf')
+            ds = yt.load(self.outdir + '/parthenon.prim.*.phdf')
             ad = ds.all_data()
             field1 = ad.quantities.weighted_average_quantity(field1, ('index', 'volume'))
             field2 = ad.quantities.weighted_average_quantity(field2, ('index', 'volume'))
             return field1 / field2
 
-        id_split = self.folder_path.split('/')[-1].split('-')
+        id_split = self.outdir.split('/')[-1].split('-')
         ζ = float(id_split[2].split('_')[1])
         sol_weight_actual = get_mean_squared_ratio('a_s_mag' + '/moments/' + 'rms', 'a' + '/moments/' + 'rms')
         sol_weight = 1.0 - ((1 - ζ) ** 2 / (1 - 2 * ζ + 3 * ζ ** 2))
