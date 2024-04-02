@@ -48,11 +48,8 @@ class SimAthenaPK:
         """
         Get the file path for a snapshot based on its number or string representation.
 
-        Args:
-            snap_id (int or str): The snapshot ID.
-
-        Returns:
-            str: The file path to the snapshot."""
+        :param snap_id: int or str, the snapshot ID.
+        :return: str, the file path to the snapshot. """
         snapshot_number_str = str(snap_id).zfill(5)
 
         if not snapshot_number_str.endswith('.phdf'):
@@ -68,11 +65,8 @@ class SimAthenaPK:
         """
         Load and return the data from a snapshot file.
 
-        Args:
-            snap_id (int or str): The snapshot ID.
-
-        Returns:
-            yt.data_objects.static_output.Dataset: A dataset containing the snapshot data."""
+        :param snap_id: int or str, the snapshot ID to load.
+        :return: yt.data_objects.static_output.Dataset, a yt dataset containing the snapshot data. """
         snapshot_file_path = self.__get_snapshot_file_path__(snap_id)
         if not os.path.exists(snapshot_file_path):
             raise FileNotFoundError(f'Snapshot not found in the current simulation directory: {snapshot_file_path}')
@@ -109,7 +103,7 @@ class SimAthenaPK:
             if "parthenon/mesh" in input_file_dict:
                 self.number_of_cells = int(input_file_dict["parthenon/mesh"][1][1])
             if "parthenon/output2" in input_file_dict:
-                self.code_time_between_dumps = float(input_file_dict["parthenon/output2"][2][1])
+                self.dump_code_time = float(input_file_dict["parthenon/output2"][2][1])
             if "problem/turbulence" in input_file_dict:
                 turbulence_params = input_file_dict["problem/turbulence"]
                 self.correlation_time = float(turbulence_params[6][1])
@@ -156,19 +150,16 @@ class SimAthenaPK:
         """
         Get the data of a field in a snapshot.
 
-        Args:
-            snap_id (int or str): The snapshot ID to analyze.
-            field (tuple of str): A tuple specifying the field to analyze (e.g., ('gas', 'density')).
-        
-        Returns:
-            np.ndarray: A NumPy array containing the field data."""
+        :param snap_id: int or str, the snapshot ID to analyze.
+        :param field: tuple of str, field to analyze, e.g., ('gas', 'density').
+        :return: np.ndarray, the field data. """
         ds = self.__load_snapshot_data__(snap_id)
         ad = ds.all_data()
 
         try :
             return ad[field].value
         except Exception as e:
-            raise RuntimeError(f'Error loading snapshot data: {str(e)}')
+            raise RuntimeError(f"Error loading snapshot data: {str(e)}")
 
     def get_snapshot_field_average(
             self,
@@ -179,18 +170,15 @@ class SimAthenaPK:
         """
         Get the average value of a field in a snapshot.
 
-        Args:
-            snap_id (int or str): The snapshot ID to analyze.
-            field (tuple of str): A tuple specifying the field to analyze (e.g., ('gas', 'density')).
-            weight (tuple of str, optional): A tuple specifying the weight field to use for averaging (e.g., ('index', 'volume')).
-        
-        Returns:
-            averaged_quantity (float): The average value of the field."""
+        :param snap_id: int or str, the snapshot ID to analyze.
+        :param field: tuple of str, field to analyze, e.g., ('gas', 'density').
+        :param weight: tuple of str, optional, weight field. Default is None.
+        :return: float, the average value of the field. """
         ds = self.__load_snapshot_data__(snap_id)
         ad = ds.all_data()
 
         if weight is None or weight == "None":
-            weight = ('index', 'ones')
+            weight = ("index", "ones")
 
         return ad.quantities.weighted_average_quantity(field, weight)
 
@@ -428,7 +416,7 @@ class SimAthenaPK:
     def get_run_average_fields(
             self,
             fields: list[str],
-            weight: Union[tuple[str, str], None] = None,
+            weight: tuple[str, str] = None,
             verbose: bool = False,
             in_time: bool = False,
             save_data: bool = False
@@ -436,38 +424,36 @@ class SimAthenaPK:
         """
         Calculate and save the density-weighted average values for specified fields.
 
-        Args:
-            fields (list[str]): The names of the fields for which to calculate averages.
-            weight (tuple[str, str] | None, optional): The weight field to use for averaging. Default is None.
-            verbose (bool, optional): If True, print information about the field being processed.
-            in_time (bool, optional): If True, get the snapshot's current time and save it along with the averages.
-            save_data (bool, optional): If True, save the calculated values to a file.
-                                        If False, return the calculated values.
-                                        Default is True.
+        :param fields: list[str], the names of the fields for which to calculate averages.
+        :param weight: tuple[str, str], the weight field to use for averaging. Default is None.
+        :param verbose: bool, if True, print information about the field being processed.
+        :param in_time: bool, if True, get snapshot's current time and save it with the averages.
+        :param save_data: bool, if True, save the calculated values to a file. Default is False.
+        :return: None or ndarray, if save_data is True, the function saves the calculated values
+                    to a file and does not return a value. If save_data is False, the function
+                    returns the calculated values as a NumPy array. """
+        run_data = []
 
-        Returns:
-            None or ndarray: If save_data is True, the function saves the calculated values to a file and does not return a value.
-                             If save_data is False, the function returns the calculated values as a NumPy array."""
-        snapshots_data = []
-
-        for sim in self.snapshot_list:
-            i_snapshot = sim.split('.')[2]
+        for snapshot in self.snapshot_list:
+            snapshot_id = snapshot.split('.')[2]
             snapshot_data = []
 
             if in_time:
-                times_dict = self.get_snapshot_timescales(i_snapshot)
+                times_dict = self.get_snapshot_timescales(snapshot_id)
                 snapshot_data.append(times_dict["current_time"])
 
             for field in fields:
                 if verbose:
                     print(f"Running analysis for field: {field}")
-                average_field = self.get_snapshot_field_average(i_snapshot, ('gas', field), weight)
+
+                # Calculate the average field value
+                average_field = self.get_snapshot_field_average(snapshot_id, ("gas", field), weight)
                 snapshot_data.append(float(average_field))
 
-            snapshots_data.append(snapshot_data)
+            run_data.append(snapshot_data)
 
         header = ["time"] + fields if in_time else fields
-        df = pd.DataFrame(snapshots_data, columns=header)
+        df = pd.DataFrame(run_data, columns=header)
 
         if save_data:
             fout = "average_values.tsv"
