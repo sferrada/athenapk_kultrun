@@ -12,7 +12,7 @@ yt.funcs.mylog.setLevel("ERROR")
 class Snapshot:
     def __init__(self, id, outdir):
         self.id = id
-        self.outdir =
+        self.outdir = outdir
 
     def path(self):
         num_id = str(self.id).zfill(5)
