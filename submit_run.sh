@@ -6,7 +6,10 @@
 #SBATCH --gres=gpu:A100:1
 
 # Load modules
-module load openmpi/4.1.5 gcc/12.2.0 hdf5/1.14.1-2_openmpi-4.1.5_parallel cuda/12.2
+module load openmpi/4.1.5
+module load gcc/12.2.0
+module load hdf5/1.14.1-2_openmpi-4.1.5_parallel
+module load cuda/12.2
 
 # Set directory names
 PRJDIR=/home/sferrada

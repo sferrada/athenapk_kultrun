@@ -1,15 +1,5 @@
 import os
 
-def custom_column_widths():
-    """ Custom widths for specific input file sections. """
-    return {
-        "global": (10, 10, 10),  # General column widths
-        "modes": (7, 2, 10),  # Custom widths for the `<modes>` section
-        "hydro": (1, 14, 14),  # Custom widths for the `<hydro>` section
-        "comment": (9, 10, 10),  # Custom widths for the `<comment>` section
-        "problem/turbulence": (12, 8, 10),  # Custom widths for the `<problem/turbulence>` section
-    }
-
 def output_dir(run_name: str) -> str:
     """
     Get the output directory path for a specific run.
@@ -166,4 +156,12 @@ def format_athenapk_input_file(config_dict: dict, print_formatted: bool = False)
         print(formatted_config)
     else:
         return formatted_config
+
+custom_column_widths = {
+    "global": (10, 10, 10),  # General column widths
+    "modes": (7, 2, 10),  # Widths for the `<modes>` section
+    "hydro": (1, 14, 14),  # Widths for the `<hydro>` section
+    "comment": (9, 10, 10),  # Widths for the `<comment>` section
+    "problem/turbulence": (12, 8, 10),  # Widths for the `<problem/turbulence>` section
+}
 
