@@ -6,15 +6,21 @@ import scipy as sp
 import pandas as pd
 from typing import Union
 from collections import deque
-from src.commons import read_athenapk_input_file
+from src.mdl_files import read_athenapk_input_file
 yt.funcs.mylog.setLevel("ERROR")
 
 class Snapshot:
-    def __init__(self, id, outdir):
-        self.id = id
-        self.outdir = outdir
+    def __init__(self, index, outdir):
+        """
+            Initialize a single snapshot instance
+        """
+        self.id = index  # Snapshot identifier
+        self.outdir = outdir  # Path to the simulation directory
 
     def path(self):
+        """
+            Return the path to the snapshot file
+        """
         num_id = str(self.id).zfill(5)
         num_id += ".phdf" if not num_id.endswith(".phdf") else ""
 
@@ -30,10 +36,10 @@ class Snapshot:
             raise FileNotFoundError("")
 
 class SimAthenaPK:
-    T_LIMIT_PATTERN = r'tlim=(\S+)'
-    N_LIMIT_PATTERN = r'nlim=(\S+)'
-    WALLTIME_PATTERN = r'walltime used = (\S+)'
-    CYCLES_PER_WALLSECOND_PATTERN = r'zone-cycles/wallsecond = (\S+)'
+    T_LIMIT_PATTERN = r"tlim=(\S+)"
+    N_LIMIT_PATTERN = r"nlim=(\S+)"
+    WALLTIME_PATTERN = r"walltime used = (\S+)"
+    CYCLES_PER_WALLSECOND_PATTERN = r"zone-cycles/wallsecond = (\S+)"
 
     def __init__(self, folder_path: str) -> None:
         """
@@ -52,7 +58,7 @@ class SimAthenaPK:
         self.acceleration_field_rms = None  # RMS acceleration field
         self.initial_magnetic_field = None  # Initial magnetic field strength
 
-        # Log file parameters
+        # Log file regular expressions
         self.walltime = None  # Walltime used by the simulation
         self.time_limit = None  # Physical maximum time limit
         self.cycle_limit = None  # Maximum cycle limit
