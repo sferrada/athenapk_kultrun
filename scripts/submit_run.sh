@@ -6,14 +6,19 @@
 #SBATCH --gres=gpu:A100:1
 
 # Load modules
-module load openmpi/4.1.5 gcc/12.2.0 hdf5/1.14.1-2_openmpi-4.1.5_parallel cuda/12.2
+module load openmpi/4.1.5
+module load gcc/12.2.0
+module load hdf5/1.14.1-2_openmpi-4.1.5_parallel
+module load cuda/12.2
 
 # Set directory names
-PRJDIR=/home/sferrada/athenapk_kultrun
-RUNDIR=NG_1-NC_256-TCOR_1.00-SOLW_1.00-ARMS_1.00-BINI_0.07-EOSG_1.00
-OUTDIR=outputs/${RUNDIR}
+HOME_DIR=/home/sferrada
+ATHENA_DIR=${HOME_DIR}/athenapk
+KPATCH_DIR=${HOME_DIR}/athenapk_kultrun
+SIM_DIR=NG_1-NC_256-TCOR_1.00-SOLW_1.00-ARMS_1.00-BINI_0.07-EOSG_1.00
+OUT_DIR=${KPATCH_DIR}/outputs/${SIM_DIR}
 
 # Run the sim
-cd $PRJDIR
-mpirun ./athenapk/build-host/bin/athenaPK -i ./${OUTDIR}/turbulence_philipp.in -d ./${OUTDIR}/ > "./${OUTDIR}/turbulence_philipp.out"
+cd $ATHENA_DIR
+mpirun ./build-host/bin/athenaPK -i ${OUT_DIR}/turbulence_philipp.in -d ${OUT_DIR}/ > "${OUT_DIR}/turbulence_philipp.out"
 
