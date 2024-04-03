@@ -18,7 +18,7 @@ initial_conditions:
   correlation_time: 1.0  # default: 1.0
 
 post_analysis:
-  run_analysis: 1  # 0: no analysis; 1: simple; 2: flow; 3: energy transfer
+  run_analysis: 0  # 0: no analysis; 1: simple; 2: flow; 3: energy transfer
   weight: None
   fields_for_analysis:
     - "density"

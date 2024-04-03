@@ -1,0 +1,3 @@
+[submodule "athenapk"]
+	path = athenapk
+	url = https://github.com/parthenon-hpc-lab/athenapk.git

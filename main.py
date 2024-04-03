@@ -37,7 +37,7 @@
 """
 import argparse
 from src.mdl_prepare import prepare_run
-from src.mdl_analyse import analyse_run
+# from src.mdl_analyse import analyse_run
 
 
 def main(
@@ -57,10 +57,10 @@ def main(
             prepare_run(infile,
                         config,
                         script)
-        case "analyse":
-            analyse_run(rundir,
-                        weight,
-                        output)
+        # case "analyse":
+        #     analyse_run(rundir,
+        #                 weight,
+        #                 output)
         case _:
             raise ValueError(f"Unknown execution mode: {exec}")
 
@@ -81,7 +81,7 @@ def parser():
                         help="Configuration file for the run")
 
     parser.add_argument("--script", type=str, metavar="FILE", default="submit_run.sh",
-                        help="Submission script file")
+                        help="[UNUSED] Submission script file")
 
     parser.add_argument("--name", type=str, metavar="NAME", default="run",
                         help="[UNUSED] Run name")
@@ -94,9 +94,6 @@ def parser():
 
     parser.add_argument("--output", type=str, metavar="FILE", default="analysis.h5",
                         help="Output file with results")
-
-    parser.add_argument("--script", type=str, metavar="FILE", default="submit_run.sh",
-                        help="[UNUSED] Submission script file")
 
     parser.add_argument("--overwrite", action="store_true",
                         help="[UNUSED] Overwrite output directory")

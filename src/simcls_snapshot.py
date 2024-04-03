@@ -1,7 +1,6 @@
 import os
 import yt
 import numpy as np
-from typing import Union
 from src.mdl_physics import add_field
 
 class Snapshot:
