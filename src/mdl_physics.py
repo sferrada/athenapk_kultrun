@@ -42,8 +42,8 @@ def add_field(data, func, sampling_type="local"):
     :param sampling_type: The sampling type of the field
     :return: The field that was added to the dataset """
     unit_map = {
-        "magnetic_energy_1": "dyne/cm**2",
-        "magnetic_energy_2": "G**2",
+        "magnetic_energy_1": "dyne/cm**2",  # "*cm",
+        "magnetic_energy_2": "G**2",  # "dyne*cm",
         "turbulent_energy": "dyne*cm",
         "kinetic_energy_density": "erg/cm**3",
         "velocity_rms": "cm/s",
@@ -58,4 +58,10 @@ def add_field(data, func, sampling_type="local"):
     )
 
     return data.all_data()[("gas", func.__name__)]
+
+# # Get snapshot's average kinetic energy density
+# kinetic_energy_density = self.get_snapshot_field_average(snap_id, ("gas", "kinetic_energy_density"))
+# 
+# # Calculate the turbulent energy from the average kinetic energy density
+# turbulent_energy = kinetic_energy_density * ds.domain_width[0] ** 3
 
