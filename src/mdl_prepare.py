@@ -1,12 +1,10 @@
 import os
 from src.commons import load_config_file
-from src.mdl_files import (
-    custom_column_widths,
-    output_directory_name,
-    read_athenapk_input_file,
-    write_athenapk_input_file,
-    modify_athenapk_input_file
-)
+from src.mdl_files import (custom_column_widths,
+                           output_directory_name,
+                           read_athenapk_input_file,
+                           write_athenapk_input_file,
+                           modify_athenapk_input_file)
 
 def make_output_dir(run_dir):
     """
@@ -157,5 +155,4 @@ def write_analysis_batch_file(
           # fa.writelines('for X in `seq -w 00001 00049`; do srun -n 2 python3 ~/energy-transfer-analysis/mdl_analyse.py --res 256 --data_path ${OUT_DIR}/$X.phdf --data_type AthenaPK --type flow --eos adiabatic --gamma 1.0001 --outfile ${OUT_DIR}/flow-$X.hdf5 -forced; done\n')
         else:
             raise ValueError(f"Non-valid post-analysis method ({analysis_val}), please refer to the config file.")
-
 
