@@ -64,4 +64,3 @@ def add_field(data, func, sampling_type="local"):
 # 
 # # Calculate the turbulent energy from the average kinetic energy density
 # turbulent_energy = kinetic_energy_density * ds.domain_width[0] ** 3
-

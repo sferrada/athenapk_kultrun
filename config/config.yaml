@@ -1,5 +1,5 @@
 numeric_settings:
-  slurm_job_name: "turb_athenapk_gpu"
+  slurm_job_name: "athenapk_gpu"
   number_of_gpus: 1  # max. 4 in Kultrun
   number_of_nodes: 1  # per GPU
   number_of_tasks: 1  # per node

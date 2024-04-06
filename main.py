@@ -13,15 +13,9 @@
     Usage:
     Execute the script with the required and optional command-line arguments.
     - Preparing a run:
-        athenapk_kultrun prepare [options]
+    $ athenapk_kultrun --exec-mode prepare --input turbulence_philipp.in --script submit.sh
     - Analysing a run:
-        athenapk_kultrun analyse [options]
-
-    Example:
-    - Preparing a run:
-        athenapk_kultrun prepare --input turbulence_philipp.in --config config.yaml --script submit.sh --output run --name run
-    - Analysing a run:
-        athenapk_kultrun analyse --run run --weight 1.0 --output analysis.h5
+    $ athenapk_kultrun --exec-mode analyse --run run --weight 1.0 --output analysis.h5
 
     Disclaimer:
     This script is provided "as is," without any warranty. The authors assume no
@@ -49,9 +43,7 @@ def main(
     weight: float = None,
     output: str = None
 ):
-    """
-        Main entry point for the script.
-    """
+    """Main entry point for the script."""
     match exec:
         case "prepare":
             prepare_run(infile,
@@ -65,10 +57,8 @@ def main(
             raise ValueError(f"Unknown execution mode: {exec}")
 
 
-def parser():
-    """
-        Parse command line arguments.
-    """
+def parser() -> argparse.Namespace:
+    """Parse command line arguments."""
     parser = argparse.ArgumentParser(description="AthenaPK preparation and analysis helper for Kultrun.")
 
     parser.add_argument("--exec-mode", choices=["prepare", "analyse"], required=True, default="prepare",
@@ -101,13 +91,12 @@ def parser():
     parser.add_argument("--verbose", action="store_true",
                         help="[UNUSED] Verbose output")
 
-    return parser
+    return parser.parse_args()
 
 
 if __name__ == "__main__":
     # Handle command line arguments
-    pars = parser()
-    args = pars.parse_args()
+    args = parser()
 
     # Call main function with parsed arguments
     main(

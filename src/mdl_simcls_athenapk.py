@@ -467,7 +467,7 @@ class SimAthenaPK:
             verbose: bool = False,
             in_time: bool = False,
             save_data: bool = False
-        ) -> None:
+        ) -> None | pd.DataFrame:
         """
         Calculate and save the density-weighted average values for specified fields.
 

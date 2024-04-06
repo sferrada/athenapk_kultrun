@@ -5,9 +5,7 @@ from src.mdl_physics import add_field
 
 class Snapshot:
     def __init__(self, index, outdir):
-        """
-            Initialize a single snapshot instance
-        """
+        """Initialize a single snapshot instance."""
         self.id = index  # Snapshot identifier
         self.outdir = outdir  # Path to the simulation directory
 
@@ -20,18 +18,14 @@ class Snapshot:
         self.timescales = None
 
     def _get_path(self):
-        """
-            Return the path to the snapshot file
-        """
+        """Return the path to the snapshot file."""
         num_id = str(self.id).zfill(5)
         num_id += ".phdf" if not num_id.endswith(".phdf") else ""
 
         return os.path.join(self.outdir, f"parthenon.prim.{num_id}")
 
     def _define_fields(self):
-        """
-            Define extra physical fields
-        """
+        """Define extra physical fields."""
         self.fields = {}
 
         for field in [
@@ -45,16 +39,14 @@ class Snapshot:
             self.fields[field[1]] = add_field(self.data, field)
 
     def load(self):
-        """
-            Load and return snapshot data
-        """
+        """Load and return snapshot data"""
         try:
             self.data = yt.load(self._path)
 
             # Define extra physical fields
             self._define_fields()
 
-        except:
+        except FileNotFoundError:
             raise FileNotFoundError("")
 
     # def __get_snapshot_file_path__(
@@ -111,7 +103,6 @@ class Snapshot:
         """
         Get the average value of a field in a snapshot.
 
-        :param snap_id: int or str, the snapshot ID to analyze.
         :param field: tuple of str, field to analyze, e.g., ('gas', 'density').
         :param weight: tuple of str, optional, weight field. Default is None.
         :return: float, the average value of the field. """
@@ -126,10 +117,8 @@ class Snapshot:
         except Exception as e:
             raise RuntimeError(f"Error loading snapshot data: {str(e)}")
 
-    def get_snapshot_timescales(self) -> dict[str, float]:
-        """
-            Get various time-related information of a snapshot in the simulation.
-        """
+    def get_snapshot_timescales(self) -> None:
+        """Get various time-related information of a snapshot in the simulation."""
         ds = self.data
 
         # Get current physical time
@@ -164,4 +153,3 @@ class Snapshot:
             "turbulence_crossing_time": float(turbulence_crossing_time),
             # "alfven_crossing_time": float(alfven_crossing_time)
         }
-

@@ -8,9 +8,9 @@ from src.mdl_files import (custom_column_widths,
 
 def make_output_dir(run_dir):
     """
-        Check if the directory exists, and if not, create it.
+    Check if the directory exists, and if not, create it.
 
-        :param run_dir: str, name of the run directory.
+    :param run_dir: str, name of the run directory.
     """
     out_dir = os.path.join("outputs", run_dir)
     if not os.path.exists(out_dir):
@@ -20,17 +20,17 @@ def make_output_dir(run_dir):
         # raise FileExistsError(f"\033[91m[ERROR]\033[0m Directory '{run_dir}' already exists.")
 
 def prepare_run(
-        input_file: str,
-        config_file: str,
-        script_file: str
-    ) -> None:
+    input_file: str,
+    config_file: str,
+    script_file: str
+) -> None:
     """
-        Main function for preparing the run directory, input file, and submission script.
+    Main function for preparing the run directory, input file, and submission script.
 
-        :param input_file: str, path to the template input file.
-        :param config_file: str, path to the configuration file.
-        :param script_file: str, path to the submission script file.
-        :return: None
+    :param input_file: str, path to the template input file.
+    :param config_file: str, path to the configuration file.
+    :param script_file: str, path to the submission script file.
+    :return: None
     """
     # Load configuration from the config file
     config_dict = load_config_file(f"config/{config_file}")
@@ -92,13 +92,11 @@ def prepare_run(
     print(msg)
 
 def write_run_batch_file(
-        out_dir: str,
-        script_file: str,
-        config_dict: dict
-    ):
-    """
-        Write the batch file for running the simulation.
-    """
+    out_dir: str,
+    script_file: str,
+    config_dict: dict
+):
+    """Write the batch file for running the simulation."""
     numeric_settings = config_dict["numeric_settings"]
     kultrun_modules = [
         "openmpi/4.1.5",
@@ -115,7 +113,7 @@ def write_run_batch_file(
         fh.writelines(f"#SBATCH --nodes={numeric_settings['number_of_nodes']}\n")
         fh.writelines(f"#SBATCH --ntasks-per-node={numeric_settings['number_of_tasks']}\n")
         fh.writelines(f"#SBATCH --gres=gpu:A100:{numeric_settings['number_of_gpus']}\n\n")
-      # fh.writelines(f"#SBATCH --mem={numeric_settings['max_memory']}\n")
+        # fh.writelines(f"#SBATCH --mem={numeric_settings['max_memory']}\n")
         fh.writelines("# Load modules\n")
         fh.writelines("module load " + " ".join(kultrun_modules) + "\n\n")
         fh.writelines("# Set directory names\n")
@@ -125,15 +123,14 @@ def write_run_batch_file(
         fh.writelines("OUT_DIR=outputs/${SIM_DIR}\n\n")
         fh.writelines("# Run the sim\n")
         fh.writelines("cd $REPO_DIR\n")
-        fh.writelines("mpirun ./athenapk/build-host/bin/athenaPK -i ./${OUT_DIR}/turbulence_philipp.in -d ./${OUT_DIR}/ > './${OUT_DIR}/turbulence_philipp.out'\n\n")
+        fh.writelines("mpirun ./athenapk/build-host/bin/athenaPK -i ./${OUT_DIR}/turbulence_philipp.in -d\
+./${OUT_DIR}/ > './${OUT_DIR}/turbulence_philipp.out'\n\n")
 
 def write_analysis_batch_file(
-        out_dir: str,
-        config_dict: dict
-    ):
-    """
-        Write the batch file for running the post-analysis.
-    """
+    out_dir: str,
+    config_dict: dict
+):
+    """Write the batch file for running the post-analysis."""
     analysis_val = config_dict["post_analysis"]["run_analysis"]
     with open("submit_analysis.sh", "w") as fa:
         fa.writelines("#!/bin/bash\n")
@@ -162,4 +159,3 @@ def write_analysis_batch_file(
 # fa.writelines('srun -N 1 -n 1 python3 scripts/mdl_analyse.py ${OUT_DIR} --weight=config_dict["post_analysis"]["weight"]\n')
 # fa.writelines('for X in `seq -w 00001 00049`; do srun -n 2 python3 ~/energy-transfer-analysis/mdl_analyse.py --res 256 --data_path ${OUT_DIR}/$X.phdf --data_type AthenaPK --type flow --eos adiabatic --gamma 1.0001 --outfile ${OUT_DIR}/flow-$X.hdf5 -forced; done\n')
 # fa.writelines('for X in `seq -w 00001 00049`; do srun -n 2 python3 ~/energy-transfer-analysis/mdl_analyse.py --res 256 --data_path ${OUT_DIR}/$X.phdf --data_type AthenaPK --type flow --eos adiabatic --gamma 1.0001 --outfile ${OUT_DIR}/flow-$X.hdf5 -forced; done\n')
-

@@ -1,30 +1,29 @@
 import yt
 import matplotlib.pyplot as plt
+from simcls_snapshot import Snapshot
 
-def plot_snapshot_field_map(self,
-                            snap_id: int | str,
-                            field: tuple[str, str],
-                            normal: str = "z",
-                            method: str = "slice",
-                            color_map: str = "viridis",
-                            overplot_velocity: bool = False,
-                            **kwargs: dict) -> None:
+def plot_snapshot_field_map(
+    snapshot: Snapshot,
+    field: tuple[str, str],
+    normal: str = "z",
+    method: str = "slice",
+    color_map: str = "viridis",
+    overplot_velocity: bool = False,
+    **kwargs: dict
+) -> None:
     """
     This function creates slice or projection plots of simulation data using yt,
     returning the resulting plot object.
 
-     Args:
-        snap_id (int or str): The snapshot ID to plot.
-        field (tuple of str): A tuple specifying the field to plot (e.g., ('gas', 'density')).
-        normal (str, optional): The axis for slicing or project (e.g., 'z'). Defaults to 'z'.
-        method (str, optional): The plotting method ('slice' or 'projection'). Defaults to 'slice'.
-        color_map (str, optional): The colormap to use for visualization. Defaults to 'viridis'.
-        overplot_velocity (bool, optional): If True, overplot the velocity field. Defaults to False.
-        **kwargs (dict, optional): Additional keyword arguments to pass to the yt plot.
-
-     Returns:
-        yt.SlicePlot or yt.ProjectionPlot: The yt plot object representing the field slice or projection."""
-    ds = self.__load_snapshot_data__(snap_id)
+    :param snapshot: the Snapshot object used to get the data.
+    :param field: (tuple of str) the field to plot, e.g., ('gas', 'density').
+    :param normal: (str, optional) axis used for slicing or project. Defaults to 'z'.
+    :param method: (str, optional) plotting method, i.e., 'slice' or 'projection'. Defaults to 'slice'.
+    :param color_map: (str, optional) colormap to use for visualization. Defaults to 'viridis'
+    :param overplot_velocity: (bool, optional) whether to overplot the velocity field or not. Defaults to False.
+    :param kwargs: (dict, optional) additional keyword arguments to pass to the yt plot.
+    :return: (yt.SlicePlot or yt.ProjectionPlot) yt plot object representing the field slice or projection."""
+    ds = snapshot.data()
 
     if method.lower() == "slice":
         _plot = yt.SlicePlot(ds, normal, field, **kwargs)
@@ -48,13 +47,12 @@ def plot_snapshot_field_map(self,
 
     return _plot
 
-def plot_snapshot_power_spectra(self, snap_id: int | str) -> None:
+def plot_snapshot_power_spectra(snapshot: Snapshot) -> None:
     """
     Plot the power spectra of the velocity and magnetic fields of a snapshot.
 
-    Args:
-        snap_id (int or str): The snapshot ID to plot."""
-    ds = self.__load_snapshot_data__(snap_id)
+    :param snapshot: the Snapshot object used to get the data."""
+    ds = snapshot.data()
     ad = ds.all_data()
 
     # Calculate the power spectra of the velocity, kinetic and magnetic fields

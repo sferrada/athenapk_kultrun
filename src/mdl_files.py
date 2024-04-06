@@ -8,7 +8,7 @@ def output_dir(run_name: str) -> str:
     :return: str, the output directory path for the specified run. """
     return os.path.join('outputs', run_name)
 
-def output_directory_name(config_dict: dict, prefix: str = "", suffix: list = []) -> str:
+def output_directory_name(config_dict: dict, prefix: str = "", suffix=None) -> str:
     """
     Generate a unique output directory name based on the configuration settings.
 
@@ -26,7 +26,9 @@ def output_directory_name(config_dict: dict, prefix: str = "", suffix: list = []
     base_name += f"BINI_{config_dict['initial_conditions']['initial_magnetic_field']:1.2f}-"
     base_name += f"EOSG_{config_dict['initial_conditions']['equation_of_state_gamma']:1.2f}"
 
-    if suffix:
+    if suffix is None:
+        pass
+    else:
         for s in suffix:
             base_name += f"-{s.upper()}"
 
@@ -84,9 +86,9 @@ def modify_athenapk_input_file(config: dict, modifications: list) -> dict:
                 if config_key == key:
                     modified_config[section][i] = (key, new_value, comment)
     return modified_config
-                
-def write_athenapk_input_file(filename: str, config_dict: dict,
-        column_widths: dict = None, number_of_cells: int = 512) -> None:
+
+def write_athenapk_input_file(filename: str, config_dict: dict, column_widths: dict = None,
+                              number_of_cells: int = 512) -> None:
     """
     Write an AthenaPK configuration to a file with custom column padding widths and substitute `number_of_cells`.
 
@@ -128,7 +130,7 @@ def write_athenapk_input_file(filename: str, config_dict: dict,
                         formatted_line = ""
                     formatted_line += f"{key}{' ' * key_padding} = {value}{' ' * value_padding}{' ' * comment_padding}{' # ' + comment if comment else ''}"
                 else:
-                    formatted_line  = f"{key}{' ' * key_padding} = {value}{' ' * value_padding}{' ' * comment_padding}{' # ' + comment if comment else ''}"
+                    formatted_line = f"{key}{' ' * key_padding} = {value}{' ' * value_padding}{' ' * comment_padding}{' # ' + comment if comment else ''}"
                 formatted_line += "\n"
 
                 file.write(formatted_line)
@@ -157,6 +159,7 @@ def format_athenapk_input_file(config_dict: dict, print_formatted: bool = False)
     else:
         return formatted_config
 
+
 custom_column_widths = {
     "global": (10, 10, 10),  # General column widths
     "modes": (7, 2, 10),  # Widths for the `<modes>` section
@@ -164,4 +167,3 @@ custom_column_widths = {
     "comment": (9, 10, 10),  # Widths for the `<comment>` section
     "problem/turbulence": (12, 8, 10),  # Widths for the `<problem/turbulence>` section
 }
-

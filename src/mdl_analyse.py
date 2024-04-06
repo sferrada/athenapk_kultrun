@@ -1,7 +1,7 @@
 import os
 import h5py
-from src.commons import (load_config_file,
-                         read_athenapk_input_file)
+from src.commons import load_config_file
+from src.mdl_files import read_athenapk_input_file
 from src.mdl_simcls_athenapk import SimAthenaPK
 
 def parse_input_file(input_file: str) -> dict:
@@ -39,10 +39,10 @@ def parse_input_file(input_file: str) -> dict:
     return filtered_dict
 
 def analyse_run(
-        run_dir: str,
-        weight: float,
-        output_file: str
-    ) -> None:    
+    run_dir: str,
+    weight: float,
+    output_file: str
+) -> None:
     """
     Main function for analyzing a run.
 
@@ -70,6 +70,7 @@ def analyse_run(
     average_values = sim.get_run_average_fields(
         fields_for_analysis,
         weight=field_weight,
+        save_data=False,
         in_time=True,
         verbose=True
     )
@@ -95,5 +96,3 @@ def analyse_run(
         average_values_group = f.create_group("average_values")
         for column in average_values.columns:
             average_values_group.create_dataset(column, data=average_values[column].values)
-
-

@@ -1,9 +1,9 @@
 import yaml
 
 def validate_parameter(
-        param_to_validate,
-        default
-    ):
+    param_to_validate,
+    default
+):
     """
     Validate and substitute a parameter with a default value if it is set to None.
 
@@ -12,10 +12,11 @@ def validate_parameter(
     :return: The `param_to_validate` if it is not None, otherwise, the `default` value. """
     return param_to_validate if param_to_validate is not None else default
 
+
 def load_config_file(
-        config_file_path: str,
-        override_config: dict = None
-    ) -> dict:
+    config_file_path: str,
+    override_config: dict = None
+) -> dict:
     """
     Load information from a YAML configuration file into a Python dictionary,
     optionally allowing parameter overrides.
@@ -36,4 +37,3 @@ def load_config_file(
                 config[key] = {subkey: _override_config[key][subkey]}
 
     return config
-
