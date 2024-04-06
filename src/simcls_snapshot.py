@@ -43,8 +43,8 @@ class Snapshot:
         try:
             self.data = yt.load(self._path)
 
-            # Define extra physical fields
-            self._define_fields()
+            # # Define extra physical fields
+            # self._define_fields()
 
         except FileNotFoundError:
             raise FileNotFoundError("")
