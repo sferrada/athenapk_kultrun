@@ -21,13 +21,6 @@
     This script is provided "as is," without any warranty. The authors assume no
     liability for any damages, whether direct or indirect, arising from the correct
     or incorrect usage of this script.
-
-    Dependencies:
-    - Python 3.x
-    - gcc >= 12.2.0
-    - openmpi >= 4.1.5
-    - hdf5 >= 1.14.1-2_openmpi-4.1.5_parallel
-    - cuda >= 12.2
 """
 import argparse
 from src.mdl_prepare import prepare_run
@@ -40,8 +33,8 @@ def main(
     config: str = None,
     script: str = None,
     rundir: str = None,
+    output: str = None,
     weight: float = None,
-    output: str = None
 ):
     """Main entry point for the script."""
     match exec:

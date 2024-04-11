@@ -1,6 +1,6 @@
 import yt
 import matplotlib.pyplot as plt
-from simcls_snapshot import Snapshot
+from src.sim_snapshot import Snapshot
 
 def plot_snapshot_field_map(
     snapshot: Snapshot,

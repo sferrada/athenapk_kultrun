@@ -6,7 +6,7 @@ import scipy as sp
 import pandas as pd
 from typing import Union
 from collections import deque
-from src.mdl_files import read_athenapk_input_file
+from src.mdl_files import read_input_file
 yt.funcs.mylog.setLevel("ERROR")
 
 class Snapshot:
@@ -129,7 +129,7 @@ class SimAthenaPK:
         ), None)
 
         try:
-            infile_dict = read_athenapk_input_file(
+            infile_dict = read_input_file(
                 os.path.join(self.outdir, infile_name)
             )
 

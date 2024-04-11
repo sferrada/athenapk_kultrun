@@ -1,8 +1,8 @@
 import os
 import h5py
-from src.commons import load_config_file
-from src.mdl_files import read_athenapk_input_file
-from src.mdl_simcls_athenapk import SimAthenaPK
+from src.mdl_files import read_input_file
+from src.lib_commons import load_config_file
+from src.sim_athenapk import SimAthenaPK
 
 def parse_input_file(input_file: str) -> dict:
     """
@@ -10,7 +10,7 @@ def parse_input_file(input_file: str) -> dict:
 
     :param input_file: str, path to the input file.
     :return: dict, parsed and filttered dictionary. """
-    input_dict = read_athenapk_input_file(input_file)
+    input_dict = read_input_file(input_file)
 
     parsed_dict = {}
     for section, options in input_dict.items():

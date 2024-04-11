@@ -5,8 +5,8 @@ import numpy as np
 import scipy as sp
 import pandas as pd
 from collections import deque
-from src.mdl_files import read_athenapk_input_file
-from src.simcls_snapshot import Snapshot
+from src.mdl_files import read_input_file
+from src.sim_snapshot import Snapshot
 yt.funcs.mylog.setLevel("ERROR")
 
 class SimAthenaPK:
@@ -52,7 +52,7 @@ class SimAthenaPK:
         ), None)
 
         try:
-            infile_dict = read_athenapk_input_file(
+            infile_dict = read_input_file(
                 os.path.join(self.outdir, infile_name)
             )
 

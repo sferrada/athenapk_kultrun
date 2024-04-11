@@ -1,10 +1,12 @@
 import os
 from src.commons import load_config_file
-from src.mdl_files import (custom_column_widths,
-                           output_directory_name,
-                           read_athenapk_input_file,
-                           write_athenapk_input_file,
-                           modify_athenapk_input_file)
+from src.mdl_files import (
+    custom_column_widths,
+    output_directory_name,
+    read_input_file,
+    write_input_file,
+    modify_input_file
+)
 
 def make_output_dir(run_dir):
     """
@@ -43,7 +45,7 @@ def prepare_run(
     make_output_dir(out_dir)
 
     # Read the template configuration file
-    run_input = read_athenapk_input_file("inputs/" + input_file, skip_header=False)
+    run_input = read_input_file("inputs/" + input_file, skip_header=False)
 
     # List of modifications to apply
     mods = [
@@ -57,9 +59,9 @@ def prepare_run(
     ]
 
     # Apply modifications to the configuration and write it down
-    modified_input_data = modify_athenapk_input_file(run_input, mods)
+    modified_input_data = modify_input_file(run_input, mods)
     modified_input_path = os.path.join("outputs", out_dir, "turbulence_philipp.in")
-    write_athenapk_input_file(
+    write_input_file(
         modified_input_path,
         modified_input_data,
         custom_column_widths,
